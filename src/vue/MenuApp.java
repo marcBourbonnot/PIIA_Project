@@ -1,8 +1,17 @@
 package vue;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import static java.lang.System.exit;
 
 public class MenuApp {
     //Attributs
@@ -46,6 +55,14 @@ public class MenuApp {
         MenuItem ouvrir = new MenuItem("Ouvrir");
         MenuItem sauvegarder = new MenuItem("Enregistrer");
         MenuItem quitter = new MenuItem("Quitter");
+
+
+        quitter.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Platform.exit();
+            }
+        });
 
 
         fichier.getItems().add(nouveau);
@@ -121,6 +138,12 @@ public class MenuApp {
         plan.getItems().add(arrPlan);
 
         modification.getItems().add(contour);
+        //TEST
+        couleurRemp.setOnAction(e -> {
+            ColorPicker pck = new ColorPicker();
+            Color clr = pck.getValue();
+        });
+        //FIN TEST
         modification.getItems().add(couleurRemp);
         modification.getItems().add(rotation);
         modification.getItems().add(plan);

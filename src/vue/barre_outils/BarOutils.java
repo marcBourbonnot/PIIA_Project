@@ -1,13 +1,20 @@
 package vue.barre_outils;
 
+import javafx.geometry.Orientation;
+import javafx.scene.control.ToolBar;
+import javafx.scene.layout.VBox;
+import vue.View;
 
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import javax.tools.Tool;
 
 public class BarOutils {
     //Attributs
-    MenuBar outils;
+    private View view;
 
+    private VBox outils;
+
+    private int width;
+    private int height;
 
     //Constantes
 
@@ -16,8 +23,13 @@ public class BarOutils {
     /**
      * Constructeur sans param de la classe BarreOutils
      */
-    public BarOutils() {
-        this.outils = this.creationBarreOutils();
+    public BarOutils(View v) {
+        this.view = v;
+        this.outils = new VBox();
+        this.width = 75;
+        this.height = view.getHeight();
+        this.outils.setPrefWidth(this.width);
+        this.outils.setPrefWidth(this.height);
     }
 
 
@@ -26,16 +38,11 @@ public class BarOutils {
      * permet de recuperer la barre d'outils
      * @return outils
      */
-    public MenuBar getOutils() {
+    public VBox getOutils() {
         return outils;
     }
 
 
     //Methodes
-    private MenuBar creationBarreOutils() {
-        MenuBar res = new MenuBar();
 
-
-        return res;
-    }
 }
