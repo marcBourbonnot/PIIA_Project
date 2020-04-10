@@ -7,6 +7,11 @@ import javafx.scene.paint.Paint;
 public class Rectangle extends Forme {
 
     //Constructeurs
+    public Rectangle() {
+        super();
+        System.out.println("rectangle");
+    }
+
     public Rectangle(int x, int y, int width, int height, String text) {
         super(x, y, width, height, text);
     }
@@ -30,7 +35,7 @@ public class Rectangle extends Forme {
     public void draw(GraphicsContext gc) {
         Paint save = gc.getFill();
 
-        gc.setFill(this.clr);
+        gc.setFill(this.getClr());
         gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 
         gc.setFill(save);

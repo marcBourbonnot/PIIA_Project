@@ -12,7 +12,9 @@ public abstract class Forme {
     private int height;
 
     private String text;
-    Color clr;
+    private Color clr;
+
+    private boolean drawable;
 
 
     //Constantes
@@ -20,6 +22,14 @@ public abstract class Forme {
 
 
     //Constructeur
+
+    /**
+     * Constructeur de la forme sans params
+     */
+    public Forme() {
+        this.drawable = false;
+    }
+
     /**
      * Constructeur de la forme avec tout les params
      * @param x
@@ -34,6 +44,7 @@ public abstract class Forme {
         this.width = width;
         this.height = height;
         this.text = text;
+        this.drawable = true;
     }
 
     /**
@@ -47,6 +58,7 @@ public abstract class Forme {
         this.width = 50;
         this.height = 50;
         this.text = "";
+        this.drawable = true;
     }
 
     /**
@@ -62,6 +74,7 @@ public abstract class Forme {
         this.width = width;
         this.height = height;
         this.text = "";
+        this.drawable = true;
     }
 
     //Getters et Setters
@@ -106,6 +119,21 @@ public abstract class Forme {
         this.text = text;
     }
 
+    public Color getClr() {
+        return clr;
+    }
+
+    public void setClr(Color clr) {
+        this.clr = clr;
+    }
+
+    public boolean isDrawable() {
+        return drawable;
+    }
+
+    public void setDrawable(boolean drawable) {
+        this.drawable = drawable;
+    }
 
     //Methodes
     /**

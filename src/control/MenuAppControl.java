@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import modele.Rectangle;
 import vue.MenuApp;
 
 public class MenuAppControl {
@@ -35,7 +36,7 @@ public class MenuAppControl {
         //Menu insertion
         ObservableList<MenuItem> insertion = mapp.getMenuBar().getMenus().get(2).getItems();
         ((Menu)insertion.get(0)).getItems().get(0).setOnAction(e -> System.out.println("InsertLigne"));
-        ((Menu)insertion.get(0)).getItems().get(1).setOnAction(e -> System.out.println("InsertRect"));
+        ((Menu)insertion.get(0)).getItems().get(1).setOnAction(e -> this.ctrl.getMdl().setSelectedForme(new Rectangle()));
         ((Menu)insertion.get(0)).getItems().get(2).setOnAction(e -> System.out.println("InsertTri"));
         ((Menu)insertion.get(0)).getItems().get(3).setOnAction(e -> System.out.println("InsertEllipse"));
         insertion.get(1).setOnAction(e -> System.out.println("Image"));
