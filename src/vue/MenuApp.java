@@ -49,7 +49,7 @@ public class MenuApp {
         MenuBar res = new MenuBar();
 
         //Creation du menu fichier
-        Menu fichier = new Menu("fichier");
+        Menu fichier = new Menu("Fichier");
 
         MenuItem nouveau = new MenuItem("Nouveau");
         MenuItem ouvrir = new MenuItem("Ouvrir");
@@ -72,7 +72,7 @@ public class MenuApp {
 
 
         //Creation du menu d'edition
-        Menu edition = new Menu("édition");
+        Menu edition = new Menu("Edition");
 
         MenuItem annuler = new MenuItem("Annuler");
         MenuItem retablir = new MenuItem("Rétablir");
@@ -86,7 +86,7 @@ public class MenuApp {
 
 
         //Creation du menu insertion
-        Menu insertion = new Menu("insertion");
+        Menu insertion = new Menu("Insertion");
 
         Menu formes = new Menu("Formes");
         MenuItem images = new MenuItem("Image");
@@ -113,7 +113,7 @@ public class MenuApp {
         Menu contour = new Menu("Contour");
         MenuItem couleurRemp = new MenuItem("Couleur de remplissage");
         Menu rotation = new Menu("Rotation");
-        Menu plan = new Menu("plan");
+        Menu plan = new Menu("Plan");
         MenuItem suppr = new MenuItem("Supprimer");
 
         //Menu contour

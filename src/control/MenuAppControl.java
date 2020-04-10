@@ -6,16 +6,51 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import vue.MenuApp;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 public class MenuAppControl {
-    MenuApp mapp = new MenuApp();
+    Control ctrl;
+
+    MenuApp mapp;
+
+    public MenuAppControl(Control c) {
+        this.ctrl = c;
+
+        this.mapp = new MenuApp();
+    }
 
     public void addActions() {
+        //Menu fichier
         ObservableList<MenuItem> fichier = mapp.getMenuBar().getMenus().get(0).getItems();
-        fichier.get(0).setOnAction(e -> System.out.println("nouveau"));
+        fichier.get(0).setOnAction(e -> this.ctrl.getMdl().clearFormes());
+        fichier.get(1).setOnAction(e -> System.out.println("Ouvrir"));
+        fichier.get(2).setOnAction(e -> System.out.println("Enregistrer"));
         fichier.get(3).setOnAction(e -> Platform.exit());
+
+        //Menu edition
+        ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();
+        edition.get(0).setOnAction(e -> System.out.println("Annuler"));
+        edition.get(1).setOnAction(e -> System.out.println("Retablir"));
+        edition.get(2).setOnAction(e -> System.out.println("Copier"));
+        edition.get(3).setOnAction(e -> System.out.println("coller"));
+
+        //Menu insertion
+        ObservableList<MenuItem> insertion = mapp.getMenuBar().getMenus().get(2).getItems();
+        ((Menu)insertion.get(0)).getItems().get(0).setOnAction(e -> System.out.println("InsertLigne"));
+        ((Menu)insertion.get(0)).getItems().get(1).setOnAction(e -> System.out.println("InsertRect"));
+        ((Menu)insertion.get(0)).getItems().get(2).setOnAction(e -> System.out.println("InsertTri"));
+        ((Menu)insertion.get(0)).getItems().get(3).setOnAction(e -> System.out.println("InsertEllipse"));
+        insertion.get(1).setOnAction(e -> System.out.println("Image"));
+        insertion.get(2).setOnAction(e -> System.out.println("Texte"));
+
+        //Menu modification
+        ObservableList<MenuItem> modification = mapp.getMenuBar().getMenus().get(3).getItems();
+        ((Menu)modification.get(0)).getItems().get(0).setOnAction(e -> System.out.println("ContourCouleur"));
+        ((Menu)modification.get(0)).getItems().get(1).setOnAction(e -> System.out.println("ContourEpaisseur"));
+        modification.get(1).setOnAction(e -> System.out.println("Couleur de remplissage"));
+        ((Menu)modification.get(2)).getItems().get(0).setOnAction(e -> System.out.println("Rot90D"));
+        ((Menu)modification.get(2)).getItems().get(1).setOnAction(e -> System.out.println("Rot90G"));
+        ((Menu)modification.get(3)).getItems().get(0).setOnAction(e -> System.out.println("PlanPremier"));
+        ((Menu)modification.get(3)).getItems().get(1).setOnAction(e -> System.out.println("PlanArriere"));
+        modification.get(4).setOnAction(e -> System.out.println("SupprimerForme"));
     }
 
     public MenuApp getMapp() {

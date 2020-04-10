@@ -17,12 +17,11 @@ public class Ligne extends Forme {
     }
 
     @Override
-    boolean estDedans(double x, double y) {
+    public boolean estDedans(double x, double y) {
         return false;
     }
 
     @Override
-    void draw(GraphicsContext gc) {
-
+    public void draw(GraphicsContext gc) {
     }
 }

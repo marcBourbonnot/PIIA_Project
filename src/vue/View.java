@@ -1,44 +1,69 @@
 package vue;
 
+import control.CanvasControl;
+import control.Control;
 import control.MenuAppControl;
-import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import modele.Model;
 import vue.barre_outils.BarOutils;
 
 
-public class View extends Application {
-    MenuAppControl menu;
-    ZoneDessin dessin;
-    BarOutils bOutils;
-    int width = 1000;
-    int height = 750;
+public class View {
+    private Model mdl;
+    private Control ctrl;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        this.menu = new MenuAppControl();
-        this.dessin = new ZoneDessin(width, height);
+    private MenuAppControl menu;
+    private CanvasControl dessin;
+    private BarOutils bOutils;
+    private int width = 1000;
+    private int height = 750;
+
+    private VBox mainView;
+
+    public View() {
+        this.mdl = new Model(this);
+        this.ctrl = new Control(this.mdl, this);
+        this.mdl.setCtrl(this.ctrl);
+
+        this.menu = this.ctrl.getMenuCtrl();
+        this.dessin = this.ctrl.getCvsCtrl();
         this.bOutils = new BarOutils(this);
 
         menu.addActions();
 
-        VBox vbox = new VBox(this.menu.getMapp().getMenuBar(), new HBox(this.dessin.getDrawArea(),this.bOutils.getOutils()));
+        this.mainView = new VBox(this.menu.getMapp().getMenuBar(), new HBox(this.dessin.getZoneDessin().getDrawArea(),this.bOutils.getOutils()));
+    }
 
-        Scene scene = new Scene(vbox);
+    public MenuAppControl getMenu() {
+        return menu;
+    }
 
-        primaryStage.setTitle("Dessin facile");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    public void setMenu(MenuAppControl menu) {
+        this.menu = menu;
+    }
+
+    public CanvasControl getDessin() {
+        return dessin;
+    }
+
+    public void setDessin(CanvasControl dessin) {
+        this.dessin = dessin;
+    }
+
+    public BarOutils getbOutils() {
+        return bOutils;
+    }
+
+    public void setbOutils(BarOutils bOutils) {
+        this.bOutils = bOutils;
     }
 
     public int getHeight() {
         return height;
     }
 
-    public static void main(String[] args) {
-        Application.launch(args);
+    public VBox getMainView() {
+        return mainView;
     }
-
 }

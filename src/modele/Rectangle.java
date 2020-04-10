@@ -1,6 +1,8 @@
 package modele;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 public class Rectangle extends Forme {
 
@@ -20,12 +22,17 @@ public class Rectangle extends Forme {
 
     //Methodes
     @Override
-    boolean estDedans(double x, double y) {
+    public boolean estDedans(double x, double y) {
         return (x-this.getX())<this.getWidth() && (x-this.getX())>0 && (y-this.getY())<this.getHeight() && (y-this.getY())>0;
     }
 
     @Override
-    void draw(GraphicsContext gc) {
+    public void draw(GraphicsContext gc) {
+        Paint save = gc.getFill();
 
+        gc.setFill(this.clr);
+        gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+
+        gc.setFill(save);
     }
 }

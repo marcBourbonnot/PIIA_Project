@@ -1,6 +1,7 @@
 package modele;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public abstract class Forme {
     //Attributs
@@ -11,6 +12,7 @@ public abstract class Forme {
     private int height;
 
     private String text;
+    Color clr;
 
 
     //Constantes
@@ -112,11 +114,11 @@ public abstract class Forme {
      * @param y ordonnee d'un point
      * @return vrai si le point est dans la forme
      */
-    abstract boolean estDedans(double x, double y);
+    public abstract boolean estDedans(double x, double y);
 
     /**
      * Dessine la forme
      * @param gc GraphicsContext du canvas de la vue
      */
-    abstract void draw(GraphicsContext gc);
+    public abstract void draw(GraphicsContext gc);
 }
