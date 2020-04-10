@@ -9,6 +9,7 @@ public class Control {
 
     CanvasControl cvsCtrl;
     MenuAppControl menuCtrl;
+    BarreOutilsControl bOutilsCtrl;
 
     public Control(Model mdl, View view) {
         this.mdl = mdl;
@@ -16,6 +17,7 @@ public class Control {
 
         this.cvsCtrl = new CanvasControl(this);
         this.menuCtrl = new MenuAppControl(this);
+        this.bOutilsCtrl = new BarreOutilsControl(this);
     }
 
     public Model getMdl() {
@@ -48,5 +50,13 @@ public class Control {
 
     public void setMenuCtrl(MenuAppControl menuCtrl) {
         this.menuCtrl = menuCtrl;
+    }
+
+    public BarreOutilsControl getbOutilsCtrl() {
+        return bOutilsCtrl;
+    }
+
+    public void setbOutilsCtrl(BarreOutilsControl bOutilsCtrl) {
+        this.bOutilsCtrl = bOutilsCtrl;
     }
 }

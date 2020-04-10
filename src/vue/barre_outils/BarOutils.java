@@ -1,7 +1,5 @@
 package vue.barre_outils;
 
-import javafx.geometry.Orientation;
-import javafx.scene.control.ToolBar;
 import javafx.scene.layout.VBox;
 import vue.View;
 
@@ -9,27 +7,21 @@ import javax.tools.Tool;
 
 public class BarOutils {
     //Attributs
-    private View view;
-
     private VBox outils;
 
-    private int width;
-    private int height;
 
     //Constantes
-
+    public final static int WIDTH = 75;
 
     //Constructeurs
     /**
      * Constructeur sans param de la classe BarreOutils
      */
-    public BarOutils(View v) {
-        this.view = v;
+    public BarOutils() {
         this.outils = new VBox();
-        this.width = 75;
-        this.height = view.getHeight();
-        this.outils.setPrefWidth(this.width);
-        this.outils.setPrefWidth(this.height);
+
+        this.outils.setPrefWidth(BarOutils.WIDTH);
+        this.outils.setPrefHeight(View.HEIGHT);
     }
 
 

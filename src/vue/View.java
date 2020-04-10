@@ -1,5 +1,6 @@
 package vue;
 
+import control.BarreOutilsControl;
 import control.CanvasControl;
 import control.Control;
 import control.MenuAppControl;
@@ -15,11 +16,12 @@ public class View {
 
     private MenuAppControl menu;
     private CanvasControl dessin;
-    private BarOutils bOutils;
-    private int width = 1000;
-    private int height = 750;
+    private BarreOutilsControl bOutils;
 
     private VBox mainView;
+
+    public final static int WIDTH = 1000;
+    public final static int HEIGHT = 750;
 
     public View() {
         this.mdl = new Model(this);
@@ -28,11 +30,11 @@ public class View {
 
         this.menu = this.ctrl.getMenuCtrl();
         this.dessin = this.ctrl.getCvsCtrl();
-        this.bOutils = new BarOutils(this);
+        this.bOutils = this.ctrl.getbOutilsCtrl();
 
         menu.addActions();
 
-        this.mainView = new VBox(this.menu.getMapp().getMenuBar(), new HBox(this.dessin.getZoneDessin().getDrawArea(),this.bOutils.getOutils()));
+        this.mainView = new VBox(this.menu.getMapp().getMenuBar(), new HBox(this.dessin.getZoneDessin().getDrawArea(),this.bOutils.getBarreOutils().getOutils()));
     }
 
     public MenuAppControl getMenu() {
@@ -51,16 +53,12 @@ public class View {
         this.dessin = dessin;
     }
 
-    public BarOutils getbOutils() {
+    public BarreOutilsControl getbOutils() {
         return bOutils;
     }
 
-    public void setbOutils(BarOutils bOutils) {
+    public void setbOutils(BarreOutilsControl bOutils) {
         this.bOutils = bOutils;
-    }
-
-    public int getHeight() {
-        return height;
     }
 
     public VBox getMainView() {
