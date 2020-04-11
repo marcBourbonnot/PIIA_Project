@@ -1,8 +1,13 @@
 package modele;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Paint;
 
 public class Ligne extends Forme {
+
+    public Ligne() {
+        super();
+    }
 
     public Ligne(int x, int y, int width, int height, String text) {
         super(x, y, 0, 0, "");
@@ -23,5 +28,11 @@ public class Ligne extends Forme {
 
     @Override
     public void draw(GraphicsContext gc) {
+        Paint save = gc.getFill();
+
+        gc.setFill(this.getClr());
+        gc.strokeLine(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+
+        gc.setFill(save);
     }
 }

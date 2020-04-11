@@ -3,15 +3,9 @@ package vue;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
-import static java.lang.System.exit;
 
 public class MenuApp {
     //Attributs
@@ -92,10 +86,15 @@ public class MenuApp {
         MenuItem images = new MenuItem("Image");
         MenuItem zDeTxt = new MenuItem("Zone de texte");
 
-        MenuItem ligne = new MenuItem("Ligne");
-        MenuItem rectangle = new MenuItem("Rectangle");
-        MenuItem triangle = new MenuItem("Triangle");
-        MenuItem ellipse = new MenuItem("Ellipse");
+        final ToggleGroup groupFormes = new ToggleGroup();
+        RadioMenuItem ligne = new RadioMenuItem("Ligne");
+        ligne.setToggleGroup(groupFormes);
+        RadioMenuItem rectangle = new RadioMenuItem("Rectangle");
+        rectangle.setToggleGroup(groupFormes);
+        RadioMenuItem triangle = new RadioMenuItem("Triangle");
+        triangle.setToggleGroup(groupFormes);
+        RadioMenuItem ellipse = new RadioMenuItem("Ellipse");
+        ellipse.setToggleGroup(groupFormes);
 
         formes.getItems().add(ligne);
         formes.getItems().add(rectangle);

@@ -3,6 +3,7 @@ package modele;
 import control.Control;
 import javafx.scene.input.MouseEvent;
 import vue.View;
+import vue.ZoneDessin;
 
 import java.util.ArrayList;
 
@@ -10,6 +11,7 @@ public class Model {
     View view;
     Control ctrl;
 
+    Formes newFormeTypeSelected;
     Forme selectedForme;
     ArrayList<Forme> formes;
 
@@ -33,6 +35,14 @@ public class Model {
 
     public void setCtrl(Control ctrl) {
         this.ctrl = ctrl;
+    }
+
+    public Formes getTypeSelected() {
+        return newFormeTypeSelected;
+    }
+
+    public void setTypeSelected(Formes typeSelected) {
+        this.newFormeTypeSelected = typeSelected;
     }
 
     public Forme getSelectedForme() {
@@ -65,32 +75,50 @@ public class Model {
     }
 
     public void clearFormes() {
-        this.formes.forEach(e -> this.formes.remove(e));
+        this.formes = new ArrayList<>();
+        this.ctrl.getCvsCtrl().clear();
     }
 
     public void startDrawPoint(MouseEvent e) {
-        System.out.println("start draw point");
-        System.out.println("x: " + e.getX() + " y: " + e.getY());
+        if(this.newFormeTypeSelected != null) {
+            this.getSelectedForme().setX(e.getX());
+            this.getSelectedForme().setY(e.getY());
+        }
+    }
 
-        System.out.println(this.ctrl.getMdl().getSelectedForme());
-        this.getSelectedForme().setX(10);
-        this.getSelectedForme().setY(10);
-//        this.getSelectedForme().setX((int) e.getX());
-//        this.getSelectedForme().setY((int) e.getY());
+    public void tempDraw(MouseEvent e) {
+        if(this.newFormeTypeSelected != null) {
+            this.getCtrl().getCvsCtrl().getZoneDessin().getDrawArea().getGraphicsContext2D().clearRect(0, 0, ZoneDessin.WIDTH, ZoneDessin.HEIGHT);
+            this.getCtrl().getCvsCtrl().draw();
+
+            this.selectedForme.setWidth(e.getX());
+            this.selectedForme.setHeight(e.getY());
+
+            this.getSelectedForme().draw(this.ctrl.getCvsCtrl().getGC());
+        }
     }
 
     public void endDrawPoint(MouseEvent e) {
-        System.out.println("end draw point");
-        System.out.println("x: " + e.getX() + " y: " + e.getY());
-        this.getSelectedForme().setX(20);
-        this.getSelectedForme().setY(20);
+        if(this.newFormeTypeSelected != null) {
+            this.getSelectedForme().setWidth(e.getX());
+            this.getSelectedForme().setHeight(e.getY());
+            this.getSelectedForme().setDrawable(true);
 
-//        this.getSelectedForme().setWidth((int) e.getX());
-//        this.getSelectedForme().setHeight((int) e.getY());
-//        this.getSelectedForme().setDrawable(true);
-//
-//        this.getFormes().add(this.selectedForme);
-//        System.out.println(this.getForme(0));
-//        this.getCtrl().getCvsCtrl().draw();
+            this.getFormes().add(this.selectedForme);
+            this.getCtrl().getCvsCtrl().draw();
+
+            this.newForme();
+        }
+    }
+
+    public void newForme() {
+        switch (this.newFormeTypeSelected){
+            case LIGNE:
+                this.setSelectedForme(new Ligne());
+                break;
+            case RECTANGLE:
+                this.setSelectedForme(new Rectangle());
+                break;
+        }
     }
 }

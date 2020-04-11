@@ -8,13 +8,16 @@ public abstract class Forme {
     private double x;
     private double y;
 
-    private int width;
-    private int height;
+    private double width;
+    private double height;
 
     private String text;
     private Color clr;
 
     private boolean drawable;
+
+    private double epaisseurBord;
+    private Color clrBord;
 
 
     //Constantes
@@ -22,11 +25,15 @@ public abstract class Forme {
 
 
     //Constructeur
-
     /**
      * Constructeur de la forme sans params
      */
     public Forme() {
+        this.x = 0;
+        this.y = 0;
+        this.width = 0;
+        this.height = 0;
+        this.text = "";
         this.drawable = false;
     }
 
@@ -38,7 +45,7 @@ public abstract class Forme {
      * @param height
      * @param text
      */
-    public Forme(double x, double y, int width, int height, String text) {
+    public Forme(double x, double y, double width, double height, String text) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -68,7 +75,7 @@ public abstract class Forme {
      * @param width
      * @param height
      */
-    public Forme(double x, double y, int width, int height) {
+    public Forme(double x, double y, double width, double height) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -83,7 +90,7 @@ public abstract class Forme {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
@@ -91,23 +98,23 @@ public abstract class Forme {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(double width) {
         this.width = width;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
@@ -134,6 +141,23 @@ public abstract class Forme {
     public void setDrawable(boolean drawable) {
         this.drawable = drawable;
     }
+
+    public double getEpaisseurBord() {
+        return epaisseurBord;
+    }
+
+    public void setEpaisseurBord(double epaisseurBord) {
+        this.epaisseurBord = epaisseurBord;
+    }
+
+    public Color getClrBord() {
+        return clrBord;
+    }
+
+    public void setClrBord(Color clrBord) {
+        this.clrBord = clrBord;
+    }
+
 
     //Methodes
     /**

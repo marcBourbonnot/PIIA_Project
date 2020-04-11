@@ -1,7 +1,6 @@
 package modele;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 public class Rectangle extends Forme {
@@ -36,7 +35,7 @@ public class Rectangle extends Forme {
         Paint save = gc.getFill();
 
         gc.setFill(this.getClr());
-        gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        gc.fillRect(getX(), getY(), getWidth(), getHeight());
 
         gc.setFill(save);
     }

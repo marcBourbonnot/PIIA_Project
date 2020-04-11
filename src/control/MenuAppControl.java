@@ -2,8 +2,12 @@ package control;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import modele.Formes;
+import modele.Ligne;
 import modele.Rectangle;
 import vue.MenuApp;
 
@@ -21,7 +25,15 @@ public class MenuAppControl {
     public void addActions() {
         //Menu fichier
         ObservableList<MenuItem> fichier = mapp.getMenuBar().getMenus().get(0).getItems();
-        fichier.get(0).setOnAction(e -> this.ctrl.getMdl().clearFormes());
+        fichier.get(0).setOnAction(e -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Si vous faites cela sans sauvegarde, vous perdrez tout ce que vous avez fait ! Etes vous sûr ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+            alert.showAndWait();
+
+            if (alert.getResult() == ButtonType.YES) {
+                this.ctrl.getMdl().clearFormes();
+            }
+
+        });
         fichier.get(1).setOnAction(e -> System.out.println("Ouvrir"));
         fichier.get(2).setOnAction(e -> System.out.println("Enregistrer"));
         fichier.get(3).setOnAction(e -> Platform.exit());
@@ -35,8 +47,14 @@ public class MenuAppControl {
 
         //Menu insertion
         ObservableList<MenuItem> insertion = mapp.getMenuBar().getMenus().get(2).getItems();
-        ((Menu)insertion.get(0)).getItems().get(0).setOnAction(e -> System.out.println("InsertLigne"));
-        ((Menu)insertion.get(0)).getItems().get(1).setOnAction(e -> this.ctrl.getMdl().setSelectedForme(new Rectangle()));
+        ((Menu)insertion.get(0)).getItems().get(0).setOnAction(e -> {
+            this.ctrl.getMdl().setTypeSelected(Formes.LIGNE);
+            this.ctrl.getMdl().newForme();
+        });
+        ((Menu)insertion.get(0)).getItems().get(1).setOnAction(e -> {
+            this.ctrl.getMdl().setTypeSelected(Formes.RECTANGLE);
+            this.ctrl.getMdl().newForme();
+        });
         ((Menu)insertion.get(0)).getItems().get(2).setOnAction(e -> System.out.println("InsertTri"));
         ((Menu)insertion.get(0)).getItems().get(3).setOnAction(e -> System.out.println("InsertEllipse"));
         insertion.get(1).setOnAction(e -> System.out.println("Image"));
