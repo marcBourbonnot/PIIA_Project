@@ -56,7 +56,10 @@ public class MenuAppControl {
             this.ctrl.getMdl().newForme();
         });
         ((Menu)insertion.get(0)).getItems().get(2).setOnAction(e -> System.out.println("InsertTri"));
-        ((Menu)insertion.get(0)).getItems().get(3).setOnAction(e -> System.out.println("InsertEllipse"));
+        ((Menu)insertion.get(0)).getItems().get(3).setOnAction(e -> {
+            this.ctrl.getMdl().setTypeSelected(Formes.ELLIPSE);
+            this.ctrl.getMdl().newForme();
+        });
         insertion.get(1).setOnAction(e -> System.out.println("Image"));
         insertion.get(2).setOnAction(e -> System.out.println("Texte"));
 

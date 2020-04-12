@@ -12,7 +12,7 @@ public abstract class Forme {
     private double height;
 
     private String text;
-    private Color clr;
+    private Color clr = Color.BLUE;
 
     private boolean drawable;
 
@@ -62,8 +62,8 @@ public abstract class Forme {
     public Forme(double x, double y) {
         this.x = x;
         this.y = y;
-        this.width = 50;
-        this.height = 50;
+        this.width = 0;
+        this.height = 0;
         this.text = "";
         this.drawable = true;
     }
@@ -173,4 +173,8 @@ public abstract class Forme {
      * @param gc GraphicsContext du canvas de la vue
      */
     public abstract void draw(GraphicsContext gc);
+
+    public  String coordsToString() {
+        return this.getClass().getName() + " x: " + this.x + " y: " + this.y + " w: " + this.width + " h: " + this.height;
+    }
 }

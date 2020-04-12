@@ -1,6 +1,7 @@
 package modele;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 public class Rectangle extends Forme {
@@ -8,18 +9,17 @@ public class Rectangle extends Forme {
     //Constructeurs
     public Rectangle() {
         super();
-        System.out.println("rectangle");
     }
 
-    public Rectangle(int x, int y, int width, int height, String text) {
+    public Rectangle(double x, double y, double width, double height, String text) {
         super(x, y, width, height, text);
     }
 
-    public Rectangle(int x, int y) {
+    public Rectangle(double x, double y) {
         super(x, y);
     }
 
-    public Rectangle(int x, int y, int width, int height) {
+    public Rectangle(double x, double y, double width, double height) {
         super(x, y, width, height);
     }
 
@@ -35,7 +35,10 @@ public class Rectangle extends Forme {
         Paint save = gc.getFill();
 
         gc.setFill(this.getClr());
-        gc.fillRect(getX(), getY(), getWidth(), getHeight());
+        gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+
+        gc.setFill(Color.YELLOW);
+        gc.strokeLine(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 
         gc.setFill(save);
     }

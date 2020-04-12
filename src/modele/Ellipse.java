@@ -3,21 +3,19 @@ package modele;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
 
-public class Ligne extends Forme {
-
-    public Ligne() {
-        super();
+public class Ellipse extends Forme {
+    public Ellipse() {
     }
 
-    public Ligne(double x, double y, double width, double height, String text) {
-        super(x, y, 0, 0, "");
+    public Ellipse(double x, double y, double width, double height, String text) {
+        super(x, y, width, height, text);
     }
 
-    public Ligne(double x, double y) {
+    public Ellipse(double x, double y) {
         super(x, y);
     }
 
-    public Ligne(double x, double y, double width, double height) {
+    public Ellipse(double x, double y, double width, double height) {
         super(x, y, width, height);
     }
 
@@ -31,7 +29,7 @@ public class Ligne extends Forme {
         Paint save = gc.getFill();
 
         gc.setFill(this.getClr());
-        gc.strokeLine(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        gc.strokeOval(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 
         gc.setFill(save);
     }

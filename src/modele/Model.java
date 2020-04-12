@@ -105,7 +105,10 @@ public class Model {
             this.getSelectedForme().setDrawable(true);
 
             this.getFormes().add(this.selectedForme);
+            this.getFormes().forEach( em -> System.out.println("Formes: " + em.coordsToString()));
             this.getCtrl().getCvsCtrl().draw();
+
+            System.out.println(this.selectedForme.coordsToString());
 
             this.newForme();
         }
@@ -118,6 +121,9 @@ public class Model {
                 break;
             case RECTANGLE:
                 this.setSelectedForme(new Rectangle());
+                break;
+            case ELLIPSE:
+                this.setSelectedForme(new Ellipse());
                 break;
         }
     }
