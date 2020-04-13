@@ -34,6 +34,7 @@ public class Rectangle extends Forme {
         Paint save = gc.getFill();
 
         gc.setFill(this.getClr());
+
         gc.fillPolygon(new double[]{this.getX(), this.getWidth(), this.getWidth(), this.getX()}, new double[]{this.getY(), this.getY(), this.getHeight(), this.getHeight()}, 4);
         gc.strokePolygon(new double[]{this.getX(), this.getWidth(), this.getWidth(), this.getX()}, new double[]{this.getY(), this.getY(), this.getHeight(), this.getHeight()}, 4);
 

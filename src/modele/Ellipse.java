@@ -25,8 +25,10 @@ public class Ellipse extends Forme {
         Paint save = gc.getFill();
 
         gc.setFill(this.getClr());
-        gc.strokeOval(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+
+        gc.strokeOval(this.getWidth(), this.getHeight(), this.getX(), this.getY());
         gc.strokeLine(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        //gc.strokeLine(this.getX() - this.getWidth(), this.getY() - this.getHeight(), 2 * this.getWidth(), 2 * this.getHeight());
 
         gc.setFill(save);
     }
