@@ -122,6 +122,9 @@ public class Model {
             case RECTANGLE:
                 this.setSelectedForme(new Rectangle());
                 break;
+            case TRIANGLE:
+                this.setSelectedForme(new Triangle());
+                break;
             case ELLIPSE:
                 this.setSelectedForme(new Ellipse());
                 break;
