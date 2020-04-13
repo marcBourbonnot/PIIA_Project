@@ -91,10 +91,17 @@ public class MenuApp {
         ligne.setToggleGroup(groupFormes);
         RadioMenuItem rectangle = new RadioMenuItem("Rectangle");
         rectangle.setToggleGroup(groupFormes);
-        RadioMenuItem triangle = new RadioMenuItem("Triangle");
-        triangle.setToggleGroup(groupFormes);
+        Menu triangle = new Menu("Triangle");
         RadioMenuItem ellipse = new RadioMenuItem("Ellipse");
         ellipse.setToggleGroup(groupFormes);
+
+        RadioMenuItem trglIso = new RadioMenuItem("Isocele");
+        trglIso.setToggleGroup(groupFormes);
+        RadioMenuItem trglRect = new RadioMenuItem("Rectangle");
+        trglRect.setToggleGroup(groupFormes);
+
+        triangle.getItems().add(trglIso);
+        triangle.getItems().add(trglRect);
 
         formes.getItems().add(ligne);
         formes.getItems().add(rectangle);

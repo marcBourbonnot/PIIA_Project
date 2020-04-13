@@ -57,11 +57,22 @@ public class MenuAppControl {
             System.out.println(this.ctrl.getMdl().getTypeSelected());
             this.ctrl.getMdl().newForme();
         });
-        ((Menu)insertion.get(0)).getItems().get(2).setOnAction(e ->{
-            this.ctrl.getMdl().setTypeSelected(Formes.TRIANGLE);
+        //Triangles
+        ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(0).setOnAction(e ->{
+            this.ctrl.getMdl().setTypeSelected(Formes.TRIANGLE_ISOCELE);
             System.out.println(this.ctrl.getMdl().getTypeSelected());
             this.ctrl.getMdl().newForme();
         });
+        ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(1).setOnAction(e ->{
+            this.ctrl.getMdl().setTypeSelected(Formes.TRIANGLE_RECTANGLE);
+            System.out.println(this.ctrl.getMdl().getTypeSelected());
+            this.ctrl.getMdl().newForme();
+        });
+//        ((Menu)((Menu) insertion.get(0)).getItems().get(2).setOnAction(e ->{
+//            this.ctrl.getMdl().setTypeSelected(Formes.TRIANGLE);
+//            System.out.println(this.ctrl.getMdl().getTypeSelected());
+//            this.ctrl.getMdl().newForme();
+//        });
         ((Menu)insertion.get(0)).getItems().get(3).setOnAction(e -> {
             this.ctrl.getMdl().setTypeSelected(Formes.ELLIPSE);
             System.out.println(this.ctrl.getMdl().getTypeSelected());

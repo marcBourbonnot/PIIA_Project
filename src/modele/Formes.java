@@ -3,6 +3,7 @@ package modele;
 public enum Formes {
     RECTANGLE,
     LIGNE,
-    TRIANGLE,
+    TRIANGLE_ISOCELE,
+    TRIANGLE_RECTANGLE,
     ELLIPSE
 }

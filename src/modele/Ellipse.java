@@ -7,10 +7,6 @@ public class Ellipse extends Forme {
     public Ellipse() {
     }
 
-    public Ellipse(double x, double y, double width, double height, String text) {
-        super(x, y, width, height, text);
-    }
-
     public Ellipse(double x, double y) {
         super(x, y);
     }
@@ -30,7 +26,9 @@ public class Ellipse extends Forme {
 
         gc.setFill(this.getClr());
         gc.strokeOval(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        gc.strokeLine(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 
         gc.setFill(save);
     }
 }
+
