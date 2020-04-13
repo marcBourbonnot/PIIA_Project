@@ -1,6 +1,8 @@
 import control.Control;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import modele.Model;
 import vue.View;
@@ -14,6 +16,9 @@ public class Main extends Application {
 
         primaryStage.setTitle("Dessin facile");
         primaryStage.setScene(scene);
+        primaryStage.setOnCloseRequest(e ->{
+            view.getCtrl().comfirmQuit(e);
+        });
         primaryStage.show();
     }
 

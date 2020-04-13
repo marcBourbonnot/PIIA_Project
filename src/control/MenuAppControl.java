@@ -26,17 +26,12 @@ public class MenuAppControl {
         //Menu fichier
         ObservableList<MenuItem> fichier = mapp.getMenuBar().getMenus().get(0).getItems();
         fichier.get(0).setOnAction(e -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Si vous faites cela sans sauvegarde, vous perdrez tout ce que vous avez fait ! Etes vous sûr ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
-            alert.showAndWait();
-
-            if (alert.getResult() == ButtonType.YES) {
-                this.ctrl.getMdl().clearFormes();
-            }
+            this.ctrl.comfirmNew(e);
 
         });
         fichier.get(1).setOnAction(e -> System.out.println("Ouvrir"));
         fichier.get(2).setOnAction(e -> System.out.println("Enregistrer"));
-        fichier.get(3).setOnAction(e -> Platform.exit());
+        fichier.get(3).setOnAction(e -> this.ctrl.Quit(e));
 
         //Menu edition
         ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();

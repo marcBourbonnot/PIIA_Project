@@ -23,6 +23,8 @@ public class View {
     public final static int WIDTH = 1000;
     public final static int HEIGHT = 750;
 
+
+    //Constructeur
     public View() {
         this.mdl = new Model(this);
         this.ctrl = new Control(this.mdl, this);
@@ -37,6 +39,8 @@ public class View {
         this.mainView = new VBox(this.menu.getMapp().getMenuBar(), new HBox(this.dessin.getZoneDessin().getDrawArea(),this.bOutils.getBarreOutils().getOutils()));
     }
 
+
+    //Getters and Setters
     public MenuAppControl getMenu() {
         return menu;
     }
@@ -63,5 +67,21 @@ public class View {
 
     public VBox getMainView() {
         return mainView;
+    }
+
+    public Model getMdl() {
+        return mdl;
+    }
+
+    public void setMdl(Model mdl) {
+        this.mdl = mdl;
+    }
+
+    public Control getCtrl() {
+        return ctrl;
+    }
+
+    public void setCtrl(Control ctrl) {
+        this.ctrl = ctrl;
     }
 }

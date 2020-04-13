@@ -1,5 +1,10 @@
 package control;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.stage.WindowEvent;
 import modele.Model;
 import vue.View;
 
@@ -19,6 +24,7 @@ public class Control {
         this.menuCtrl = new MenuAppControl(this);
         this.bOutilsCtrl = new BarreOutilsControl(this);
     }
+
 
     public Model getMdl() {
         return mdl;
@@ -58,5 +64,35 @@ public class Control {
 
     public void setbOutilsCtrl(BarreOutilsControl bOutilsCtrl) {
         this.bOutilsCtrl = bOutilsCtrl;
+    }
+
+    //Methodes
+    public void comfirmQuit(WindowEvent e){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Etes-vous sûr de vouloir quitter sans sauvegarder ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        alert.showAndWait();
+        if(alert.getResult() == ButtonType.NO || alert.getResult() == ButtonType.CANCEL) {
+            alert.close();
+            e.consume();
+        }
+    }
+
+    public void comfirmNew(ActionEvent e) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Si vous faites cela sans sauvegarde, vous perdrez tout ce que vous avez fait ! Etes vous sûr ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            this.view.getCtrl().getMdl().clearFormes();
+        }else{
+            e.consume();
+        }
+    }
+
+    public void Quit(ActionEvent e) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Si vous faites cela sans sauvegarde, vous perdrez tout ce que vous avez fait ! Etes vous sûr ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        alert.showAndWait();
+        if(alert.getResult() == ButtonType.NO || alert.getResult() == ButtonType.CANCEL )
+            e.consume();
+        else
+            System.exit(0);
     }
 }
