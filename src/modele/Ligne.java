@@ -1,5 +1,6 @@
 package modele;
 
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
 
@@ -24,19 +25,7 @@ public class Ligne extends Forme {
 
     @Override
     public boolean estDedans(double x, double y) {
-        System.out.println(this.coordsToString());
-        System.out.println("x: " + x + " y: " + y);
-        //y = a * x + b
-        double a = (this.getHeight() - this.getY()) / (this.getWidth() - this.getX());
-        double b = this.getY() - a * this.getX();
-
-        double yPotentiel = a * x + b;
-
-        if (y >= yPotentiel + Ligne.MARGE && y <= yPotentiel + Ligne.MARGE && x >= this.getX() && x <= this.getWidth()) {
-            return true;
-        }
-
-        return false;
+        return x >= this.getX() && x <= this.getWidth() && y >= this.getY() && y <= this.getHeight();
     }
 
     @Override
@@ -47,5 +36,10 @@ public class Ligne extends Forme {
         gc.strokeLine(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 
         gc.setFill(save);
+    }
+
+    @Override
+    public Point2D getCenter() {
+        return new Point2D((this.getWidth() - this.getX()) / 2, (this.getHeight() - this.getY()) / 2);
     }
 }

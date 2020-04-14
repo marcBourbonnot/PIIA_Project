@@ -1,5 +1,6 @@
 package modele;
 
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
 
@@ -31,6 +32,11 @@ public class Ellipse extends Forme {
         //gc.strokeLine(this.getX() - this.getWidth(), this.getY() - this.getHeight(), 2 * this.getWidth(), 2 * this.getHeight());
 
         gc.setFill(save);
+    }
+
+    @Override
+    public Point2D getCenter() {
+        return null;
     }
 }
 

@@ -101,8 +101,8 @@ public class MenuAppControl {
         ((Menu)modification.get(1)).getItems().get(0).setOnAction(e -> System.out.println("ContourCouleur"));
         ((Menu)modification.get(1)).getItems().get(1).setOnAction(e -> System.out.println("ContourEpaisseur"));
         modification.get(2).setOnAction(e -> System.out.println("Couleur de remplissage"));
-        ((Menu)modification.get(3)).getItems().get(0).setOnAction(e -> System.out.println("Rot90D"));
-        ((Menu)modification.get(3)).getItems().get(1).setOnAction(e -> System.out.println("Rot90G"));
+        ((Menu)modification.get(3)).getItems().get(0).setOnAction(e -> this.ctrl.getMdl().rotateForme(90));
+        ((Menu)modification.get(3)).getItems().get(1).setOnAction(e -> this.ctrl.getMdl().rotateForme(-90));
         ((Menu)modification.get(4)).getItems().get(0).setOnAction(e -> this.ctrl.getMdl().movePremPlan());
         ((Menu)modification.get(4)).getItems().get(1).setOnAction(e -> this.ctrl.getMdl().moveArrPan());
         modification.get(5).setOnAction(e -> System.out.println("SupprimerForme"));

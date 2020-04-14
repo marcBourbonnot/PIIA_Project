@@ -1,5 +1,6 @@
 package modele;
 
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
 
@@ -38,5 +39,10 @@ public class TriangleIsocele extends Forme {
         gc.strokePolygon(new double[]{this.getX(), this.getWidth(), this.getX() - (this.getWidth() - this.getX())}, new double[]{this.getY(), this.getHeight(), this.getHeight()},3);
 
         gc.setFill(save);
+    }
+
+    @Override
+    public Point2D getCenter() {
+        return null;
     }
 }

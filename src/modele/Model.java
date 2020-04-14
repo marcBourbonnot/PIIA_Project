@@ -1,6 +1,7 @@
 package modele;
 
 import control.Control;
+import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
 import vue.View;
 import vue.ZoneDessin;
@@ -174,16 +175,55 @@ public class Model {
 
     public void movePremPlan() {
         if (this.selectedForme == null) return;
+
+        System.out.println(this.selectedForme);
+
+        Forme save = this.getFormes().get(this.indexSelected);
         this.getFormes().remove(this.indexSelected);
-        this.getFormes().add(this.selectedForme);
+        this.getFormes().add(save);
         this.getCtrl().getCvsCtrl().draw();
     }
 
     public void moveArrPan() {
+        if (this.selectedForme == null) return;
+
+        Forme save = this.getFormes().get(this.indexSelected);
         this.getFormes().remove(this.indexSelected);
+
         Collections.reverse(this.getFormes());
-        this.getFormes().add(this.selectedForme);
+
+        this.getFormes().add(save);
+
         Collections.reverse(this.getFormes());
+
+        this.getCtrl().getCvsCtrl().draw();
+    }
+
+    private Point2D rotation(Point2D p, Point2D center, double angle) {
+        angle *= Math.PI / 180;
+
+        double xTemp = p.getX() - center.getX();
+        double yTemp = p.getY() - center.getY();
+
+        double x = xTemp * Math.cos(angle) + yTemp * Math.sin(angle) + center.getX();
+        double y = - xTemp * Math.sin(angle) + yTemp * Math.cos(angle) + center.getY();
+
+        Point2D res = new Point2D(x, y);
+
+        return res;
+    }
+
+    public void rotateForme(double angle) {
+        if (selectedForme != null) return;
+
+        Point2D p = this.rotation(new Point2D(this.getSelectedForme().getX(), this.getSelectedForme().getY()), this.getSelectedForme().getCenter(), angle);
+        this.getFormes().get(indexSelected).setX(p.getX());
+        this.getFormes().get(indexSelected).setY(p.getY());
+
+        Point2D p2 = this.rotation(new Point2D(this.getSelectedForme().getWidth(), this.getSelectedForme().getHeight()), this.getSelectedForme().getCenter(), angle);
+        this.getFormes().get(indexSelected).setWidth(p2.getX());
+        this.getFormes().get(indexSelected).setHeight(p2.getY());
+
         this.getCtrl().getCvsCtrl().draw();
     }
 }

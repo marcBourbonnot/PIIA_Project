@@ -1,9 +1,11 @@
 package modele;
 
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public abstract class Forme {
+
     //Attributs
     private double x;
     private double y;
@@ -173,6 +175,8 @@ public abstract class Forme {
      * @param gc GraphicsContext du canvas de la vue
      */
     public abstract void draw(GraphicsContext gc);
+
+    public abstract Point2D getCenter();
 
     public  String coordsToString() {
         return this.getClass().getName() + " x: " + this.x + " y: " + this.y + " w: " + this.width + " h: " + this.height;

@@ -1,7 +1,10 @@
 package modele;
 
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
+
+import java.awt.*;
 
 public class Rectangle extends Forme {
 
@@ -39,5 +42,10 @@ public class Rectangle extends Forme {
         gc.strokePolygon(new double[]{this.getX(), this.getWidth(), this.getWidth(), this.getX()}, new double[]{this.getY(), this.getY(), this.getHeight(), this.getHeight()}, 4);
 
         gc.setFill(save);
+    }
+
+    @Override
+    public Point2D getCenter() {
+        return new Point2D((this.getWidth() - this.getX()) / 2, (this.getHeight() - this.getY()) / 2);
     }
 }
