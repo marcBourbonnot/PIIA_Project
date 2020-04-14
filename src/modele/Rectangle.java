@@ -26,7 +26,7 @@ public class Rectangle extends Forme {
     //Methodes
     @Override
     public boolean estDedans(double x, double y) {
-        return (x-this.getX())<this.getWidth() && (x-this.getX())>0 && (y-this.getY())<this.getHeight() && (y-this.getY())>0;
+        return x >= this.getX() && x <= this.getWidth() && y >= this.getY() && y <= this.getHeight();
     }
 
     @Override

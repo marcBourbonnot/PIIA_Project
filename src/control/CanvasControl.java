@@ -49,15 +49,33 @@ public class CanvasControl {
         Canvas cnvs = this.zoneDessin.getDrawArea();
 
         cnvs.setOnMousePressed(e -> {
-            this.ctrl.getMdl().startDrawPoint(e);
+            if (this.ctrl.getMenuCtrl().isDessinMode()) {
+                //etat dessin
+                this.ctrl.getMdl().startDrawPoint(e);
+            } else {
+                //etat selection
+                this.ctrl.getMdl().attrape(e);
+            }
         });
 
         cnvs.setOnMouseDragged(e -> {
-            this.ctrl.getMdl().tempDraw(e);
+            if (this.ctrl.getMenuCtrl().isDessinMode()) {
+                //etat dessin
+                this.ctrl.getMdl().tempDraw(e);
+            } else {
+                //etat selection
+                this.ctrl.getMdl().deplace(e);
+            }
         });
 
         cnvs.setOnMouseReleased(e -> {
-            this.ctrl.getMdl().endDrawPoint(e);
+            if (this.ctrl.getMenuCtrl().isDessinMode()) {
+                //etat dessin
+                this.ctrl.getMdl().endDrawPoint(e);
+            } else {
+                //etat selection
+                this.ctrl.getMdl().lache(e);
+            }
         });
     }
 }

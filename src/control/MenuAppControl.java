@@ -2,24 +2,31 @@ package control;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import modele.Formes;
 import modele.Ligne;
 import modele.Rectangle;
 import vue.MenuApp;
 
 public class MenuAppControl {
-    Control ctrl;
+    private Control ctrl;
 
-    MenuApp mapp;
+    private MenuApp mapp;
+    private boolean dessinMode;
 
     public MenuAppControl(Control c) {
         this.ctrl = c;
 
         this.mapp = new MenuApp();
+        this.dessinMode = false;
+    }
+
+    public boolean isDessinMode() {
+        return dessinMode;
+    }
+
+    public void setDessinMode(boolean dessinMode) {
+        this.dessinMode = dessinMode;
     }
 
     public void addActions() {
@@ -43,26 +50,31 @@ public class MenuAppControl {
         //Menu insertion
         ObservableList<MenuItem> insertion = mapp.getMenuBar().getMenus().get(2).getItems();
         ((Menu)insertion.get(0)).getItems().get(0).setOnAction(e -> {
+            this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.LIGNE);
             System.out.println(this.ctrl.getMdl().getTypeSelected());
             this.ctrl.getMdl().newForme();
         });
         ((Menu)insertion.get(0)).getItems().get(1).setOnAction(e -> {
+            this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.RECTANGLE);
             System.out.println(this.ctrl.getMdl().getTypeSelected());
             this.ctrl.getMdl().newForme();
         });
         ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(0).setOnAction(e ->{
+            this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.TRIANGLE_ISOCELE);
             System.out.println(this.ctrl.getMdl().getTypeSelected());
             this.ctrl.getMdl().newForme();
         });
         ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(1).setOnAction(e ->{
+            this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.TRIANGLE_RECTANGLE);
             System.out.println(this.ctrl.getMdl().getTypeSelected());
             this.ctrl.getMdl().newForme();
         });
         ((Menu)insertion.get(0)).getItems().get(3).setOnAction(e -> {
+            this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.ELLIPSE);
             System.out.println(this.ctrl.getMdl().getTypeSelected());
             this.ctrl.getMdl().newForme();
@@ -72,14 +84,18 @@ public class MenuAppControl {
 
         //Menu modification
         ObservableList<MenuItem> modification = mapp.getMenuBar().getMenus().get(3).getItems();
-        ((Menu)modification.get(0)).getItems().get(0).setOnAction(e -> System.out.println("ContourCouleur"));
-        ((Menu)modification.get(0)).getItems().get(1).setOnAction(e -> System.out.println("ContourEpaisseur"));
-        modification.get(1).setOnAction(e -> System.out.println("Couleur de remplissage"));
-        ((Menu)modification.get(2)).getItems().get(0).setOnAction(e -> System.out.println("Rot90D"));
-        ((Menu)modification.get(2)).getItems().get(1).setOnAction(e -> System.out.println("Rot90G"));
-        ((Menu)modification.get(3)).getItems().get(0).setOnAction(e -> System.out.println("PlanPremier"));
-        ((Menu)modification.get(3)).getItems().get(1).setOnAction(e -> System.out.println("PlanArriere"));
-        modification.get(4).setOnAction(e -> System.out.println("SupprimerForme"));
+        modification.get(0).setOnAction(e -> {
+            System.out.println("Select");
+            this.setDessinMode(false);
+        });
+        ((Menu)modification.get(1)).getItems().get(0).setOnAction(e -> System.out.println("ContourCouleur"));
+        ((Menu)modification.get(1)).getItems().get(1).setOnAction(e -> System.out.println("ContourEpaisseur"));
+        modification.get(2).setOnAction(e -> System.out.println("Couleur de remplissage"));
+        ((Menu)modification.get(3)).getItems().get(0).setOnAction(e -> System.out.println("Rot90D"));
+        ((Menu)modification.get(3)).getItems().get(1).setOnAction(e -> System.out.println("Rot90G"));
+        ((Menu)modification.get(4)).getItems().get(0).setOnAction(e -> System.out.println("PlanPremier"));
+        ((Menu)modification.get(4)).getItems().get(1).setOnAction(e -> System.out.println("PlanArriere"));
+        modification.get(5).setOnAction(e -> System.out.println("SupprimerForme"));
     }
 
     public MenuApp getMapp() {

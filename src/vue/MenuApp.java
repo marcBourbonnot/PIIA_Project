@@ -116,6 +116,8 @@ public class MenuApp {
         //Creation du menu modification
         Menu modification = new Menu("Modification");
 
+        RadioMenuItem select = new RadioMenuItem("Selection");
+        select.setToggleGroup(groupFormes);
         Menu contour = new Menu("Contour");
         MenuItem couleurRemp = new MenuItem("Couleur de remplissage");
         Menu rotation = new Menu("Rotation");
@@ -143,6 +145,7 @@ public class MenuApp {
         plan.getItems().add(devPlan);
         plan.getItems().add(arrPlan);
 
+        modification.getItems().add(select);
         modification.getItems().add(contour);
         //TEST
         couleurRemp.setOnAction(e -> {

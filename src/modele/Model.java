@@ -14,6 +14,9 @@ public class Model {
     Formes newFormeTypeSelected;
     Forme selectedForme;
     ArrayList<Forme> formes;
+    boolean enDeplacement = false;
+    double x_souris;
+    double y_souris;
 
     public Model(View v) {
         this.view = v;
@@ -132,5 +135,40 @@ public class Model {
                 this.setSelectedForme(new Ellipse());
                 break;
         }
+    }
+
+    public void attrape(MouseEvent e) {
+        for (int i=0; i<this.getFormes().size();i++) {
+            Forme f= this.getFormes().get(i);
+            if (f.estDedans(e.getX(), e.getY())) {
+                this.selectedForme = this.getFormes().get(i);
+                this.enDeplacement=true;
+                this.x_souris = e.getX();
+                this.y_souris = e.getY();
+                break;
+            }
+        }
+    }
+
+    public void deplace(MouseEvent e) {
+        if (this.enDeplacement) {
+            double dx = e.getX() - x_souris;
+            double dy = e.getY() - y_souris;
+
+            this.getSelectedForme().setX(this.selectedForme.getX() + dx);
+            this.getSelectedForme().setY(this.selectedForme.getY() + dy);
+            this.getSelectedForme().setWidth(this.selectedForme.getWidth() + dx);
+            this.getSelectedForme().setHeight(this.selectedForme.getHeight() + dy);
+
+            x_souris = e.getX();
+            y_souris = e.getY();
+
+            this.ctrl.getCvsCtrl().draw();
+        }
+    }
+
+    public void lache(MouseEvent e) {
+        this.enDeplacement=false;
+        this.selectedForme = null;
     }
 }
