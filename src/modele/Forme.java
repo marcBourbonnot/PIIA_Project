@@ -12,7 +12,7 @@ public abstract class Forme {
     private double height;
 
     private String text;
-    private Color clr = Color.BLUE;
+    private Color clr = Color.GREEN;
 
     private boolean drawable;
 
