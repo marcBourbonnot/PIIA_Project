@@ -17,12 +17,14 @@ public class MenuAppControl {
 
     private MenuApp mapp;
     private boolean dessinMode;
+    private boolean allowModif;
 
     public MenuAppControl(Control c) {
         this.ctrl = c;
 
         this.mapp = new MenuApp();
         this.dessinMode = false;
+        this.allowModif = false;
     }
 
     public boolean isDessinMode() {
@@ -94,7 +96,6 @@ public class MenuAppControl {
         //Menu modification
         ObservableList<MenuItem> modification = mapp.getMenuBar().getMenus().get(3).getItems();
         modification.get(0).setOnAction(e -> {
-            System.out.println("Select");
             this.setDessinMode(false);
         });
         ((Menu)modification.get(1)).getItems().get(0).setOnAction(e -> System.out.println("ContourCouleur"));
@@ -102,8 +103,8 @@ public class MenuAppControl {
         modification.get(2).setOnAction(e -> System.out.println("Couleur de remplissage"));
         ((Menu)modification.get(3)).getItems().get(0).setOnAction(e -> System.out.println("Rot90D"));
         ((Menu)modification.get(3)).getItems().get(1).setOnAction(e -> System.out.println("Rot90G"));
-        ((Menu)modification.get(4)).getItems().get(0).setOnAction(e -> System.out.println("PlanPremier"));
-        ((Menu)modification.get(4)).getItems().get(1).setOnAction(e -> System.out.println("PlanArriere"));
+        ((Menu)modification.get(4)).getItems().get(0).setOnAction(e -> this.ctrl.getMdl().movePremPlan());
+        ((Menu)modification.get(4)).getItems().get(1).setOnAction(e -> this.ctrl.getMdl().moveArrPan());
         modification.get(5).setOnAction(e -> System.out.println("SupprimerForme"));
     }
 

@@ -37,7 +37,6 @@ public class CanvasControl {
         gc.clearRect(0, 0, ZoneDessin.WIDTH, ZoneDessin.HEIGHT);
         this.ctrl.getMdl().getFormes().forEach(e -> {
             e.draw(this.gc);
-            System.out.println("draw: " + e.coordsToString());
         });
     }
 

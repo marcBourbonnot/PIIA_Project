@@ -6,6 +6,7 @@ import vue.View;
 import vue.ZoneDessin;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Model {
     View view;
@@ -15,6 +16,7 @@ public class Model {
     Forme selectedForme;
     ArrayList<Forme> formes;
     boolean enDeplacement = false;
+    int indexSelected;
     double x_souris;
     double y_souris;
 
@@ -71,7 +73,6 @@ public class Model {
 
     public void addForme(Forme f) {
         this.formes.add(f);
-        //this.ctrl;
     }
 
     public void removeForme(int index) {
@@ -109,10 +110,7 @@ public class Model {
             this.getSelectedForme().setDrawable(true);
 
             this.getFormes().add(this.selectedForme);
-            this.getFormes().forEach( em -> System.out.println("Formes: " + em.coordsToString()));
             this.getCtrl().getCvsCtrl().draw();
-
-            System.out.println(this.selectedForme.coordsToString());
 
             this.newForme();
         }
@@ -139,10 +137,11 @@ public class Model {
     }
 
     public void attrape(MouseEvent e) {
-        for (int i=0; i<this.getFormes().size();i++) {
+        for (int i = this.getFormes().size() - 1; i >= 0; i--) {
             Forme f= this.getFormes().get(i);
             if (f.estDedans(e.getX(), e.getY())) {
                 this.selectedForme = this.getFormes().get(i);
+                this.indexSelected = i;
                 this.enDeplacement=true;
                 this.x_souris = e.getX();
                 this.y_souris = e.getY();
@@ -170,6 +169,21 @@ public class Model {
 
     public void lache(MouseEvent e) {
         this.enDeplacement=false;
-        this.selectedForme = null;
+        //this.selectedForme = null;
+    }
+
+    public void movePremPlan() {
+        if (this.selectedForme == null) return;
+        this.getFormes().remove(this.indexSelected);
+        this.getFormes().add(this.selectedForme);
+        this.getCtrl().getCvsCtrl().draw();
+    }
+
+    public void moveArrPan() {
+        this.getFormes().remove(this.indexSelected);
+        Collections.reverse(this.getFormes());
+        this.getFormes().add(this.selectedForme);
+        Collections.reverse(this.getFormes());
+        this.getCtrl().getCvsCtrl().draw();
     }
 }

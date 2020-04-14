@@ -24,6 +24,8 @@ public class Ligne extends Forme {
 
     @Override
     public boolean estDedans(double x, double y) {
+        System.out.println(this.coordsToString());
+        System.out.println("x: " + x + " y: " + y);
         //y = a * x + b
         double a = (this.getHeight() - this.getY()) / (this.getWidth() - this.getX());
         double b = this.getY() - a * this.getX();
