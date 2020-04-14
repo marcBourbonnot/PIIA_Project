@@ -1,12 +1,16 @@
 package control;
 
+import com.sun.tools.javac.Main;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import modele.Formes;
 import modele.Ligne;
 import modele.Rectangle;
 import vue.MenuApp;
+
+import java.io.File;
 
 public class MenuAppControl {
     private Control ctrl;
@@ -79,7 +83,12 @@ public class MenuAppControl {
             System.out.println(this.ctrl.getMdl().getTypeSelected());
             this.ctrl.getMdl().newForme();
         });
-        insertion.get(1).setOnAction(e -> System.out.println("Image"));
+        insertion.get(1).setOnAction(e -> {
+            System.out.println("Image");
+            final FileChooser dialog = new FileChooser();
+            File f = dialog.showOpenDialog(insertion.get(1).getParentPopup().getOwnerWindow());
+
+        });
         insertion.get(2).setOnAction(e -> System.out.println("Texte"));
 
         //Menu modification

@@ -18,6 +18,7 @@ public class Model {
     double x_souris;
     double y_souris;
 
+
     public Model(View v) {
         this.view = v;
 
