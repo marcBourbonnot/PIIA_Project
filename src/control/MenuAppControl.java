@@ -4,6 +4,8 @@ import com.sun.tools.javac.Main;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import modele.Formes;
 import modele.Ligne;
@@ -86,9 +88,20 @@ public class MenuAppControl {
             this.ctrl.getMdl().newForme();
         });
         insertion.get(1).setOnAction(e -> {
-            System.out.println("Image");
             final FileChooser dialog = new FileChooser();
+            FileChooser.ExtensionFilter filterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG", "*.jpg","*.JPEG", "*.jpeg");
+            dialog.getExtensionFilters().addAll(filterJPG);
             File f = dialog.showOpenDialog(insertion.get(1).getParentPopup().getOwnerWindow());
+            if(f != null){
+                System.out.println("je ferais qqch d'interessant la prochaine fois !");
+                System.out.println("URL : "+f.toURI().getPath());
+                String s = f.toURI().getPath();
+                /*Image img = new Image(f.toURI().getPath());
+                System.out.println("img : "+img);
+                System.out.println(f.toURI().getPath());
+                ImageView imgview = new ImageView(img);
+                this.ctrl.view.getMainView().getChildren().add(imgview);*/
+            }
 
         });
         insertion.get(2).setOnAction(e -> System.out.println("Texte"));

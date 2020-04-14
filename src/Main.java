@@ -16,6 +16,8 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setOnCloseRequest(e -> view.getCtrl().comfirmQuit(e));
         primaryStage.show();
+
+        view.setStage(primaryStage);
     }
 
     public static void main(String[] args) {
