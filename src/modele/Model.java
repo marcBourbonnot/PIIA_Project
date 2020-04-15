@@ -2,11 +2,14 @@ package modele;
 
 import control.Control;
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import vue.View;
-import vue.ZoneDessin;
 
-import javax.swing.*;
+import java.io.File;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -82,6 +85,14 @@ public class Model {
         this.formes.remove(index);
     }
 
+    public Forme getNewForme() {
+        return newForme;
+    }
+
+    public void setNewForme(Forme newForme) {
+        this.newForme = newForme;
+    }
+
     public void clearFormes() {
         this.formes = new ArrayList<>();
         this.ctrl.getCvsCtrl().clear();
@@ -137,6 +148,12 @@ public class Model {
                 break;
             case ELLIPSE:
                 this.newForme = new Ellipse();
+                break;
+            case IMAGE:
+                this.newForme = new ImageNous(this.loadImage());
+                this.newForme.draw(this.ctrl.getCvsCtrl().getGC());
+                this.formes.add(this.newForme);
+                this.newForme = null;
                 break;
         }
     }
@@ -260,4 +277,25 @@ public class Model {
         System.out.println(this.getFormes());
         this.getCtrl().getCvsCtrl().draw();
     }
+
+    public Image loadImage() {
+        final FileChooser dialog = new FileChooser();
+        FileChooser.ExtensionFilter filterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG", "*.jpg","*.JPEG", "*.jpeg");
+        dialog.getExtensionFilters().addAll(filterJPG);
+        File f = dialog.showOpenDialog(this.ctrl.getMenuCtrl().getMapp().getMenuBar().getMenus().get(2).getItems().get(1).getParentPopup().getOwnerWindow());
+        if(f != null){
+            String s = null;
+            try {
+                s = f.toURI().toURL().toExternalForm();
+            } catch (MalformedURLException malformedURLException) {
+                malformedURLException.printStackTrace();
+            }
+
+            Image image = new Image(s);
+
+            return image;
+        }
+        return null;
+    }
 }
+

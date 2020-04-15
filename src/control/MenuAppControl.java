@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import modele.Formes;
+import modele.ImageNous;
 import modele.Model;
 import vue.MenuApp;
 
@@ -109,27 +110,8 @@ public class MenuAppControl {
         });
         insertion.get(1).setOnAction(e -> {
             saveModel();
-            final FileChooser dialog = new FileChooser();
-            FileChooser.ExtensionFilter filterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG", "*.jpg","*.JPEG", "*.jpeg");
-            dialog.getExtensionFilters().addAll(filterJPG);
-            File f = dialog.showOpenDialog(insertion.get(1).getParentPopup().getOwnerWindow());
-            if(f != null){
-                String s = null;
-                try {
-                    s = f.toURI().toURL().toExternalForm();
-                } catch (MalformedURLException malformedURLException) {
-                    malformedURLException.printStackTrace();
-                }
-                Image image = new Image(s);
-                System.out.println("img : "+image);
-
-                double widthZD = this.ctrl.view.getDessin().getZoneDessin().getDrawArea().getWidth();
-                double heightZD = this.ctrl.view.getDessin().getZoneDessin().getDrawArea().getHeight();
-
-                this.ctrl.getView().getDessin().getGC().drawImage(image,widthZD/2-image.getWidth()/2,heightZD/2-image.getHeight()/2);
-                System.out.println("j'affiche");
-            }
-
+            this.ctrl.getMdl().setTypeSelected(Formes.IMAGE);
+            this.ctrl.getMdl().newForme();
         });
         insertion.get(2).setOnAction(e -> {
             saveModel();

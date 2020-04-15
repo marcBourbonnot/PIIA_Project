@@ -5,5 +5,6 @@ public enum Formes {
     LIGNE,
     TRIANGLE_ISOCELE,
     TRIANGLE_RECTANGLE,
-    ELLIPSE
+    ELLIPSE,
+    IMAGE
 }
