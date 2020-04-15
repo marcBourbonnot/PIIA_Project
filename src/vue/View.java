@@ -12,7 +12,6 @@ import vue.barre_outils.BarOutils;
 
 
 public class View {
-    private Stage stage;
 
     private Model mdl;
     private Control ctrl;
@@ -44,13 +43,7 @@ public class View {
 
 
     //Getters and Setters
-    public Stage getStage(){
-        return this.stage;
-    }
 
-    public void setStage(Stage s){
-        this.stage = s;
-    }
 
     public MenuAppControl getMenu() {
         return menu;

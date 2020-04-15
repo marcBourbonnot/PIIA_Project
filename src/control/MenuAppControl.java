@@ -1,18 +1,15 @@
 package control;
 
-import com.sun.tools.javac.Main;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import modele.Formes;
-import modele.Ligne;
-import modele.Rectangle;
 import vue.MenuApp;
 
 import java.io.File;
+import java.net.MalformedURLException;
 
 public class MenuAppControl {
     private Control ctrl;
@@ -45,7 +42,23 @@ public class MenuAppControl {
 
         });
         fichier.get(1).setOnAction(e -> System.out.println("Ouvrir"));
-        fichier.get(2).setOnAction(e -> System.out.println("Enregistrer"));
+        fichier.get(2).setOnAction(e -> {//pas fini
+            FileChooser fc = new FileChooser();
+            fc.setTitle("Save file");
+            fc.setInitialFileName("unnamedFile");
+
+            FileChooser.ExtensionFilter filterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG", "*.jpg","*.JPEG", "*.jpeg");
+            FileChooser.ExtensionFilter filterTXT = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+            fc.getExtensionFilters().addAll(filterJPG,filterTXT);
+
+
+            File savedFile = fc.showSaveDialog(fichier.get(1).getParentPopup().getOwnerWindow());
+            if(savedFile != null){
+
+            }
+            System.out.println("Enregistrer");
+
+        });
         fichier.get(3).setOnAction(e -> this.ctrl.Quit(e));
 
         //Menu edition
@@ -94,13 +107,17 @@ public class MenuAppControl {
             File f = dialog.showOpenDialog(insertion.get(1).getParentPopup().getOwnerWindow());
             if(f != null){
                 System.out.println("je ferais qqch d'interessant la prochaine fois !");
-                System.out.println("URL : "+f.toURI().getPath());
-                String s = f.toURI().getPath();
-                /*Image img = new Image(f.toURI().getPath());
-                System.out.println("img : "+img);
-                System.out.println(f.toURI().getPath());
-                ImageView imgview = new ImageView(img);
-                this.ctrl.view.getMainView().getChildren().add(imgview);*/
+                String s = null;
+                try {
+                    s = f.toURI().toURL().toExternalForm();
+                } catch (MalformedURLException malformedURLException) {
+                    malformedURLException.printStackTrace();
+                }
+                Image image = new Image(s);
+                System.out.println("img : "+image);
+                ImageView imgview = new ImageView(image);
+                this.ctrl.view.getMainView().getChildren().add(imgview);
+                System.out.println("j'affiche");
             }
 
         });
