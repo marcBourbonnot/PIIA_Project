@@ -6,11 +6,13 @@ import control.Control;
 import control.MenuAppControl;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import modele.Model;
 import vue.barre_outils.BarOutils;
 
 
 public class View {
+
     private Model mdl;
     private Control ctrl;
 
@@ -41,6 +43,8 @@ public class View {
 
 
     //Getters and Setters
+
+
     public MenuAppControl getMenu() {
         return menu;
     }
