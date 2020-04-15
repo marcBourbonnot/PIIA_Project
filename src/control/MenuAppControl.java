@@ -65,8 +65,8 @@ public class MenuAppControl {
         ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();
         edition.get(0).setOnAction(e -> System.out.println("Annuler"));
         edition.get(1).setOnAction(e -> System.out.println("Retablir"));
-        edition.get(2).setOnAction(e -> System.out.println("Copier"));
-        edition.get(3).setOnAction(e -> System.out.println("coller"));
+        edition.get(2).setOnAction(e -> this.ctrl.getMdl().copier());
+        edition.get(3).setOnAction(e -> this.ctrl.getMdl().coller());
 
         //Menu insertion
         ObservableList<MenuItem> insertion = mapp.getMenuBar().getMenus().get(2).getItems();
@@ -135,10 +135,38 @@ public class MenuAppControl {
         ((Menu)modification.get(3)).getItems().get(1).setOnAction(e -> this.ctrl.getMdl().rotateForme(-90));
         ((Menu)modification.get(4)).getItems().get(0).setOnAction(e -> this.ctrl.getMdl().movePremPlan());
         ((Menu)modification.get(4)).getItems().get(1).setOnAction(e -> this.ctrl.getMdl().moveArrPan());
-        modification.get(5).setOnAction(e -> System.out.println("SupprimerForme"));
+        modification.get(5).setOnAction(e -> this.ctrl.getMdl().removeForme());
+
+        this.lockSelection();
     }
 
     public MenuApp getMapp() {
         return mapp;
+    }
+
+    public void lockSelection() {
+        ObservableList<MenuItem> modification = mapp.getMenuBar().getMenus().get(3).getItems();
+        modification.get(1).setVisible(false);
+        modification.get(2).setVisible(false);
+        modification.get(3).setVisible(false);
+        modification.get(4).setVisible(false);
+        modification.get(5).setVisible(false);
+
+        ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();
+        edition.get(2).setVisible(false);
+        edition.get(3).setVisible(false);
+    }
+
+    public void unlockSelection() {
+        ObservableList<MenuItem> modification = mapp.getMenuBar().getMenus().get(3).getItems();
+        modification.get(1).setVisible(true);
+        modification.get(2).setVisible(true);
+        modification.get(3).setVisible(true);
+        modification.get(4).setVisible(true);
+        modification.get(5).setVisible(true);
+
+        ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();
+        edition.get(2).setVisible(true);
+        edition.get(3).setVisible(true);
     }
 }
