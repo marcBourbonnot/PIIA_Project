@@ -176,9 +176,9 @@ public class Model {
         this.enDeplacement=false;
     }
 
-    public void movePremPlan() {
+    public void moveArrPlan() {
         if (this.indexSelected == -1) return;
-        if (this.indexSelected == this.getFormes().size() - 1) return; //Forme deja au fond
+        //if (this.indexSelected == this.getFormes().size() - 1) return; //Forme deja au fond
 
         Forme save = this.getSelectedForme();
         this.getFormes().remove(this.indexSelected);
@@ -192,9 +192,9 @@ public class Model {
         this.getCtrl().getCvsCtrl().draw();
     }
 
-    public void moveArrPan() {
+    public void movePremPlan() {
         if (this.indexSelected == -1) return;
-        if (this.indexSelected == 0) return;
+        //if (this.indexSelected == 0) return;
 
         Forme save = this.getSelectedForme();
 
@@ -249,13 +249,15 @@ public class Model {
     public void coller() {
         if(copiedForme == null) return;
 
-        this.copiedForme.setX(this.copiedForme.getX() + 10);
-        this.copiedForme.setY(this.copiedForme.getY() + 10);
-        this.copiedForme.setWidth(this.copiedForme.getWidth() + 10);
-        this.copiedForme.setHeight(this.copiedForme.getHeight() + 10);
+        Forme copie = this.copiedForme;
 
-        this.getFormes().add(this.copiedForme);
+        copie.setX(copie.getX() + 10);
+        copie.setY(copie.getY() + 10);
+        copie.setWidth(copie.getWidth() + 10);
+        copie.setHeight(copie.getHeight() + 10);
 
+        this.getFormes().add(copie);
+        System.out.println(this.getFormes());
         this.getCtrl().getCvsCtrl().draw();
     }
 }
