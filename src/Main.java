@@ -10,7 +10,6 @@ public class Main extends Application {
 
         Scene scene = new Scene(view.getMainView());
 
-        //Image img = new Image(view, primaryStage);
 
         primaryStage.setTitle("Dessin facile");
         primaryStage.setScene(scene);
