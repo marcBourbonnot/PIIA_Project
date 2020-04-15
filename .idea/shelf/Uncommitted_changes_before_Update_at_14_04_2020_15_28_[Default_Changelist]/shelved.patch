@@ -1,0 +1,97 @@
+Index: src/control/MenuAppControl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package control;\r\n\r\nimport com.sun.tools.javac.Main;\r\nimport javafx.application.Platform;\r\nimport javafx.collections.ObservableList;\r\nimport javafx.scene.control.*;\r\nimport javafx.stage.FileChooser;\r\nimport modele.Formes;\r\nimport modele.Ligne;\r\nimport modele.Rectangle;\r\nimport vue.MenuApp;\r\n\r\nimport java.io.File;\r\n\r\npublic class MenuAppControl {\r\n    private Control ctrl;\r\n\r\n    private MenuApp mapp;\r\n    private boolean dessinMode;\r\n    private boolean allowModif;\r\n\r\n    public MenuAppControl(Control c) {\r\n        this.ctrl = c;\r\n\r\n        this.mapp = new MenuApp();\r\n        this.dessinMode = false;\r\n        this.allowModif = false;\r\n    }\r\n\r\n    public boolean isDessinMode() {\r\n        return dessinMode;\r\n    }\r\n\r\n    public void setDessinMode(boolean dessinMode) {\r\n        this.dessinMode = dessinMode;\r\n    }\r\n\r\n    public void addActions() {\r\n        //Menu fichier\r\n        ObservableList<MenuItem> fichier = mapp.getMenuBar().getMenus().get(0).getItems();\r\n        fichier.get(0).setOnAction(e -> {\r\n            this.ctrl.comfirmNew(e);\r\n\r\n        });\r\n        fichier.get(1).setOnAction(e -> System.out.println(\"Ouvrir\"));\r\n        fichier.get(2).setOnAction(e -> System.out.println(\"Enregistrer\"));\r\n        fichier.get(3).setOnAction(e -> this.ctrl.Quit(e));\r\n\r\n        //Menu edition\r\n        ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();\r\n        edition.get(0).setOnAction(e -> System.out.println(\"Annuler\"));\r\n        edition.get(1).setOnAction(e -> System.out.println(\"Retablir\"));\r\n        edition.get(2).setOnAction(e -> System.out.println(\"Copier\"));\r\n        edition.get(3).setOnAction(e -> System.out.println(\"coller\"));\r\n\r\n        //Menu insertion\r\n        ObservableList<MenuItem> insertion = mapp.getMenuBar().getMenus().get(2).getItems();\r\n        ((Menu)insertion.get(0)).getItems().get(0).setOnAction(e -> {\r\n            this.setDessinMode(true);\r\n            this.ctrl.getMdl().setTypeSelected(Formes.LIGNE);\r\n            System.out.println(this.ctrl.getMdl().getTypeSelected());\r\n            this.ctrl.getMdl().newForme();\r\n        });\r\n        ((Menu)insertion.get(0)).getItems().get(1).setOnAction(e -> {\r\n            this.setDessinMode(true);\r\n            this.ctrl.getMdl().setTypeSelected(Formes.RECTANGLE);\r\n            System.out.println(this.ctrl.getMdl().getTypeSelected());\r\n            this.ctrl.getMdl().newForme();\r\n        });\r\n        ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(0).setOnAction(e ->{\r\n            this.setDessinMode(true);\r\n            this.ctrl.getMdl().setTypeSelected(Formes.TRIANGLE_ISOCELE);\r\n            System.out.println(this.ctrl.getMdl().getTypeSelected());\r\n            this.ctrl.getMdl().newForme();\r\n        });\r\n        ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(1).setOnAction(e ->{\r\n            this.setDessinMode(true);\r\n            this.ctrl.getMdl().setTypeSelected(Formes.TRIANGLE_RECTANGLE);\r\n            System.out.println(this.ctrl.getMdl().getTypeSelected());\r\n            this.ctrl.getMdl().newForme();\r\n        });\r\n        ((Menu)insertion.get(0)).getItems().get(3).setOnAction(e -> {\r\n            this.setDessinMode(true);\r\n            this.ctrl.getMdl().setTypeSelected(Formes.ELLIPSE);\r\n            System.out.println(this.ctrl.getMdl().getTypeSelected());\r\n            this.ctrl.getMdl().newForme();\r\n        });\r\n        insertion.get(1).setOnAction(e -> {\r\n            System.out.println(\"Image\");\r\n            final FileChooser dialog = new FileChooser();\r\n            File f = dialog.showOpenDialog(insertion.get(1).getParentPopup().getOwnerWindow());\r\n\r\n        });\r\n        insertion.get(2).setOnAction(e -> System.out.println(\"Texte\"));\r\n\r\n        //Menu modification\r\n        ObservableList<MenuItem> modification = mapp.getMenuBar().getMenus().get(3).getItems();\r\n        modification.get(0).setOnAction(e -> {\r\n            this.setDessinMode(false);\r\n        });\r\n        ((Menu)modification.get(1)).getItems().get(0).setOnAction(e -> System.out.println(\"ContourCouleur\"));\r\n        ((Menu)modification.get(1)).getItems().get(1).setOnAction(e -> System.out.println(\"ContourEpaisseur\"));\r\n        modification.get(2).setOnAction(e -> System.out.println(\"Couleur de remplissage\"));\r\n        ((Menu)modification.get(3)).getItems().get(0).setOnAction(e -> System.out.println(\"Rot90D\"));\r\n        ((Menu)modification.get(3)).getItems().get(1).setOnAction(e -> System.out.println(\"Rot90G\"));\r\n        ((Menu)modification.get(4)).getItems().get(0).setOnAction(e -> this.ctrl.getMdl().movePremPlan());\r\n        ((Menu)modification.get(4)).getItems().get(1).setOnAction(e -> this.ctrl.getMdl().moveArrPan());\r\n        modification.get(5).setOnAction(e -> System.out.println(\"SupprimerForme\"));\r\n    }\r\n\r\n    public MenuApp getMapp() {\r\n        return mapp;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/control/MenuAppControl.java	(revision 18e60aa21dac33b4d3bdb139b40e6ade8cbbd7de)
++++ src/control/MenuAppControl.java	(date 1586870921985)
+@@ -4,6 +4,8 @@
+ import javafx.application.Platform;
+ import javafx.collections.ObservableList;
+ import javafx.scene.control.*;
++import javafx.scene.image.Image;
++import javafx.scene.image.ImageView;
+ import javafx.stage.FileChooser;
+ import modele.Formes;
+ import modele.Ligne;
+@@ -86,9 +88,20 @@
+             this.ctrl.getMdl().newForme();
+         });
+         insertion.get(1).setOnAction(e -> {
+-            System.out.println("Image");
+             final FileChooser dialog = new FileChooser();
++            FileChooser.ExtensionFilter filterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG", "*.jpg","*.JPEG", "*.jpeg");
++            dialog.getExtensionFilters().addAll(filterJPG);
+             File f = dialog.showOpenDialog(insertion.get(1).getParentPopup().getOwnerWindow());
++            if(f != null){
++                System.out.println("je ferais qqch d'interessant la prochaine fois !");
++                System.out.println("URL : "+f.toURI().getPath());
++                String s = f.toURI().getPath();
++                /*Image img = new Image(f.toURI().getPath());
++                System.out.println("img : "+img);
++                System.out.println(f.toURI().getPath());
++                ImageView imgview = new ImageView(img);
++                this.ctrl.view.getMainView().getChildren().add(imgview);*/
++            }
+ 
+         });
+         insertion.get(2).setOnAction(e -> System.out.println("Texte"));
+Index: src/vue/View.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package vue;\r\n\r\nimport control.BarreOutilsControl;\r\nimport control.CanvasControl;\r\nimport control.Control;\r\nimport control.MenuAppControl;\r\nimport javafx.scene.layout.HBox;\r\nimport javafx.scene.layout.VBox;\r\nimport modele.Model;\r\nimport vue.barre_outils.BarOutils;\r\n\r\n\r\npublic class View {\r\n    private Model mdl;\r\n    private Control ctrl;\r\n\r\n    private MenuAppControl menu;\r\n    private CanvasControl dessin;\r\n    private BarreOutilsControl bOutils;\r\n\r\n    private VBox mainView;\r\n\r\n    public final static int WIDTH = 1000;\r\n    public final static int HEIGHT = 750;\r\n\r\n\r\n    //Constructeur\r\n    public View() {\r\n        this.mdl = new Model(this);\r\n        this.ctrl = new Control(this.mdl, this);\r\n        this.mdl.setCtrl(this.ctrl);\r\n\r\n        this.menu = this.ctrl.getMenuCtrl();\r\n        this.dessin = this.ctrl.getCvsCtrl();\r\n        this.bOutils = this.ctrl.getbOutilsCtrl();\r\n\r\n        menu.addActions();\r\n\r\n        this.mainView = new VBox(this.menu.getMapp().getMenuBar(), new HBox(this.dessin.getZoneDessin().getDrawArea(),this.bOutils.getBarreOutils().getOutils()));\r\n    }\r\n\r\n\r\n    //Getters and Setters\r\n    public MenuAppControl getMenu() {\r\n        return menu;\r\n    }\r\n\r\n    public void setMenu(MenuAppControl menu) {\r\n        this.menu = menu;\r\n    }\r\n\r\n    public CanvasControl getDessin() {\r\n        return dessin;\r\n    }\r\n\r\n    public void setDessin(CanvasControl dessin) {\r\n        this.dessin = dessin;\r\n    }\r\n\r\n    public BarreOutilsControl getbOutils() {\r\n        return bOutils;\r\n    }\r\n\r\n    public void setbOutils(BarreOutilsControl bOutils) {\r\n        this.bOutils = bOutils;\r\n    }\r\n\r\n    public VBox getMainView() {\r\n        return mainView;\r\n    }\r\n\r\n    public Model getMdl() {\r\n        return mdl;\r\n    }\r\n\r\n    public void setMdl(Model mdl) {\r\n        this.mdl = mdl;\r\n    }\r\n\r\n    public Control getCtrl() {\r\n        return ctrl;\r\n    }\r\n\r\n    public void setCtrl(Control ctrl) {\r\n        this.ctrl = ctrl;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/vue/View.java	(revision 18e60aa21dac33b4d3bdb139b40e6ade8cbbd7de)
++++ src/vue/View.java	(date 1586868568455)
+@@ -6,11 +6,14 @@
+ import control.MenuAppControl;
+ import javafx.scene.layout.HBox;
+ import javafx.scene.layout.VBox;
++import javafx.stage.Stage;
+ import modele.Model;
+ import vue.barre_outils.BarOutils;
+ 
+ 
+ public class View {
++    private Stage stage;
++
+     private Model mdl;
+     private Control ctrl;
+ 
+@@ -41,6 +44,14 @@
+ 
+ 
+     //Getters and Setters
++    public Stage getStage(){
++        return this.stage;
++    }
++
++    public void setStage(Stage s){
++        this.stage = s;
++    }
++
+     public MenuAppControl getMenu() {
+         return menu;
+     }
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javafx.application.Application;\r\nimport javafx.scene.Scene;\r\nimport javafx.stage.Stage;\r\nimport vue.View;\r\n\r\npublic class Main extends Application {\r\n    @Override\r\n    public void start(Stage primaryStage) throws Exception {\r\n        View view = new View();\r\n\r\n        Scene scene = new Scene(view.getMainView());\r\n\r\n        //Image img = new Image(view, primaryStage);\r\n\r\n        primaryStage.setTitle(\"Dessin facile\");\r\n        primaryStage.setScene(scene);\r\n        primaryStage.setOnCloseRequest(e -> view.getCtrl().comfirmQuit(e));\r\n        primaryStage.show();\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        Application.launch(args);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Main.java	(revision 18e60aa21dac33b4d3bdb139b40e6ade8cbbd7de)
++++ src/Main.java	(date 1586868568449)
+@@ -16,6 +16,8 @@
+         primaryStage.setScene(scene);
+         primaryStage.setOnCloseRequest(e -> view.getCtrl().comfirmQuit(e));
+         primaryStage.show();
++
++        view.setStage(primaryStage);
+     }
+ 
+     public static void main(String[] args) {

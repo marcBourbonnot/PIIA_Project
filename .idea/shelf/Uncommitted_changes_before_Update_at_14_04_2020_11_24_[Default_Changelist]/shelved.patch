@@ -1,0 +1,78 @@
+Index: src/control/Control.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package control;\r\n\r\nimport javafx.event.ActionEvent;\r\nimport javafx.event.EventHandler;\r\nimport javafx.scene.control.Alert;\r\nimport javafx.scene.control.ButtonType;\r\nimport javafx.stage.WindowEvent;\r\nimport modele.Model;\r\nimport vue.View;\r\n\r\npublic class Control {\r\n    Model mdl;\r\n    View view;\r\n\r\n    CanvasControl cvsCtrl;\r\n    MenuAppControl menuCtrl;\r\n    BarreOutilsControl bOutilsCtrl;\r\n\r\n    public Control(Model mdl, View view) {\r\n        this.mdl = mdl;\r\n        this.view = view;\r\n\r\n        this.cvsCtrl = new CanvasControl(this);\r\n        this.menuCtrl = new MenuAppControl(this);\r\n        this.bOutilsCtrl = new BarreOutilsControl(this);\r\n    }\r\n\r\n\r\n    public Model getMdl() {\r\n        return mdl;\r\n    }\r\n\r\n    public void setMdl(Model mdl) {\r\n        this.mdl = mdl;\r\n    }\r\n\r\n    public View getView() {\r\n        return view;\r\n    }\r\n\r\n    public void setView(View view) {\r\n        this.view = view;\r\n    }\r\n\r\n    public CanvasControl getCvsCtrl() {\r\n        return cvsCtrl;\r\n    }\r\n\r\n    public void setCvsCtrl(CanvasControl cvsCtrl) {\r\n        this.cvsCtrl = cvsCtrl;\r\n    }\r\n\r\n    public MenuAppControl getMenuCtrl() {\r\n        return menuCtrl;\r\n    }\r\n\r\n    public void setMenuCtrl(MenuAppControl menuCtrl) {\r\n        this.menuCtrl = menuCtrl;\r\n    }\r\n\r\n    public BarreOutilsControl getbOutilsCtrl() {\r\n        return bOutilsCtrl;\r\n    }\r\n\r\n    public void setbOutilsCtrl(BarreOutilsControl bOutilsCtrl) {\r\n        this.bOutilsCtrl = bOutilsCtrl;\r\n    }\r\n\r\n    //Methodes\r\n    public void comfirmQuit(WindowEvent e){\r\n        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, \"Etes-vous sûr de vouloir quitter sans sauvegarder ?\", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);\r\n        alert.showAndWait();\r\n        if(alert.getResult() == ButtonType.NO || alert.getResult() == ButtonType.CANCEL) {\r\n            alert.close();\r\n            e.consume();\r\n        }\r\n    }\r\n\r\n    public void comfirmNew(ActionEvent e) {\r\n        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, \"Si vous faites cela sans sauvegarde, vous perdrez tout ce que vous avez fait ! Etes vous sûr ?\", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);\r\n        alert.showAndWait();\r\n\r\n        if (alert.getResult() == ButtonType.YES) {\r\n            this.view.getCtrl().getMdl().clearFormes();\r\n        }else{\r\n            e.consume();\r\n        }\r\n    }\r\n\r\n    public void Quit(ActionEvent e) {\r\n        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, \"Si vous faites cela sans sauvegarde, vous perdrez tout ce que vous avez fait ! Etes vous sûr ?\", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);\r\n        alert.showAndWait();\r\n        if(alert.getResult() == ButtonType.NO || alert.getResult() == ButtonType.CANCEL )\r\n            e.consume();\r\n        else\r\n            System.exit(0);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/control/Control.java	(revision d042eb1b4a0b63873005fbfc74fd7e84fe2339e3)
++++ src/control/Control.java	(date 1586852128253)
+@@ -1,7 +1,6 @@
+ package control;
+ 
+ import javafx.event.ActionEvent;
+-import javafx.event.EventHandler;
+ import javafx.scene.control.Alert;
+ import javafx.scene.control.ButtonType;
+ import javafx.stage.WindowEvent;
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import control.Control;\r\nimport javafx.application.Application;\r\nimport javafx.scene.Scene;\r\nimport javafx.scene.control.Alert;\r\nimport javafx.scene.control.ButtonType;\r\nimport javafx.stage.Stage;\r\nimport modele.Model;\r\nimport vue.View;\r\n\r\npublic class Main extends Application {\r\n    @Override\r\n    public void start(Stage primaryStage) throws Exception {\r\n        View view = new View();\r\n\r\n        Scene scene = new Scene(view.getMainView());\r\n\r\n        primaryStage.setTitle(\"Dessin facile\");\r\n        primaryStage.setScene(scene);\r\n        primaryStage.setOnCloseRequest(e ->{\r\n            view.getCtrl().comfirmQuit(e);\r\n        });\r\n        primaryStage.show();\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        Application.launch(args);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Main.java	(revision d042eb1b4a0b63873005fbfc74fd7e84fe2339e3)
++++ src/Main.java	(date 1586853010847)
+@@ -16,9 +16,7 @@
+ 
+         primaryStage.setTitle("Dessin facile");
+         primaryStage.setScene(scene);
+-        primaryStage.setOnCloseRequest(e ->{
+-            view.getCtrl().comfirmQuit(e);
+-        });
++        primaryStage.setOnCloseRequest(e -> view.getCtrl().comfirmQuit(e));
+         primaryStage.show();
+     }
+ 
+Index: src/modele/Image.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/modele/Image.java	(date 1586856234863)
++++ src/modele/Image.java	(date 1586856234863)
+@@ -0,0 +1,33 @@
++package modele;
++
++import javafx.application.Application;
++import javafx.geometry.Insets;
++import javafx.scene.layout.VBox;
++import javafx.stage.FileChooser;
++import javafx.stage.Stage;
++
++
++import javax.swing.*;
++import java.awt.*;
++
++public class Image { //extends Application {
++    /*@Override
++    public void start(Stage stage) throws Exception {
++        FileChooser fc = new FileChooser();
++        fc.setTitle("Selectionner votre fichier");
++
++        TextArea ta = new TextArea();
++        ta.setMinimumSize(new Dimension(50,70));
++
++        VBox root = new VBox();
++        root.setPadding(new Insets(10));
++        root.setSpacing(5);
++
++
++    }*/
++
++    public void insertImage(){
++        final FileChooser dialog = new FileChooser();
++        final File f = dialog.showOpenDialog()
++    }
++}
