@@ -6,9 +6,8 @@ import control.Control;
 import control.MenuAppControl;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import modele.Model;
-import vue.barre_outils.BarOutils;
+
 
 
 public class View {
