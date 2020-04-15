@@ -114,7 +114,6 @@ public class MenuAppControl {
             dialog.getExtensionFilters().addAll(filterJPG);
             File f = dialog.showOpenDialog(insertion.get(1).getParentPopup().getOwnerWindow());
             if(f != null){
-                System.out.println("je ferais qqch d'interessant la prochaine fois !");
                 String s = null;
                 try {
                     s = f.toURI().toURL().toExternalForm();
@@ -123,8 +122,11 @@ public class MenuAppControl {
                 }
                 Image image = new Image(s);
                 System.out.println("img : "+image);
-                ImageView imgview = new ImageView(image);
-                this.ctrl.view.getMainView().getChildren().add(imgview);
+
+                double widthZD = this.ctrl.view.getDessin().getZoneDessin().getDrawArea().getWidth();
+                double heightZD = this.ctrl.view.getDessin().getZoneDessin().getDrawArea().getHeight();
+
+                this.ctrl.getView().getDessin().getGC().drawImage(image,widthZD/2-image.getWidth()/2,heightZD/2-image.getHeight()/2);
                 System.out.println("j'affiche");
             }
 
