@@ -26,6 +26,7 @@ public class TriangleIsocele extends Forme {
     //Methodes
     @Override
     public boolean estDedans(double x, double y) {
+
         return false;
     }
 

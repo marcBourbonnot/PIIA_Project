@@ -155,6 +155,9 @@ public class Model {
                 this.formes.add(this.newForme);
                 this.newForme = null;
                 break;
+
+            case TEXTEAREA:
+                this.newForme = new ZoneTexte();
         }
     }
 

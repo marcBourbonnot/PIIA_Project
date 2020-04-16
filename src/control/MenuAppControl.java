@@ -46,6 +46,7 @@ public class MenuAppControl {
         });
         fichier.get(1).setOnAction(e -> System.out.println("Ouvrir"));
         fichier.get(2).setOnAction(e -> {//pas fini
+            saveModel();
             FileChooser fc = new FileChooser();
             fc.setTitle("Save file");
             fc.setInitialFileName("unnamedFile");
@@ -116,6 +117,10 @@ public class MenuAppControl {
         insertion.get(2).setOnAction(e -> {
             saveModel();
             System.out.println("Texte");
+            this.setDessinMode(true);
+            this.ctrl.getMdl().setTypeSelected(Formes.TEXTEAREA);
+            System.out.println(this.ctrl.getMdl().getTypeSelected());
+            this.ctrl.getMdl().newForme();
         });
 
         //Menu modification

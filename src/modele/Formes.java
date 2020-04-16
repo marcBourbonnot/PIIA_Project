@@ -6,5 +6,6 @@ public enum Formes {
     TRIANGLE_ISOCELE,
     TRIANGLE_RECTANGLE,
     ELLIPSE,
-    IMAGE
+    IMAGE,
+    TEXTEAREA
 }
