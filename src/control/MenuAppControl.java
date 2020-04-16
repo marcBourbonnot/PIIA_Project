@@ -193,11 +193,17 @@ public class MenuAppControl {
 
     public void saveModel() {
         this.save = this.ctrl.getMdl();
+        System.out.println(save);
     }
 
     public void undo() {
         if (this.save == null) return;
+
         this.ctrl.setMdl(this.save);
+        this.ctrl.getView().setMdl(this.save);
+
+        this.ctrl.getCvsCtrl().draw();
+
         this.save = null;
     }
 }

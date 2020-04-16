@@ -216,6 +216,8 @@ public class Model {
         Collections.reverse(this.getFormes());
 
         this.getCtrl().getCvsCtrl().draw();
+
+        this.indexSelected = 0;
     }
 
     public void movePremPlan() {
@@ -227,6 +229,8 @@ public class Model {
         this.getFormes().remove(this.indexSelected);
         this.getFormes().add(save);
         this.getCtrl().getCvsCtrl().draw();
+
+        this.indexSelected = this.getFormes().size() - 1;
     }
 
     private Point2D rotation(Point2D p, Point2D center, double angle) {

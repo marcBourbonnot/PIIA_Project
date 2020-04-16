@@ -61,8 +61,6 @@ public class Ligne extends Forme {
         gc.strokeLine(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 
         gc.setFill(save);
-
-        System.out.println("a = " +(this.getHeight()-this.getY())/(this.getWidth()-this.getX()));
     }
 
     @Override
