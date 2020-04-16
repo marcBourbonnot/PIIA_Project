@@ -116,10 +116,7 @@ public class MenuAppControl {
         });
         insertion.get(2).setOnAction(e -> {
             saveModel();
-            System.out.println("Texte");
-            this.setDessinMode(true);
-            this.ctrl.getMdl().setTypeSelected(Formes.TEXTEAREA);
-            System.out.println(this.ctrl.getMdl().getTypeSelected());
+            this.ctrl.getMdl().setTypeSelected(Formes.TEXT);
             this.ctrl.getMdl().newForme();
         });
 

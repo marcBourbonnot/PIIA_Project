@@ -7,5 +7,5 @@ public enum Formes {
     TRIANGLE_RECTANGLE,
     ELLIPSE,
     IMAGE,
-    TEXTEAREA
+    TEXT
 }

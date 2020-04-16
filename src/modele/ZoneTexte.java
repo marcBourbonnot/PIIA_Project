@@ -7,31 +7,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 public class ZoneTexte extends Forme{
-
-    private TextArea texte;
-
     //Constructeurs
-    public ZoneTexte() {
-        super();
-        this.texte = new TextArea();
-        this.setClr(Color.GRAY);
+    public ZoneTexte(String s) {
+        super(10, 10);
+        this.setText(s);
     }
-
-    public ZoneTexte(double x, double y, double width, double height, String text) {
-        super(x, y, width, height, text);
-        this.texte = new TextArea();
-    }
-
-    public ZoneTexte(double x, double y) {
-        super(x, y);
-        this.texte = new TextArea();
-    }
-
-    public ZoneTexte(double x, double y, double width, double height) {
-        super(x, y, width, height);
-        this.texte = new TextArea();
-    }
-
 
     @Override
     public boolean estDedans(double x, double y) {
@@ -42,7 +22,8 @@ public class ZoneTexte extends Forme{
     public void draw(GraphicsContext gc) {
         Paint save = gc.getFill();
         gc.setFill(this.getClr());
-        gc.fillPolygon(new double[]{this.getX(), this.getWidth(), this.getWidth(), this.getX()}, new double[]{this.getY(), this.getY(), this.getHeight(), this.getHeight()}, 4);
+
+        gc.strokeText(this.getText(), this.getX(), this.getY());
 
         gc.setFill(save);
     }

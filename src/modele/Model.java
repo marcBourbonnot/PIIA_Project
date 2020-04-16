@@ -2,6 +2,7 @@ package modele;
 
 import control.Control;
 import javafx.geometry.Point2D;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -12,6 +13,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Optional;
 
 public class Model {
     View view;
@@ -156,8 +158,12 @@ public class Model {
                 this.newForme = null;
                 break;
 
-            case TEXTEAREA:
-                this.newForme = new ZoneTexte();
+            case TEXT:
+                this.newForme = new ZoneTexte(this.loadText());
+                this.newForme.draw(this.ctrl.getCvsCtrl().getGC());
+                this.formes.add(this.newForme);
+                this.newForme = null;
+                break;
         }
     }
 
@@ -300,5 +306,21 @@ public class Model {
         }
         return null;
     }
+
+    public String loadText() {
+        TextInputDialog in = new TextInputDialog("");
+
+        in.setTitle("Insèrer zone de texte");
+        //in.setHeaderText("Votre te");
+        in.setContentText("Texte :");
+
+        Optional<String> txtIn = in.showAndWait();
+
+        if (txtIn.isPresent()) {
+            return txtIn.get();
+        }
+        return null;
+    }
+
 }
 
