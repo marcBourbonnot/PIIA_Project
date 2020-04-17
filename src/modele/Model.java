@@ -1,11 +1,13 @@
 package modele;
 
+import com.sun.source.tree.CaseTree;
 import control.Control;
 import javafx.geometry.Point2D;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import vue.View;
 
@@ -283,17 +285,44 @@ public class Model {
     public void coller() {
         if(copiedForme == null) return;
 
-        Forme copie = this.copiedForme;
+        //Attributs
+        double x = this.copiedForme.getX() + 15;
+        double y = this.copiedForme.getY() + 15;
 
-        copie.setX(copie.getX() + 10);
-        copie.setY(copie.getY() + 10);
-        copie.setWidth(copie.getWidth() + 10);
-        copie.setHeight(copie.getHeight() + 10);
+        double w = this.copiedForme.getWidth() + 15;
+        double h = this.copiedForme.getHeight() + 15;
 
-        this.getFormes().add(copie);
-        System.out.println(this.getFormes());
+        String text = this.copiedForme.getText();
+        Color clr = this.copiedForme.getClr();
+
+        boolean drawable = this.copiedForme.isDrawable();
+
+        double epaisseurBord = this.copiedForme.getEpaisseurBord();
+        Color clrBord = this.copiedForme.getClrBord();
+
+        switch (this.copiedForme.getClass().getSimpleName()) {
+            case "Rectangle":
+                this.getFormes().add(new Rectangle(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord));
+                break;
+            case "Ligne":
+                this.getFormes().add(new Ligne(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord));
+                break;
+            case "TriangleIsocele":
+                this.getFormes().add(new TriangleIsocele(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord));
+                break;
+            case "TriangleRectangle":
+                this.getFormes().add(new TriangleRectangle(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord));
+                break;
+            case "ZoneTexte":
+                this.getFormes().add(new ZoneTexte(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord));
+                break;
+            case "ImageNous":
+                this.getFormes().add(new ImageNous(((ImageNous) this.copiedForme).getImg(), x, y, w, h, text, clr, drawable, epaisseurBord, clrBord));
+        }
+
         this.getCtrl().getCvsCtrl().draw();
     }
+
 
     public Image loadImage() {
         final FileChooser dialog = new FileChooser();

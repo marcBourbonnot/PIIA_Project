@@ -48,7 +48,6 @@ public class MenuAppControl {
         ObservableList<MenuItem> fichier = mapp.getMenuBar().getMenus().get(0).getItems();
         fichier.get(0).setOnAction(e -> {
             this.ctrl.comfirmNew(e);
-
         });
         fichier.get(1).setOnAction(e -> {
             System.out.println("Ouvrir");
@@ -79,7 +78,7 @@ public class MenuAppControl {
                         double w = Double.valueOf(parts[3]);
                         double h = Double.valueOf(parts[4]);
 
-                        String text = parts[5];
+                        String text = parts[5].replace("\"", "");
                         Color clr = Color.GRAY;
 
                         boolean drawable = Boolean.valueOf(parts[7]);

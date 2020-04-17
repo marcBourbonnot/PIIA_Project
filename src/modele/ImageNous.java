@@ -3,6 +3,7 @@ package modele;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 public class ImageNous extends Forme {
 
@@ -15,6 +16,11 @@ public class ImageNous extends Forme {
     public ImageNous(Image img) {
         super(10, 10, img.getWidth(), img.getHeight());
 
+        this.img = img;
+    }
+
+    public ImageNous(Image img, double x, double y, double w, double h, String text, Color clr, boolean drawable, double epaisseurBord, Color clrBord) {
+        super(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord);
         this.img = img;
     }
 
