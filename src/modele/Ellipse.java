@@ -32,16 +32,15 @@ public class Ellipse extends Forme {
 
         gc.setFill(this.getClr());
 
-        gc.strokeOval(this.getWidth(), this.getHeight(), this.getX(), this.getY());
-        gc.strokeLine(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-        //gc.strokeLine(this.getX() - this.getWidth(), this.getY() - this.getHeight(), 2 * this.getWidth(), 2 * this.getHeight());
+        gc.fillOval(this.getX(), this.getY(), this.getWidth() - this.getX(), this.getHeight() - this.getY());
+        gc.strokeOval(this.getX(), this.getY(), this.getWidth() - this.getX(), this.getHeight() - this.getY());
 
         gc.setFill(save);
     }
 
     @Override
     public Point2D getCenter() {
-        return null;
+        return new Point2D(this.getX(), this.getY());
     }
 }
 

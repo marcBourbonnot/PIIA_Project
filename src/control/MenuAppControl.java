@@ -78,14 +78,13 @@ public class MenuAppControl {
                         double w = Double.valueOf(parts[3]);
                         double h = Double.valueOf(parts[4]);
 
-                        String text = parts[5].replace("\"", "");
+                        String text = parts[5].replace("\"", "").replace("/*/", " ");
                         Color clr = Color.GRAY;
 
                         boolean drawable = Boolean.valueOf(parts[7]);
 
                         double epaisseurBord = Double.valueOf(parts[8]);
                         Color clrBord = Color.BLACK;
-
 
                         switch (parts[0]) {
                             case "Rectangle":

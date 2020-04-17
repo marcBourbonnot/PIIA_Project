@@ -161,14 +161,12 @@ public class Model {
                 this.newForme = new ImageNous(this.loadImage());
                 this.newForme.draw(this.ctrl.getCvsCtrl().getGC());
                 this.formes.add(this.newForme);
-                this.newForme = null;
                 break;
 
             case TEXT:
                 this.newForme = new ZoneTexte(this.loadText());
                 this.newForme.draw(this.ctrl.getCvsCtrl().getGC());
                 this.formes.add(this.newForme);
-                this.newForme = null;
                 break;
         }
     }
