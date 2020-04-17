@@ -158,9 +158,12 @@ public class Model {
                 this.newForme = new Ellipse();
                 break;
             case IMAGE:
-                this.newForme = new ImageNous(this.loadImage());
-                this.newForme.draw(this.ctrl.getCvsCtrl().getGC());
-                this.formes.add(this.newForme);
+                Image img = this.loadImage();
+                if(img != null) {
+                    this.newForme = new ImageNous(this.loadImage());
+                    this.newForme.draw(this.ctrl.getCvsCtrl().getGC());
+                    this.formes.add(this.newForme);
+                }
                 break;
 
             case TEXT:
