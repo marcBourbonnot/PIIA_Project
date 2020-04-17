@@ -7,19 +7,19 @@ import javafx.scene.paint.Color;
 public abstract class Forme {
 
     //Attributs
-    private double x;
-    private double y;
+    private double x = -1;
+    private double y = -1;
 
-    private double width;
-    private double height;
+    private double width = -1;
+    private double height = -1;
 
-    private String text;
-    private Color clr = Color.GREEN;
+    private String text = "";
+    private Color clr = Color.GRAY;
 
-    private boolean drawable;
+    private boolean drawable = false;
 
-    private double epaisseurBord;
-    private Color clrBord;
+    private double epaisseurBord = 1;
+    private Color clrBord = this.clr;
 
 
     //Constantes
@@ -40,7 +40,31 @@ public abstract class Forme {
     }
 
     /**
-     * Constructeur de la forme avec tout les params
+     * Constructeur avec tous les parmetres
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param text
+     * @param clr
+     * @param drawable
+     * @param epaisseurBord
+     * @param clrBord
+     */
+    public Forme(double x, double y, double width, double height, String text, Color clr, boolean drawable, double epaisseurBord, Color clrBord) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.text = text;
+        this.clr = clr;
+        this.drawable = drawable;
+        this.epaisseurBord = epaisseurBord;
+        this.clrBord = clrBord;
+    }
+
+    /**
+     * Constructeur de la forme
      * @param x
      * @param y
      * @param width
@@ -180,5 +204,9 @@ public abstract class Forme {
 
     public  String coordsToString() {
         return this.getClass().getName() + " x: " + this.x + " y: " + this.y + " w: " + this.width + " h: " + this.height;
+    }
+
+    public String exportValuesFormes() {
+        return this.getX() + " " + this.getY() + " " + this.getWidth() + " " + this.getHeight() + " \"" + this.getText() + "\" " + this.getClr().getHue() + " " + this.drawable + " " + this.getEpaisseurBord() + " " + this.getClrBord().getHue();
     }
 }

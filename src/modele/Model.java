@@ -71,6 +71,10 @@ public class Model {
         return formes;
     }
 
+    public void setFormes(ArrayList<Forme> formes) {
+        this.formes = formes;
+    }
+
     public Forme getForme(int index) {
         return this.formes.get(index);
     }
@@ -300,13 +304,13 @@ public class Model {
             String s = null;
             try {
                 s = f.toURI().toURL().toExternalForm();
+
+                Image image = new Image(s);
+
+                return image;
             } catch (MalformedURLException malformedURLException) {
                 malformedURLException.printStackTrace();
             }
-
-            Image image = new Image(s);
-
-            return image;
         }
         return null;
     }

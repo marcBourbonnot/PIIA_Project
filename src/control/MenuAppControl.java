@@ -1,17 +1,23 @@
 package control;
 
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
-import modele.Formes;
-import modele.ImageNous;
-import modele.Model;
+import modele.*;
 import vue.MenuApp;
 
-import java.io.File;
+import javax.imageio.IIOImage;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.*;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 
 public class MenuAppControl {
     private Control ctrl;
@@ -44,26 +50,135 @@ public class MenuAppControl {
             this.ctrl.comfirmNew(e);
 
         });
-        fichier.get(1).setOnAction(e -> System.out.println("Ouvrir"));
-        fichier.get(2).setOnAction(e -> {//pas fini
-            saveModel();
+        fichier.get(1).setOnAction(e -> {
+            System.out.println("Ouvrir");
             FileChooser fc = new FileChooser();
-            fc.setTitle("Save file");
-            fc.setInitialFileName("unnamedFile");
+            fc.setTitle("Ouvrir");
 
-            FileChooser.ExtensionFilter filterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG", "*.jpg","*.JPEG", "*.jpeg");
-            FileChooser.ExtensionFilter filterTXT = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
-            fc.getExtensionFilters().addAll(filterJPG,filterTXT);
+            FileChooser.ExtensionFilter filterDF = new FileChooser.ExtensionFilter("DF files (*.df)", "*df");
 
+            fc.getExtensionFilters().add(filterDF);
+
+            File openedFile = fc.showOpenDialog(fichier.get(1).getParentPopup().getOwnerWindow());
+
+            if (openedFile != null) {
+                try {
+                    InputStream fileIn = new FileInputStream(openedFile.getPath());
+                    InputStreamReader fileInRead = new InputStreamReader(fileIn);
+                    BufferedReader buff = new BufferedReader(fileInRead);
+
+                    String line;
+                    ArrayList<Forme> open = new ArrayList<>();
+
+                    while ((line = buff.readLine()) != null){
+                        String[] parts = line.split(" ");
+
+                        double x = Double.valueOf(parts[1]);
+                        double y = Double.valueOf(parts[2]);
+
+                        double w = Double.valueOf(parts[3]);
+                        double h = Double.valueOf(parts[4]);
+
+                        String text = parts[5];
+                        Color clr = Color.GRAY;
+
+                        boolean drawable = Boolean.valueOf(parts[7]);
+
+                        double epaisseurBord = Double.valueOf(parts[8]);
+                        Color clrBord = Color.BLACK;
+
+
+                        switch (parts[0]) {
+                            case "Rectangle":
+                                open.add(new Rectangle(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord));
+                                break;
+                            case "Ligne":
+                                open.add(new Ligne(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord));
+                                break;
+                            case "TriangleIsocele":
+                                open.add(new TriangleIsocele(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord));
+                                break;
+                            case "TriangleRectangle":
+                                open.add(new TriangleRectangle(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord));
+                                break;
+                            case "ZoneTexte":
+                                open.add(new ZoneTexte(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord));
+                                break;
+                        }
+                    }
+                    buff.close();
+
+                    this.ctrl.getMdl().setFormes(open);
+                    this.ctrl.getCvsCtrl().draw();
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        fichier.get(2).setOnAction(e -> {
+            FileChooser fc = new FileChooser();
+            fc.setTitle("Sauvegarder");
+            fc.setInitialFileName("Dessin");
+
+            FileChooser.ExtensionFilter filterDF = new FileChooser.ExtensionFilter("DF files (*.df)", "*.df");
+
+            fc.getExtensionFilters().add(filterDF);
 
             File savedFile = fc.showSaveDialog(fichier.get(1).getParentPopup().getOwnerWindow());
-            if(savedFile != null){
 
+            if(savedFile != null){
+                try {
+                    FileWriter fileWrite = new FileWriter(savedFile);
+                    this.ctrl.getMdl().getFormes().forEach(str -> {
+                        try {
+                            fileWrite.write(str.getClass().getSimpleName() + " " + str.exportValuesFormes() + "\n");
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+                    fileWrite.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
             System.out.println("Enregistrer");
 
         });
-        fichier.get(3).setOnAction(e -> this.ctrl.Quit(e));
+        fichier.get(3).setOnAction(e -> {
+            FileChooser fc = new FileChooser();
+            fc.setTitle("Export image");
+            fc.setInitialFileName("monDessinEnImage");
+
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("png files : (*.png)", ".png");
+
+            fc.getExtensionFilters().add(extFilter);
+
+            File file = fc.showSaveDialog(fichier.get(1).getParentPopup().getOwnerWindow());
+
+            if (file != null) {
+                try {
+                    WritableImage wImg = new WritableImage((int) this.ctrl.getCvsCtrl().getZoneDessin().getDrawArea().getWidth(), (int) this.ctrl.getCvsCtrl().getZoneDessin().getDrawArea().getHeight());
+                    this.ctrl.getCvsCtrl().getZoneDessin().getDrawArea().snapshot(null, wImg);
+                    RenderedImage rImg = SwingFXUtils.fromFXImage(wImg, null);
+
+                    ImageIO.write(rImg, "png", file);
+
+                    Alert alertDone = new Alert(Alert.AlertType.INFORMATION, "Export effectué avec succès !", ButtonType.YES);
+                    alertDone.setTitle("Export");
+                    alertDone.showAndWait();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    Alert alertFail = new Alert(Alert.AlertType.ERROR, "Une erreur est survenue lors de l'export !", ButtonType.YES);
+                    alertFail.setTitle("Export");
+                    alertFail.showAndWait();
+                }
+            }
+
+
+        });
+        fichier.get(4).setOnAction(e -> this.ctrl.quit(e));
 
         //Menu edition
         ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();

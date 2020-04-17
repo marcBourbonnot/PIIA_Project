@@ -48,6 +48,7 @@ public class MenuApp {
         MenuItem nouveau = new MenuItem("Nouveau");
         MenuItem ouvrir = new MenuItem("Ouvrir");
         MenuItem sauvegarder = new MenuItem("Enregistrer");
+        MenuItem export = new MenuItem("Exporter en png");
         MenuItem quitter = new MenuItem("Quitter");
 
 
@@ -62,6 +63,7 @@ public class MenuApp {
         fichier.getItems().add(nouveau);
         fichier.getItems().add(ouvrir);
         fichier.getItems().add(sauvegarder);
+        fichier.getItems().add(export);
         fichier.getItems().add(quitter);
 
 

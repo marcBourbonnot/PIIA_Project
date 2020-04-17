@@ -40,4 +40,9 @@ public class ImageNous extends Forme {
     public Point2D getCenter() {
         return new Point2D((this.getWidth() - this.getX()) / 2, (this.getHeight() - this.getY()) / 2);
     }
+
+    @Override
+    public String exportValuesFormes() {
+        return "";
+    }
 }

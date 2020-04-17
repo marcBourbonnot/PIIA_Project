@@ -3,9 +3,12 @@ package control;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.stage.FileChooser;
 import javafx.stage.WindowEvent;
 import modele.Model;
 import vue.View;
+
+import java.io.File;
 
 public class Control {
     Model mdl;
@@ -86,7 +89,7 @@ public class Control {
         }
     }
 
-    public void Quit(ActionEvent e) {
+    public void quit(ActionEvent e) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Si vous faites cela sans sauvegarde, vous perdrez tout ce que vous avez fait ! Etes vous sûr ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
         alert.showAndWait();
         if(alert.getResult() == ButtonType.NO || alert.getResult() == ButtonType.CANCEL )

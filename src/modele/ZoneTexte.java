@@ -13,6 +13,10 @@ public class ZoneTexte extends Forme{
         this.setText(s);
     }
 
+    public ZoneTexte(double x, double y, double w, double h, String text, Color clr, boolean drawable, double epaisseurBord, Color clrBord) {
+        super(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord);
+    }
+
     @Override
     public boolean estDedans(double x, double y) {
         return x >= this.getX() && x <= this.getWidth() && y >= this.getY() && y <= this.getHeight();

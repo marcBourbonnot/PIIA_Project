@@ -2,6 +2,7 @@ package modele;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 public class Ligne extends Forme {
@@ -21,6 +22,10 @@ public class Ligne extends Forme {
 
     public Ligne(double x, double y, double width, double height) {
         super(x, y, width, height);
+    }
+
+    public Ligne(double x, double y, double w, double h, String text, Color clr, boolean drawable, double epaisseurBord, Color clrBord) {
+        super(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord);
     }
 
     @Override
