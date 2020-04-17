@@ -34,6 +34,7 @@ public class Rectangle extends Forme {
     //Methodes
     @Override
     public boolean estDedans(double x, double y) {
+        System.out.println("je suis dans estDedans rec");
         return x >= this.getX() && x <= this.getWidth() && y >= this.getY() && y <= this.getHeight();
     }
 
