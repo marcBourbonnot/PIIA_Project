@@ -209,4 +209,14 @@ public abstract class Forme {
     public String exportValuesFormes() {
         return this.getX() + " " + this.getY() + " " + this.getWidth() + " " + this.getHeight() + " \"" + this.getText().replace(" ", "/*/") + "\" " + this.getClr().getHue() + " " + this.drawable + " " + this.getEpaisseurBord() + " " + this.getClrBord().getHue();
     }
+
+    public void diminuerTailleBord(double value) {
+        if (this.getEpaisseurBord() - value >= 0) {
+            this.setEpaisseurBord(this.getEpaisseurBord() - value);
+        }
+    }
+
+    public void augmenterTailleBord(double value) {
+        this.setEpaisseurBord(this.getEpaisseurBord() + value);
+    }
 }

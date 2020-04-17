@@ -357,5 +357,15 @@ public class Model {
         return null;
     }
 
+    public void dimCtr(double value) {
+        this.getForme(this.indexSelected).diminuerTailleBord(value);
+        this.getCtrl().getCvsCtrl().draw();
+    }
+
+    public void augCtr(double value) {
+        this.getForme(this.indexSelected).augmenterTailleBord(value);
+        this.getCtrl().getCvsCtrl().draw();
+    }
+
 }
 

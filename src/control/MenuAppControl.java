@@ -242,13 +242,34 @@ public class MenuAppControl {
             saveModel();
             System.out.println("ContourCouleur");
         });
-        ((Menu)modification.get(1)).getItems().get(1).setOnAction(e -> {
+        ((Menu) ((Menu)modification.get(1)).getItems().get(1)).getItems().get(0).setOnAction(e -> {
             saveModel();
-            System.out.println("ContourEpaisseur");
+            System.out.println("ContourEpaisseur +10");
+            this.ctrl.getMdl().augCtr(10);
+        });
+        ((Menu) ((Menu)modification.get(1)).getItems().get(1)).getItems().get(1).setOnAction(e -> {
+            saveModel();
+            System.out.println("ContourEpaisseur +1");
+            this.ctrl.getMdl().augCtr(1);
+        });
+        ((Menu) ((Menu)modification.get(1)).getItems().get(1)).getItems().get(2).setOnAction(e -> {
+            saveModel();
+            System.out.println("ContourEpaisseur -1");
+            this.ctrl.getMdl().dimCtr(1);
+        });
+        ((Menu) ((Menu)modification.get(1)).getItems().get(1)).getItems().get(3).setOnAction(e -> {
+            saveModel();
+            System.out.println("ContourEpaisseur - 10");
+            this.ctrl.getMdl().dimCtr(10);
         });
         modification.get(2).setOnAction(e -> {
             saveModel();
             System.out.println("Couleur de remplissage");
+
+            ColorPicker pickRemp = new ColorPicker();
+
+            pickRemp.show();
+
         });
         ((Menu)modification.get(3)).getItems().get(0).setOnAction(e -> {
             saveModel();

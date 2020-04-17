@@ -40,7 +40,7 @@ public class Ellipse extends Forme {
 
     @Override
     public Point2D getCenter() {
-        return new Point2D(this.getX(), this.getY());
+        return new Point2D(this.getX() + ((this.getWidth() - this.getX()) / 2), this.getY() + ((this.getHeight() - this.getY()) / 2));
     }
 }
 

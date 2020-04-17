@@ -128,7 +128,14 @@ public class MenuApp {
 
         //Menu contour
         MenuItem couleur = new MenuItem("Couleur");
-        MenuItem epaisseur = new MenuItem("Epaisseur");
+        Menu epaisseur = new Menu("Epaisseur");
+
+        MenuItem p0 = new MenuItem("+ 10");
+        MenuItem p1 = new MenuItem("+ 1");
+        MenuItem p2 = new MenuItem("- 1");
+        MenuItem p3 = new MenuItem("- 10");
+
+        epaisseur.getItems().addAll(p0, p1, p2, p3);
 
         contour.getItems().add(couleur);
         contour.getItems().add(epaisseur);

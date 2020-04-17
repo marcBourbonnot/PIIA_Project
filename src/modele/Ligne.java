@@ -63,6 +63,7 @@ public class Ligne extends Forme {
         Paint save = gc.getFill();
 
         gc.setFill(this.getClr());
+        gc.setLineWidth(this.getEpaisseurBord());
         gc.strokeLine(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 
         gc.setFill(save);

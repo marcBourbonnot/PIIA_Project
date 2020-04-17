@@ -48,8 +48,10 @@ public class TriangleIsocele extends Forme {
         Paint save = gc.getFill();
 
         gc.setFill(this.getClr());
-
         gc.fillPolygon(new double[]{this.getX(), this.getWidth(), this.getX() - (this.getWidth() - this.getX())}, new double[]{this.getY(), this.getHeight(), this.getHeight()},3);
+
+        gc.setFill(this.getClrBord());
+        gc.setLineWidth(this.getEpaisseurBord());
         gc.strokePolygon(new double[]{this.getX(), this.getWidth(), this.getX() - (this.getWidth() - this.getX())}, new double[]{this.getY(), this.getHeight(), this.getHeight()},3);
 
         System.out.println(this.getX());
