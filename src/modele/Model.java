@@ -29,12 +29,14 @@ public class Model {
     double x_souris;
     double y_souris;
     Forme copiedForme = null;
+    private boolean redimMode ;
 
 
     public Model(View v) {
         this.view = v;
 
         this.formes = new ArrayList<>();
+        this.redimMode=false;
     }
 
     public View getView() {
@@ -79,6 +81,14 @@ public class Model {
 
     public Forme getForme(int index) {
         return this.formes.get(index);
+    }
+
+    public boolean isRedimMode() {
+        return redimMode;
+    }
+
+    public void setRedimMode(boolean redimMode) {
+        this.redimMode = redimMode;
     }
 
     public int getNbFormes() {
@@ -197,6 +207,20 @@ public class Model {
             this.getSelectedForme().setWidth(this.getSelectedForme().getWidth() + dx);
             this.getSelectedForme().setHeight(this.getSelectedForme().getHeight() + dy);
 
+            x_souris = e.getX();
+            y_souris = e.getY();
+
+            this.ctrl.getCvsCtrl().draw();
+        }
+    }
+
+    public void redimension(MouseEvent e) {
+        if (this.enDeplacement) {
+            double dx = e.getX() - x_souris;
+            double dy = e.getY() - y_souris;
+
+            this.getSelectedForme().setWidth(this.getSelectedForme().getWidth() + dx);
+            this.getSelectedForme().setHeight(this.getSelectedForme().getHeight() + dy);
             x_souris = e.getX();
             y_souris = e.getY();
 

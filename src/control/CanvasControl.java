@@ -61,6 +61,8 @@ public class CanvasControl {
                 this.ctrl.getMdl().tempDraw(e);
             } else {
                 //etat selection
+                if(this.ctrl.getMdl().isRedimMode())
+                    this.ctrl.getMdl().redimension(e);
                 this.ctrl.getMdl().deplace(e);
             }
         });
