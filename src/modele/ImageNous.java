@@ -41,7 +41,7 @@ public class ImageNous extends Forme {
     public void draw(GraphicsContext gc) {
         gc.drawImage(this.img, this.getX(), this.getY());
 
-        gc.setFill(this.getClrBord());
+        gc.setStroke(this.getClrBord());
         gc.setLineWidth(this.getEpaisseurBord());
         gc.strokePolygon(new double[]{this.getX(), this.getX() + this.img.getWidth(), this.getX() + this.img.getWidth(), this.getX()}, new double[]{this.getY(), this.getY(), this.getY() + this.img.getHeight(), this.getY() + this.img.getHeight()}, 4);
     }

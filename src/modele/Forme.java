@@ -19,7 +19,7 @@ public abstract class Forme {
     private boolean drawable = false;
 
     private double epaisseurBord = 1;
-    private Color clrBord = this.clr;
+    private Color clrBord = Color.BLACK;
 
 
     //Constantes

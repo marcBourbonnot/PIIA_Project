@@ -27,6 +27,7 @@ public class ZoneTexte extends Forme{
         Paint save = gc.getFill();
         gc.setFill(this.getClr());
 
+        gc.setStroke(this.getClrBord());
         gc.strokeText(this.getText(), this.getX(), this.getY());
 
         gc.setFill(save);

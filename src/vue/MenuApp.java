@@ -119,13 +119,38 @@ public class MenuApp {
         RadioMenuItem select = new RadioMenuItem("Selection");
         select.setToggleGroup(groupFormes);
         Menu contour = new Menu("Contour");
-        MenuItem couleurRemp = new MenuItem("Couleur de remplissage");
+        Menu couleurRemp = new Menu("Couleur de remplissage");
         Menu rotation = new Menu("Rotation");
         Menu plan = new Menu("Plan");
         MenuItem suppr = new MenuItem("Supprimer");
 
+        //Menu couleur de remplissage
+        MenuItem blackr = new MenuItem("Noir");
+        MenuItem whiter = new MenuItem("Blanc");
+        MenuItem greyr = new MenuItem("Gris");
+        MenuItem bluer = new MenuItem("Bleu");
+        MenuItem cyanr = new MenuItem("Cyan");
+        MenuItem greenr = new MenuItem("Vert");
+        MenuItem yellowr = new MenuItem("Jaune");
+        MenuItem oranger = new MenuItem("Orange");
+        MenuItem rouger = new MenuItem("Rouge");
+        MenuItem roser = new MenuItem("Rose");
+        MenuItem otherr = new MenuItem("Personnaliser...");
+
+        couleurRemp.getItems().add(blackr);
+        couleurRemp.getItems().add(whiter);
+        couleurRemp.getItems().add(greyr);
+        couleurRemp.getItems().add(bluer);
+        couleurRemp.getItems().add(cyanr);
+        couleurRemp.getItems().add(greenr);
+        couleurRemp.getItems().add(yellowr);
+        couleurRemp.getItems().add(oranger);
+        couleurRemp.getItems().add(rouger);
+        couleurRemp.getItems().add(roser);
+        couleurRemp.getItems().add(otherr);
+
         //Menu contour
-        MenuItem couleur = new MenuItem("Couleur");
+        Menu couleur = new Menu("Couleur");
         Menu epaisseur = new Menu("Epaisseur");
 
         MenuItem p0 = new MenuItem("+ 10");
@@ -134,6 +159,32 @@ public class MenuApp {
         MenuItem p3 = new MenuItem("- 10");
 
         epaisseur.getItems().addAll(p0, p1, p2, p3);
+
+        //Menu couleur de contour
+        MenuItem blackc = new MenuItem("Noir");
+        MenuItem whitec = new MenuItem("Blanc");
+        MenuItem greyc = new MenuItem("Gris");
+        MenuItem bluec = new MenuItem("Bleu");
+        MenuItem cyanc = new MenuItem("Cyan");
+        MenuItem greenc = new MenuItem("Vert");
+        MenuItem yellowc = new MenuItem("Jaune");
+        MenuItem orangec = new MenuItem("Orange");
+        MenuItem rougec = new MenuItem("Rouge");
+        MenuItem rosec = new MenuItem("Rose");
+        MenuItem otherc = new MenuItem("Personnaliser...");
+
+        couleur.getItems().add(blackc);
+        couleur.getItems().add(whitec);
+        couleur.getItems().add(greyc);
+        couleur.getItems().add(bluec);
+        couleur.getItems().add(cyanc);
+        couleur.getItems().add(greenc);
+        couleur.getItems().add(yellowc);
+        couleur.getItems().add(orangec);
+        couleur.getItems().add(rougec);
+        couleur.getItems().add(rosec);
+        couleur.getItems().add(otherc);
+
 
         contour.getItems().add(couleur);
         contour.getItems().add(epaisseur);

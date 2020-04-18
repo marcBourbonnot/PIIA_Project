@@ -20,6 +20,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class MenuAppControl {
+    //Attributs
     private Control ctrl;
 
     private MenuApp mapp;
@@ -27,6 +28,10 @@ public class MenuAppControl {
     private boolean allowModif;
     private Model save;
 
+    /**
+     * Constructeur du menu (control et vue)
+     * @param c
+     */
     public MenuAppControl(Control c) {
         this.ctrl = c;
 
@@ -35,22 +40,36 @@ public class MenuAppControl {
         this.allowModif = false;
     }
 
+    /**
+     * Getter du mode dessin
+     * @return
+     */
     public boolean isDessinMode() {
         return dessinMode;
     }
 
+    /**
+     * setter du mode dessin
+     * @param dessinMode
+     */
     public void setDessinMode(boolean dessinMode) {
         this.dessinMode = dessinMode;
     }
 
+    /**
+     * Methode qui permet d'ajouter les actions à la vue du menu
+     */
     public void addActions() {
         //Menu fichier
         ObservableList<MenuItem> fichier = mapp.getMenuBar().getMenus().get(0).getItems();
+
+        //Nouveau
         fichier.get(0).setOnAction(e -> {
             this.ctrl.comfirmNew(e);
         });
+
+        //Ouvrir
         fichier.get(1).setOnAction(e -> {
-            System.out.println("Ouvrir");
             FileChooser fc = new FileChooser();
             fc.setTitle("Ouvrir");
 
@@ -118,6 +137,8 @@ public class MenuAppControl {
                 }
             }
         });
+
+        //Sauvegardr
         fichier.get(2).setOnAction(e -> {
             FileChooser fc = new FileChooser();
             fc.setTitle("Sauvegarder");
@@ -144,9 +165,9 @@ public class MenuAppControl {
                     ex.printStackTrace();
                 }
             }
-            System.out.println("Enregistrer");
-
         });
+
+        //Export
         fichier.get(3).setOnAction(e -> {
             FileChooser fc = new FileChooser();
             fc.setTitle("Export image");
@@ -180,44 +201,64 @@ public class MenuAppControl {
 
 
         });
+
+        //Quitter
         fichier.get(4).setOnAction(e -> this.ctrl.quit(e));
+
+
+
+
+
+
 
         //Menu edition
         ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();
+
+        //undo
         edition.get(0).setOnAction(e -> this.undo());
+
+        //copier
         edition.get(1).setOnAction(e -> this.ctrl.getMdl().copier());
+
+        //coller
         edition.get(2).setOnAction(e -> this.ctrl.getMdl().coller());
 
         //Menu insertion
         ObservableList<MenuItem> insertion = mapp.getMenuBar().getMenus().get(2).getItems();
+
+        //Ligne
         ((Menu)insertion.get(0)).getItems().get(0).setOnAction(e -> {
             saveModel();
             this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.LIGNE);
-            System.out.println(this.ctrl.getMdl().getTypeSelected());
             this.ctrl.getMdl().newForme();
         });
+
+        //Rectangle
         ((Menu)insertion.get(0)).getItems().get(1).setOnAction(e -> {
             saveModel();
             this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.RECTANGLE);
-            System.out.println(this.ctrl.getMdl().getTypeSelected());
             this.ctrl.getMdl().newForme();
         });
+
+        //Trgl Isocele
         ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(0).setOnAction(e ->{
             saveModel();
             this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.TRIANGLE_ISOCELE);
-            System.out.println(this.ctrl.getMdl().getTypeSelected());
             this.ctrl.getMdl().newForme();
         });
+
+        //Trgl Rectangle
         ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(1).setOnAction(e ->{
             saveModel();
             this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.TRIANGLE_RECTANGLE);
-            System.out.println(this.ctrl.getMdl().getTypeSelected());
             this.ctrl.getMdl().newForme();
         });
+
+        //Ellipse
         ((Menu)insertion.get(0)).getItems().get(3).setOnAction(e -> {
             saveModel();
             this.setDessinMode(true);
@@ -225,26 +266,88 @@ public class MenuAppControl {
             System.out.println(this.ctrl.getMdl().getTypeSelected());
             this.ctrl.getMdl().newForme();
         });
+
+        //Image
         insertion.get(1).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().setTypeSelected(Formes.IMAGE);
             this.ctrl.getMdl().newForme();
         });
+
+        //Texte
         insertion.get(2).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().setTypeSelected(Formes.TEXT);
             this.ctrl.getMdl().newForme();
         });
 
+
+
+
+
+
         //Menu modification
         ObservableList<MenuItem> modification = mapp.getMenuBar().getMenus().get(3).getItems();
+
+        //Selection
         modification.get(0).setOnAction(e -> {
             this.setDessinMode(false);
         });
-        ((Menu)modification.get(1)).getItems().get(0).setOnAction(e -> {
+
+        //Couleur Contour
+        Menu couleurContour = ((Menu) ((Menu)modification.get(1)).getItems().get(0));
+        couleurContour.getItems().get(0).setOnAction(e -> {
             saveModel();
-            System.out.println("ContourCouleur");
+            this.ctrl.getMdl().getSelectedForme().setClrBord(Color.BLACK);
+            this.ctrl.getCvsCtrl().draw();
         });
+        couleurContour.getItems().get(1).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClrBord(Color.WHITE);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleurContour.getItems().get(2).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClrBord(Color.GRAY);
+            System.out.println(this.ctrl.getMdl().getSelectedForme().getClrBord().toString());
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleurContour.getItems().get(3).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClrBord(Color.BLUE);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleurContour.getItems().get(4).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClrBord(Color.CYAN);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleurContour.getItems().get(5).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClrBord(Color.GREEN);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleurContour.getItems().get(6).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClrBord(Color.YELLOW);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleurContour.getItems().get(7).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClrBord(Color.ORANGE);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleurContour.getItems().get(8).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClrBord(Color.RED);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleurContour.getItems().get(9).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClrBord(Color.PINK);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        //Epaisseur Contour
         ((Menu) ((Menu)modification.get(1)).getItems().get(1)).getItems().get(0).setOnAction(e -> {
             saveModel();
             System.out.println("ContourEpaisseur +10");
@@ -265,15 +368,61 @@ public class MenuAppControl {
             System.out.println("ContourEpaisseur - 10");
             this.ctrl.getMdl().dimCtr(10);
         });
-        modification.get(2).setOnAction(e -> {
+
+        //Couleur Remplissage
+        Menu couleur = (Menu) modification.get(2);
+        couleur.getItems().get(0).setOnAction(e -> {
             saveModel();
-            System.out.println("Couleur de remplissage");
-
-            ColorPicker pickRemp = new ColorPicker();
-
-            pickRemp.show();
-
+            this.ctrl.getMdl().getSelectedForme().setClr(Color.BLACK);
+            this.ctrl.getCvsCtrl().draw();
         });
+        couleur.getItems().get(1).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClr(Color.WHITE);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleur.getItems().get(2).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClr(Color.GRAY);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleur.getItems().get(3).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClr(Color.BLUE);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleur.getItems().get(4).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClr(Color.CYAN);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleur.getItems().get(5).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClr(Color.GREEN);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleur.getItems().get(6).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClr(Color.YELLOW);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleur.getItems().get(7).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClr(Color.ORANGE);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleur.getItems().get(8).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClr(Color.RED);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleur.getItems().get(9).setOnAction(e -> {
+            saveModel();
+            this.ctrl.getMdl().getSelectedForme().setClr(Color.DEEPPINK);
+            this.ctrl.getCvsCtrl().draw();
+        });
+
+        //Roatation
         ((Menu)modification.get(3)).getItems().get(0).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().rotateForme(90);
@@ -282,6 +431,8 @@ public class MenuAppControl {
             saveModel();
             this.ctrl.getMdl().rotateForme(-90);
         });
+
+        //Plan
         ((Menu)modification.get(4)).getItems().get(0).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().movePremPlan();
@@ -290,18 +441,28 @@ public class MenuAppControl {
             saveModel();
             this.ctrl.getMdl().moveArrPlan();
         });
+
+        //Supprimer
         modification.get(5).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().removeForme();
         });
 
+
         this.lockSelection();
     }
 
+    /**
+     * Methode qui rend la vue du menu
+     * @return view menu
+     */
     public MenuApp getMapp() {
         return mapp;
     }
 
+    /**
+     * Methode qui permet de bloquer les elements propres à la selection
+     */
     public void lockSelection() {
         ObservableList<MenuItem> modification = mapp.getMenuBar().getMenus().get(3).getItems();
         modification.get(1).setVisible(false);
@@ -311,10 +472,14 @@ public class MenuAppControl {
         modification.get(5).setVisible(false);
 
         ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();
+        edition.get(1).setVisible(false);
         edition.get(2).setVisible(false);
-        edition.get(3).setVisible(false);
     }
 
+
+    /**
+     * Methode qui permet de debloquer les elements propres a la selection
+     */
     public void unlockSelection() {
         ObservableList<MenuItem> modification = mapp.getMenuBar().getMenus().get(3).getItems();
         modification.get(1).setVisible(true);
@@ -324,15 +489,21 @@ public class MenuAppControl {
         modification.get(5).setVisible(true);
 
         ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();
+        edition.get(1).setVisible(true);
         edition.get(2).setVisible(true);
-        edition.get(3).setVisible(true);
     }
 
+    /**
+     * Methide qui permet de faire une saubegarde du modele
+     */
     public void saveModel() {
         this.save = this.ctrl.getMdl();
         System.out.println(save);
     }
 
+    /**
+     * Methode à appeler pour faire le undo
+     */
     public void undo() {
         if (this.save == null) return;
 

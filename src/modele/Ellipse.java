@@ -72,7 +72,7 @@ public class Ellipse extends Forme {
 
         gc.fillOval(this.getX(), this.getY(), this.getWidth() - this.getX(), this.getHeight() - this.getY());
 
-        gc.setFill(this.getClrBord());
+        gc.setStroke(this.getClrBord());
         gc.setLineWidth(this.getEpaisseurBord());
         gc.strokeOval(this.getX(), this.getY(), this.getWidth() - this.getX(), this.getHeight() - this.getY());
 

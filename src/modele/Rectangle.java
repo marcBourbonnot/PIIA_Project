@@ -2,6 +2,7 @@ package modele;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
@@ -46,7 +47,7 @@ public class Rectangle extends Forme {
 
         gc.fillPolygon(new double[]{this.getX(), this.getWidth(), this.getWidth(), this.getX()}, new double[]{this.getY(), this.getY(), this.getHeight(), this.getHeight()}, 4);
 
-        gc.setFill(this.getClrBord());
+        gc.setStroke(this.getClrBord());
         gc.setLineWidth(this.getEpaisseurBord());
         gc.strokePolygon(new double[]{this.getX(), this.getWidth(), this.getWidth(), this.getX()}, new double[]{this.getY(), this.getY(), this.getHeight(), this.getHeight()}, 4);
 
