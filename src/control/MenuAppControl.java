@@ -18,6 +18,7 @@ import java.awt.image.RenderedImage;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class MenuAppControl {
     //Attributs
@@ -358,6 +359,20 @@ public class MenuAppControl {
             this.ctrl.getMdl().getSelectedForme().setClrBord(Color.PINK);
             this.ctrl.getCvsCtrl().draw();
         });
+        couleurContour.getItems().get(10).setOnAction(e -> {
+            saveModel();
+            TextInputDialog in = new TextInputDialog("#FFFFFF");
+
+            in.setTitle("Couleur Contour");
+            in.setContentText("Couleur Hexadéciamal :");
+
+            Optional<String> txtIn = in.showAndWait();
+            if (txtIn.isPresent()) {
+                this.ctrl.getMdl().getSelectedForme().setClrBord(Color.web(txtIn.get()));
+            }
+
+            this.ctrl.getCvsCtrl().draw();
+        });
         //Epaisseur Contour
         ((Menu) ((Menu)modification.get(2)).getItems().get(1)).getItems().get(0).setOnAction(e -> {
             saveModel();
@@ -429,7 +444,21 @@ public class MenuAppControl {
         });
         couleur.getItems().get(9).setOnAction(e -> {
             saveModel();
-            this.ctrl.getMdl().getSelectedForme().setClr(Color.DEEPPINK);
+            this.ctrl.getMdl().getSelectedForme().setClr(Color.PINK);
+            this.ctrl.getCvsCtrl().draw();
+        });
+        couleur.getItems().get(10).setOnAction(e -> {
+            saveModel();
+            TextInputDialog in = new TextInputDialog("#FFFFFF");
+
+            in.setTitle("Couleur Remplissage");
+            in.setContentText("Couleur Hexadéciamal :");
+
+            Optional<String> txtIn = in.showAndWait();
+            if (txtIn.isPresent()) {
+                this.ctrl.getMdl().getSelectedForme().setClr(Color.web(txtIn.get()));
+            }
+
             this.ctrl.getCvsCtrl().draw();
         });
 
