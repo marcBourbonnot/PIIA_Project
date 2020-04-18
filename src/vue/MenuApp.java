@@ -118,6 +118,7 @@ public class MenuApp {
 
         RadioMenuItem select = new RadioMenuItem("Selection");
         select.setToggleGroup(groupFormes);
+        CheckMenuItem redimmensionner = new CheckMenuItem("Redimmensionner");
         Menu contour = new Menu("Contour");
         Menu couleurRemp = new Menu("Couleur de remplissage");
         Menu rotation = new Menu("Rotation");
@@ -189,6 +190,7 @@ public class MenuApp {
         contour.getItems().add(couleur);
         contour.getItems().add(epaisseur);
 
+
         //Menu rotation
         MenuItem droite = new MenuItem("Rotation 90° vers la droite");
         MenuItem gauche = new MenuItem("Rotation 90° vers la gauche");
@@ -204,6 +206,7 @@ public class MenuApp {
         plan.getItems().add(arrPlan);
 
         modification.getItems().add(select);
+        modification.getItems().add(redimmensionner);
         modification.getItems().add(contour);
         modification.getItems().add(couleurRemp);
         modification.getItems().add(rotation);

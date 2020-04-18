@@ -296,8 +296,19 @@ public class MenuAppControl {
             this.setDessinMode(false);
         });
 
+        //redimension
+        modification.get(1).setOnAction(e -> {
+             this.setDessinMode(false);
+             if (((CheckMenuItem) modification.get(1)).isSelected()) {
+                this.ctrl.getMdl().setRedimMode(true);
+             } else {
+                this.ctrl.getMdl().setRedimMode(false);
+             }
+
+        });
+
         //Couleur Contour
-        Menu couleurContour = ((Menu) ((Menu)modification.get(1)).getItems().get(0));
+        Menu couleurContour = ((Menu) ((Menu)modification.get(2)).getItems().get(0));
         couleurContour.getItems().get(0).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().getSelectedForme().setClrBord(Color.BLACK);
@@ -364,29 +375,29 @@ public class MenuAppControl {
             this.ctrl.getCvsCtrl().draw();
         });
         //Epaisseur Contour
-        ((Menu) ((Menu)modification.get(1)).getItems().get(1)).getItems().get(0).setOnAction(e -> {
+        ((Menu) ((Menu)modification.get(2)).getItems().get(1)).getItems().get(0).setOnAction(e -> {
             saveModel();
             System.out.println("ContourEpaisseur +10");
             this.ctrl.getMdl().augCtr(10);
         });
-        ((Menu) ((Menu)modification.get(1)).getItems().get(1)).getItems().get(1).setOnAction(e -> {
+        ((Menu) ((Menu)modification.get(2)).getItems().get(1)).getItems().get(1).setOnAction(e -> {
             saveModel();
             System.out.println("ContourEpaisseur +1");
             this.ctrl.getMdl().augCtr(1);
         });
-        ((Menu) ((Menu)modification.get(1)).getItems().get(1)).getItems().get(2).setOnAction(e -> {
+        ((Menu) ((Menu)modification.get(2)).getItems().get(1)).getItems().get(2).setOnAction(e -> {
             saveModel();
             System.out.println("ContourEpaisseur -1");
             this.ctrl.getMdl().dimCtr(1);
         });
-        ((Menu) ((Menu)modification.get(1)).getItems().get(1)).getItems().get(3).setOnAction(e -> {
+        ((Menu) ((Menu)modification.get(2)).getItems().get(1)).getItems().get(3).setOnAction(e -> {
             saveModel();
             System.out.println("ContourEpaisseur - 10");
             this.ctrl.getMdl().dimCtr(10);
         });
 
         //Couleur Remplissage
-        Menu couleur = (Menu) modification.get(2);
+        Menu couleur = (Menu) modification.get(3);
         couleur.getItems().get(0).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().getSelectedForme().setClr(Color.BLACK);
@@ -453,27 +464,27 @@ public class MenuAppControl {
         });
 
         //Roatation
-        ((Menu)modification.get(3)).getItems().get(0).setOnAction(e -> {
+        ((Menu)modification.get(4)).getItems().get(0).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().rotateForme(90);
         });
-        ((Menu)modification.get(3)).getItems().get(1).setOnAction(e -> {
+        ((Menu)modification.get(4)).getItems().get(1).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().rotateForme(-90);
         });
 
         //Plan
-        ((Menu)modification.get(4)).getItems().get(0).setOnAction(e -> {
+        ((Menu)modification.get(5)).getItems().get(0).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().movePremPlan();
         });
-        ((Menu)modification.get(4)).getItems().get(1).setOnAction(e -> {
+        ((Menu)modification.get(5)).getItems().get(1).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().moveArrPlan();
         });
 
         //Supprimer
-        modification.get(5).setOnAction(e -> {
+        modification.get(6).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().removeForme();
         });
@@ -500,6 +511,7 @@ public class MenuAppControl {
         modification.get(3).setVisible(false);
         modification.get(4).setVisible(false);
         modification.get(5).setVisible(false);
+        modification.get(6).setVisible(false);
 
         ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();
         edition.get(1).setVisible(false);
@@ -517,6 +529,7 @@ public class MenuAppControl {
         modification.get(3).setVisible(true);
         modification.get(4).setVisible(true);
         modification.get(5).setVisible(true);
+        modification.get(6).setVisible(true);
 
         ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();
         edition.get(1).setVisible(true);
