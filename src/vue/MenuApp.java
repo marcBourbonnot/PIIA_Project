@@ -205,12 +205,6 @@ public class MenuApp {
 
         modification.getItems().add(select);
         modification.getItems().add(contour);
-        //TEST
-        couleurRemp.setOnAction(e -> {
-            ColorPicker pck = new ColorPicker();
-            Color clr = pck.getValue();
-        });
-        //FIN TEST
         modification.getItems().add(couleurRemp);
         modification.getItems().add(rotation);
         modification.getItems().add(plan);

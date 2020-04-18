@@ -14,6 +14,7 @@ public class Main extends Application {
         primaryStage.setTitle("Dessin facile");
         primaryStage.setScene(scene);
         primaryStage.setOnCloseRequest(e -> view.getCtrl().comfirmQuit(e));
+
         primaryStage.show();
     }
 

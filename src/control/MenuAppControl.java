@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import modele.*;
 import vue.MenuApp;
+import vue.View;
 
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
@@ -99,12 +100,12 @@ public class MenuAppControl {
                         double h = Double.valueOf(parts[4]);
 
                         String text = parts[5].replace("\"", "").replace("/*/", " ");
-                        Color clr = Color.GRAY;
+                        Color clr = Color.web(parts[6]);
 
                         boolean drawable = Boolean.valueOf(parts[7]);
 
                         double epaisseurBord = Double.valueOf(parts[8]);
-                        Color clrBord = Color.BLACK;
+                        Color clrBord = Color.web(parts[9]);
 
                         switch (parts[0]) {
                             case "Rectangle":
@@ -526,8 +527,9 @@ public class MenuAppControl {
      * Methide qui permet de faire une saubegarde du modele
      */
     public void saveModel() {
-        this.save = this.ctrl.getMdl();
-        System.out.println(save);
+        Model mdl = this.ctrl.getMdl();
+
+        this.save = new Model(mdl.getView(), mdl.getCtrl(), mdl.getTypeSelected(), mdl.getNewForme(), mdl.getFormes(), mdl.isEnDeplacement(), mdl.getIndexSelected(), mdl.getX_souris(), mdl.getY_souris(), mdl.getCopiedForme());
     }
 
     /**
@@ -536,9 +538,9 @@ public class MenuAppControl {
     public void undo() {
         if (this.save == null) return;
 
+        System.out.println(this.save.getFormes());
+        System.out.println(this.ctrl.getMdl().getFormes());
         this.ctrl.setMdl(this.save);
-        this.ctrl.getView().setMdl(this.save);
-
         this.ctrl.getCvsCtrl().draw();
 
         this.save = null;

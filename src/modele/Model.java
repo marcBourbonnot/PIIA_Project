@@ -37,6 +37,19 @@ public class Model {
         this.formes = new ArrayList<>();
     }
 
+    public Model(View view, Control ctrl, Formes newFormeTypeSelected, Forme newForme, ArrayList<Forme> formes, boolean enDeplacement, int indexSelected, double x_souris, double y_souris, Forme copiedForme) {
+        this.view = view;
+        this.ctrl = ctrl;
+        this.newFormeTypeSelected = newFormeTypeSelected;
+        this.newForme = newForme;
+        this.formes = formes;
+        this.enDeplacement = enDeplacement;
+        this.indexSelected = indexSelected;
+        this.x_souris = x_souris;
+        this.y_souris = y_souris;
+        this.copiedForme = copiedForme;
+    }
+
     public View getView() {
         return view;
     }
@@ -99,6 +112,54 @@ public class Model {
 
     public void setNewForme(Forme newForme) {
         this.newForme = newForme;
+    }
+
+    public boolean isEnDeplacement() {
+        return enDeplacement;
+    }
+
+    public void setEnDeplacement(boolean enDeplacement) {
+        this.enDeplacement = enDeplacement;
+    }
+
+    public Formes getNewFormeTypeSelected() {
+        return newFormeTypeSelected;
+    }
+
+    public void setNewFormeTypeSelected(Formes newFormeTypeSelected) {
+        this.newFormeTypeSelected = newFormeTypeSelected;
+    }
+
+    public int getIndexSelected() {
+        return indexSelected;
+    }
+
+    public void setIndexSelected(int indexSelected) {
+        this.indexSelected = indexSelected;
+    }
+
+    public double getX_souris() {
+        return x_souris;
+    }
+
+    public void setX_souris(double x_souris) {
+        this.x_souris = x_souris;
+    }
+
+    public double getY_souris() {
+        return y_souris;
+    }
+
+    public void setY_souris(double y_souris) {
+        this.y_souris = y_souris;
+    }
+
+    public Forme getCopiedForme() {
+        return copiedForme;
+    }
+
+    public void setCopiedForme(Forme copiedForme) {
+        this.copiedForme = copiedForme;
     }
 
     public void clearFormes() {

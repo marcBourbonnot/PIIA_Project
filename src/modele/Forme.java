@@ -207,7 +207,7 @@ public abstract class Forme {
     }
 
     public String exportValuesFormes() {
-        return this.getX() + " " + this.getY() + " " + this.getWidth() + " " + this.getHeight() + " \"" + this.getText().replace(" ", "/*/") + "\" " + this.getClr().getHue() + " " + this.drawable + " " + this.getEpaisseurBord() + " " + this.getClrBord().getHue();
+        return this.getX() + " " + this.getY() + " " + this.getWidth() + " " + this.getHeight() + " \"" + this.getText().replace(" ", "/*/") + "\" " + this.getClr() + " " + this.drawable + " " + this.getEpaisseurBord() + " " + this.getClrBord();
     }
 
     public void diminuerTailleBord(double value) {
