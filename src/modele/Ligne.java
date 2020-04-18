@@ -34,28 +34,59 @@ public class Ligne extends Forme {
     }*/
     public boolean estDedans(double x, double y){
         //calcul de l'equation de la droite
-        double a = (this.getHeight()-this.getY())/(this.getWidth()-this.getX());
+        /*double a =(this.getHeight()-this.getY())/(this.getWidth()-this.getX());
         double b = this.getY()-a*this.getX();
         double btest = 0;
 
+        System.out.println("coef directeur : "+a);
         double bMax = b+MARGE;
-        double bMin = b-MARGE;
+        double bMin = b-MARGE;*/
 
-        if(a>Double.MAX_VALUE){
+        /*if(a>30){
             btest = y;
         }else{
             btest = y - a*x;
         }
 
-        if(x >= this.getX()-MARGE && x<=this.getWidth()-MARGE){
+        if(x >= this.getX()-MARGE && x<=this.getWidth()+MARGE){
             return btest >= bMin && btest <= bMax;
         }
         if(btest == y){
-            if(y >= this.getY() && y <= this.getHeight()){
-                return x >= this.getX()-MARGE && x <= this.getX()+MARGE;
+            if(y >= this.getY()-MARGE && y <= this.getHeight()+MARGE){
+                return x >= this.getX()-MARGE && x <= this.getWidth()+MARGE;
             }
+        }*/
+
+        //return (x-this.getX())<this.getWidth() && (x-this.getX())>0 && (y-this.getY())<this.getHeight() && (y-this.getY())>0;
+
+        //ligne verticale
+        if(Math.abs(this.getWidth()-this.getX()) <= MARGE){
+            System.out.println("ligne verticale");
+            return x<=(this.getX()+MARGE) && x>=(this.getX()-MARGE) && y<=this.getHeight() && y>=this.getY() ;
         }
-        return false;
+        //ligne horizontale
+        if(Math.abs(this.getHeight()-this.getY())<= MARGE){
+            System.out.println("ligne horizontale");
+            return x<=this.getWidth() && x>= this.getX() && y >=this.getY()-MARGE && y<=this.getY()+MARGE;
+        }
+
+        //ligne quelconque
+        //calcul de l'expression de la droite
+        double a =  (this.getY()-this.getHeight())/(this.getX()-this.getWidth());
+        double b = this.getY() -(a*this.getX());
+
+        //calcul du b pour la droite passant par ma souris et qui est parallèle à ma ligne
+        double bSouris = y - (a*x);
+
+
+        return Math.abs(b-bSouris)<= MARGE && x>=Math.min(this.getX(), this.getWidth()) && x<= Math.max(this.getX(), this.getWidth()) && y>=Math.min(this.getY(), this.getHeight()) && y<=Math.max(this.getY(), this.getHeight());
+
+
+        //return false;
+
+
+
+
     }
 
     @Override
