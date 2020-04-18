@@ -158,9 +158,8 @@ public class Model {
                 this.newForme = new Ellipse();
                 break;
             case IMAGE:
-                Image img = this.loadImage();
-                if(img != null) {
-                    this.newForme = new ImageNous(this.loadImage());
+                this.newForme = new ImageNous(this.loadImage());
+                if(this.newForme != null){
                     this.newForme.draw(this.ctrl.getCvsCtrl().getGC());
                     this.formes.add(this.newForme);
                 }
