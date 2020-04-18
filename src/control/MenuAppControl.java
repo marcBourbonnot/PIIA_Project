@@ -102,6 +102,9 @@ public class MenuAppControl {
                             case "ZoneTexte":
                                 open.add(new ZoneTexte(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord));
                                 break;
+                            case "Ellipse":
+                                open.add(new Ellipse(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord));
+                                break;
                         }
                     }
                     buff.close();
@@ -149,9 +152,10 @@ public class MenuAppControl {
             fc.setTitle("Export image");
             fc.setInitialFileName("monDessinEnImage");
 
-            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("png files : (*.png)", ".png");
+            FileChooser.ExtensionFilter extFilterPng = new FileChooser.ExtensionFilter("png files : (*.png)", ".png");
+            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG", "*.jpg","*.JPEG", "*.jpeg");
 
-            fc.getExtensionFilters().add(extFilter);
+            fc.getExtensionFilters().addAll(extFilterPng, extFilterJPG);
 
             File file = fc.showSaveDialog(fichier.get(1).getParentPopup().getOwnerWindow());
 
@@ -181,9 +185,8 @@ public class MenuAppControl {
         //Menu edition
         ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();
         edition.get(0).setOnAction(e -> this.undo());
-        edition.get(1).setOnAction(e -> System.out.println("Retablir"));
-        edition.get(2).setOnAction(e -> this.ctrl.getMdl().copier());
-        edition.get(3).setOnAction(e -> this.ctrl.getMdl().coller());
+        edition.get(1).setOnAction(e -> this.ctrl.getMdl().copier());
+        edition.get(2).setOnAction(e -> this.ctrl.getMdl().coller());
 
         //Menu insertion
         ObservableList<MenuItem> insertion = mapp.getMenuBar().getMenus().get(2).getItems();

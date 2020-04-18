@@ -48,7 +48,7 @@ public class MenuApp {
         MenuItem nouveau = new MenuItem("Nouveau");
         MenuItem ouvrir = new MenuItem("Ouvrir");
         MenuItem sauvegarder = new MenuItem("Enregistrer");
-        MenuItem export = new MenuItem("Exporter en png");
+        MenuItem export = new MenuItem("Exporter");
         MenuItem quitter = new MenuItem("Quitter");
 
 
@@ -71,12 +71,10 @@ public class MenuApp {
         Menu edition = new Menu("Edition");
 
         MenuItem annuler = new MenuItem("Annuler");
-        MenuItem retablir = new MenuItem("Rétablir");
         MenuItem copier = new MenuItem("Copier");
         MenuItem coller = new MenuItem("Coller");
 
         edition.getItems().add(annuler);
-        edition.getItems().add(retablir);
         edition.getItems().add(copier);
         edition.getItems().add(coller);
 
