@@ -5,11 +5,16 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 
 public class ZoneTexte extends Forme{
+    private int fontSize;
+
     //Constructeurs
     public ZoneTexte(String s) {
-        super(10, 10);
+        super(50, 100);
+        this.fontSize = 30;
+
         this.setText(s);
     }
 
@@ -17,9 +22,18 @@ public class ZoneTexte extends Forme{
         super(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord);
     }
 
+
+    public int getFontSize() {
+        return fontSize;
+    }
+
+    public void setFontSize(int fontSize) {
+        this.fontSize = fontSize;
+    }
+
     @Override
     public boolean estDedans(double x, double y) {
-        return x >= this.getX() && x <= this.getWidth() && y >= this.getY() && y <= this.getHeight();
+        return y <= this.getY()+this.fontSize && y>= this.getY()-this.fontSize && x>= this.getX() && x<= this.getX()+( this.getText().length()*(this.fontSize/2));
     }
 
     @Override
@@ -27,6 +41,7 @@ public class ZoneTexte extends Forme{
         Paint save = gc.getFill();
         gc.setFill(this.getClr());
 
+        gc.setFont(new Font(this.fontSize));
         gc.setStroke(this.getClrBord());
         gc.strokeText(this.getText(), this.getX(), this.getY());
 
@@ -37,4 +52,7 @@ public class ZoneTexte extends Forme{
     public Point2D getCenter() {
         return new Point2D((this.getWidth() - this.getX()) / 2, (this.getHeight() - this.getY()) / 2);
     }
+
+
+
 }

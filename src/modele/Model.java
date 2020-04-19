@@ -238,8 +238,10 @@ public class Model {
 
             case TEXT:
                 this.newForme = new ZoneTexte(this.loadText());
-                this.newForme.draw(this.ctrl.getCvsCtrl().getGC());
-                this.formes.add(this.newForme);
+                if(this.newForme.getText() != null) {
+                    this.newForme.draw(this.ctrl.getCvsCtrl().getGC());
+                    this.formes.add(this.newForme);
+                }
                 break;
         }
     }
@@ -277,6 +279,7 @@ public class Model {
 
     public void redimension(MouseEvent e) {
         if (this.enDeplacement) {
+            System.out.println("Redim "+this.getSelectedForme().getClass().getSimpleName());
             double dx = e.getX() - x_souris;
             double dy = e.getY() - y_souris;
 
