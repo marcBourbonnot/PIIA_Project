@@ -24,6 +24,10 @@ public class ImageNous extends Forme {
         this.img = img;
     }
 
+    /**
+     * Renvoie l'image
+     * @return
+     */
     public Image getImg() {
         return img;
     }
@@ -32,6 +36,12 @@ public class ImageNous extends Forme {
         this.img = img;
     }
 
+    /**
+     * Teste si la souris est sur l'image
+     * @param x abscisse d'un point
+     * @param y ordonnee d'un point
+     * @return
+     */
     @Override
     public boolean estDedans(double x, double y) {
         return x >= this.getX() && x <= this.getWidth() && y >= this.getY() && y <= this.getHeight();

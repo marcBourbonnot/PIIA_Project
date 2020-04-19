@@ -21,6 +21,12 @@ public class Ellipse extends Forme {
         super(x, y, w, h, text, clr, drawable, epaisseurBord, clrBord);
     }
 
+    /**
+     * Teste si la souris est dans l'ellipse
+     * @param x abscisse d'un point
+     * @param y ordonnee d'un point
+     * @return
+     */
     @Override
     public boolean estDedans(double x, double y) {
         System.out.println("je suis dans estDedansEllipse");
@@ -58,12 +64,23 @@ public class Ellipse extends Forme {
 
     }
 
+    /**
+     * Calcule la distance entre deux points
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @return
+     */
     public double calculDistance(double x1, double y1, double x2, double y2){
         return Math.sqrt(((x2-x1)*(x2-x1))+((y2-y1)*(y2-y1)));
     }
 
 
-
+    /**
+     * Dessine l'ellipse
+     * @param gc GraphicsContext du canvas de la vue
+     */
     @Override
     public void draw(GraphicsContext gc) {
         Paint save = gc.getFill();
@@ -80,6 +97,10 @@ public class Ellipse extends Forme {
         gc.setFill(save);
     }
 
+    /**
+     * Renvoie le centre de l'ellipse
+     * @return
+     */
     @Override
     public Point2D getCenter() {
         return new Point2D(this.getX()+((this.getWidth()-this.getX())/2),this.getY()+((this.getHeight()-this.getY())/2));

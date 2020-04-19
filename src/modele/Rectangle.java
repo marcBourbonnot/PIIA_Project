@@ -33,12 +33,23 @@ public class Rectangle extends Forme {
 
 
     //Methodes
+
+    /**
+     * Teste si la souris se trouve dans le rectangle
+     * @param x abscisse d'un point
+     * @param y ordonnee d'un point
+     * @return
+     */
     @Override
     public boolean estDedans(double x, double y) {
         System.out.println("je suis dans estDedans rec");
-        return x >= this.getX() && x <= this.getWidth() && y >= this.getY() && y <= this.getHeight();
+        return x >= this.getX() && x <= this.getWidth() && y >= this.getY() && y <= this.getHeight() || x <= this.getX() && x >= this.getWidth() && y <= this.getY() && y >= this.getHeight();
     }
 
+    /**
+     * Dessine le rectangle
+     * @param gc GraphicsContext du canvas de la vue
+     */
     @Override
     public void draw(GraphicsContext gc) {
         Paint save = gc.getFill();
@@ -54,6 +65,10 @@ public class Rectangle extends Forme {
         gc.setFill(save);
     }
 
+    /**
+     * Calcule le centre du rectangle
+     * @return
+     */
     @Override
     public Point2D getCenter() {
         return new Point2D(this.getX() + (this.getWidth() - this.getX()) / 2, this.getY() + (this.getHeight() - this.getY()) / 2);

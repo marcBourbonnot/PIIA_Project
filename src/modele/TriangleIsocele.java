@@ -29,6 +29,13 @@ public class TriangleIsocele extends Forme {
 
 
     //Methodes
+
+    /**
+     * Teste si la souris est dans le triangle
+     * @param x abscisse d'un point
+     * @param y ordonnee d'un point
+     * @return
+     */
     @Override
     public boolean estDedans(double x, double y) {
         System.out.println("je suis dans estDedans triangleIso");
@@ -40,10 +47,24 @@ public class TriangleIsocele extends Forme {
         return abc == (axb+axc+bxc);
     }
 
+    /**
+     * Calcule l'aire du triangle pour la fonction estDedans
+     * @param xA
+     * @param yA
+     * @param xB
+     * @param yB
+     * @param xC
+     * @param yC
+     * @return
+     */
     public double calculAire(double xA, double yA, double xB, double yB, double xC, double yC){
         return Math.abs((xB-xA)*(yC-yA)-(xC-xA)*(yB-yA));
     }
 
+    /**
+     * Dessine le triangle
+     * @param gc GraphicsContext du canvas de la vue
+     */
     @Override
     public void draw(GraphicsContext gc) {
         Paint save = gc.getFill();
@@ -59,10 +80,9 @@ public class TriangleIsocele extends Forme {
         gc.setFill(save);
     }
 
+
     @Override
     public Point2D getCenter() {
         return null;
     }
-
-
 }
