@@ -68,6 +68,7 @@ public class MenuAppControl {
         //Nouveau
         fichier.get(0).setOnAction(e -> {
             this.ctrl.comfirmNew(e);
+            this.ctrl = new Control(this.ctrl.getMdl(), this.ctrl.getView());
         });
 
         //Ouvrir
@@ -231,6 +232,8 @@ public class MenuAppControl {
         //Ligne
         ((Menu)insertion.get(0)).getItems().get(0).setOnAction(e -> {
             saveModel();
+            ((RadioMenuItem) ((Menu)insertion.get(0)).getItems().get(0)).setSelected(true);
+            ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(7)).setSelected(true);
             this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.LIGNE);
             this.ctrl.getMdl().newForme();
@@ -239,6 +242,8 @@ public class MenuAppControl {
         //Rectangle
         ((Menu)insertion.get(0)).getItems().get(1).setOnAction(e -> {
             saveModel();
+            ((RadioMenuItem) ((Menu)insertion.get(0)).getItems().get(1)).setSelected(true);
+            ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(8)).setSelected(true);
             this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.RECTANGLE);
             this.ctrl.getMdl().newForme();
@@ -247,6 +252,8 @@ public class MenuAppControl {
         //Trgl Isocele
         ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(0).setOnAction(e ->{
             saveModel();
+            ((RadioMenuItem) ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(0)).setSelected(true);
+            ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(9)).setSelected(true);
             this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.TRIANGLE_ISOCELE);
             this.ctrl.getMdl().newForme();
@@ -255,6 +262,8 @@ public class MenuAppControl {
         //Trgl Rectangle
         ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(1).setOnAction(e ->{
             saveModel();
+            ((RadioMenuItem) ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(1)).setSelected(true);
+            ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(10)).setSelected(true);
             this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.TRIANGLE_RECTANGLE);
             this.ctrl.getMdl().newForme();
@@ -263,6 +272,8 @@ public class MenuAppControl {
         //Ellipse
         ((Menu)insertion.get(0)).getItems().get(3).setOnAction(e -> {
             saveModel();
+            ((RadioMenuItem) ((Menu)insertion.get(0)).getItems().get(3)).setSelected(true);
+            ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(11)).setSelected(true);
             this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.ELLIPSE);
             System.out.println(this.ctrl.getMdl().getTypeSelected());
@@ -293,15 +304,21 @@ public class MenuAppControl {
 
         //Selection
         modification.get(0).setOnAction(e -> {
+            ((RadioMenuItem) modification.get(0)).setSelected(true);
+            ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(2)).setSelected(true);
             this.setDessinMode(false);
         });
 
         //redimension
         modification.get(1).setOnAction(e -> {
              this.setDessinMode(false);
-             if (((CheckMenuItem) modification.get(1)).isSelected()) {
+             if ((((CheckMenuItem) modification.get(1)).isSelected() || ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(4)).isSelected()) && !this.ctrl.getMdl().isRedimMode()) {
+                 ((CheckMenuItem) modification.get(1)).setSelected(true);
+                 ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(4)).setSelected(true);
                 this.ctrl.getMdl().setRedimMode(true);
              } else {
+                 ((CheckMenuItem) modification.get(1)).setSelected(false);
+                 ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(4)).setSelected(false);
                 this.ctrl.getMdl().setRedimMode(false);
              }
 
@@ -491,6 +508,7 @@ public class MenuAppControl {
 
 
         this.lockSelection();
+        mapp.getMenuBar().getMenus().get(3).getItems().get(0).fire();
     }
 
     /**
