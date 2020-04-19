@@ -213,12 +213,18 @@ public class MenuApp {
         modification.getItems().add(plan);
         modification.getItems().add(suppr);
 
+        Menu help = new Menu("Aide");
+        MenuItem racc = new MenuItem("Raccourcos clavier");
+
+        help.getItems().add(racc);
+
 
         //Ajout au MenuBar
         res.getMenus().add(fichier);
         res.getMenus().add(edition);
         res.getMenus().add(insertion);
         res.getMenus().add(modification);
+        res.getMenus().add(help);
 
         return res;
     }

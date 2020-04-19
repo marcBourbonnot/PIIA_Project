@@ -17,6 +17,7 @@ public class Control {
     CanvasControl cvsCtrl;
     MenuAppControl menuCtrl;
     BarreOutilsControl bOutilsCtrl;
+    private KeyboardControl kbCtrl;
 
     public Control(Model mdl, View view) {
         this.mdl = mdl;
@@ -25,6 +26,7 @@ public class Control {
         this.cvsCtrl = new CanvasControl(this);
         this.menuCtrl = new MenuAppControl(this);
         this.bOutilsCtrl = new BarreOutilsControl(this);
+        this.kbCtrl = new KeyboardControl(this);
     }
 
 
@@ -66,6 +68,14 @@ public class Control {
 
     public void setbOutilsCtrl(BarreOutilsControl bOutilsCtrl) {
         this.bOutilsCtrl = bOutilsCtrl;
+    }
+
+    public KeyboardControl getKbCtrl() {
+        return kbCtrl;
+    }
+
+    public void setKbCtrl(KeyboardControl kbCtrl) {
+        this.kbCtrl = kbCtrl;
     }
 
     //Methodes

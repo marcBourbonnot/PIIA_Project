@@ -68,7 +68,8 @@ public class MenuAppControl {
         //Nouveau
         fichier.get(0).setOnAction(e -> {
             this.ctrl.comfirmNew(e);
-            this.ctrl = new Control(this.ctrl.getMdl(), this.ctrl.getView());
+            this.lockSelection();
+            mapp.getMenuBar().getMenus().get(3).getItems().get(0).fire();
         });
 
         //Ouvrir
@@ -506,6 +507,21 @@ public class MenuAppControl {
             this.ctrl.getMdl().removeForme();
         });
 
+
+        this.getMapp().getMenuBar().getMenus().get(4).getItems().get(0).setOnAction(e -> {
+            Alert info = new Alert(Alert.AlertType.INFORMATION);
+            info.setTitle("Raccourcis clavier");
+            info.setHeaderText(null);
+            info.setContentText("Suppr - Permet de supprimer la forme sélectionnée \n" +
+                    "Ctrl + C - Permet de copier la forme sélectionnée \n" +
+                    "Ctrl + V - Permet de coller la forme sélectionnée \n" +
+                    "Ctrl + N - Permet de créer un nouveau dessin \n" +
+                    "Ctrl + O - Permet d'ouvirir un dessin \n" +
+                    "Ctrl + S - Permet de sauvegarder le dessin \n" +
+                    "Ctrl + E - Permet d'exporter le dessin en image \n" +
+                    "Ctrl + Q - Permet de quitter le logiciel de dessin");
+            info.showAndWait();
+        });
 
         this.lockSelection();
         mapp.getMenuBar().getMenus().get(3).getItems().get(0).fire();
