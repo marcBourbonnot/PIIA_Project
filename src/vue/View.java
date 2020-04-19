@@ -21,7 +21,7 @@ public class View {
 
     private VBox mainView;
 
-    public final static int WIDTH = 1300;
+    public final static int WIDTH = 1400;
     public final static int HEIGHT = 900;
 
 

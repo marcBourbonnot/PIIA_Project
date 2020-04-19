@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class BarreOutils {
     private ToolBar outils = new ToolBar();
 
+    public static final int WIDTH = 125;
+
     public BarreOutils() {
         this.initBarre();
     }
@@ -18,6 +20,7 @@ public class BarreOutils {
 
     private void initBarre() {
         this.getOutils().setOrientation(Orientation.VERTICAL);
+        this.getOutils().setPrefWidth(BarreOutils.WIDTH);
 
         ArrayList<Control> bouttons = new ArrayList<>();
 
@@ -36,6 +39,8 @@ public class BarreOutils {
         bouttons.add(new Separator());
         bouttons.add(new Button("Image"));
         bouttons.add(new Button("Zone de texte"));
+        bouttons.add(new Separator());
+        bouttons.add(new Button("Supprimer"));
 
         ToggleGroup tglG = new ToggleGroup();
 
@@ -43,6 +48,7 @@ public class BarreOutils {
             if (e.getClass().getSimpleName().equals("ToggleButton") && !((ToggleButton) e).getText().equals("Redimessionner")) {
                 ((ToggleButton) e).setToggleGroup(tglG);
             }
+            e.setMinWidth(BarreOutils.WIDTH - 10);
         });
 
         this.getOutils().getItems().addAll(bouttons);

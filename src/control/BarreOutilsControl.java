@@ -78,5 +78,11 @@ public class BarreOutilsControl {
             MenuItem select = this.ctrl.getMenuCtrl().getMapp().getMenuBar().getMenus().get(2).getItems().get(2);
             select.fire();
         });
+
+        btn = (Button) tb.get(16);
+        btn.setOnAction(e -> {
+            MenuItem select = this.ctrl.getMenuCtrl().getMapp().getMenuBar().getMenus().get(3).getItems().get(6);
+            select.fire();
+        });
     }
 }

@@ -39,7 +39,7 @@ public class CanvasControl {
     }
 
     public void clear() {
-        gc.clearRect(0, 0, ZoneDessin.WIDTH, ZoneDessin.HEIGHT);
+        gc.clearRect(0, 0, this.zoneDessin.getDrawArea().getWidth(), this.zoneDessin.getDrawArea().getHeight());
     }
 
     public void addActions() {
