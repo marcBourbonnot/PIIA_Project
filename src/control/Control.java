@@ -3,7 +3,6 @@ package control;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.stage.FileChooser;
 import javafx.stage.WindowEvent;
 import modele.Model;
 import vue.View;

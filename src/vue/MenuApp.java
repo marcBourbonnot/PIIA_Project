@@ -52,14 +52,6 @@ public class MenuApp {
         MenuItem quitter = new MenuItem("Quitter");
 
 
-        quitter.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Platform.exit();
-            }
-        });
-
-
         fichier.getItems().add(nouveau);
         fichier.getItems().add(ouvrir);
         fichier.getItems().add(sauvegarder);
@@ -214,7 +206,7 @@ public class MenuApp {
         modification.getItems().add(suppr);
 
         Menu help = new Menu("Aide");
-        MenuItem racc = new MenuItem("Raccourcos clavier");
+        MenuItem racc = new MenuItem("Raccourcis clavier");
 
         help.getItems().add(racc);
 

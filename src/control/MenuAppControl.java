@@ -30,7 +30,7 @@ public class MenuAppControl {
     private boolean allowModif;
     private Model save;
 
-    /**
+    /**g
      * Constructeur du menu (control et vue)
      * @param c
      */
@@ -550,6 +550,10 @@ public class MenuAppControl {
         ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();
         edition.get(1).setVisible(false);
         edition.get(2).setVisible(false);
+
+        this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(4).setVisible(false);
+        ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(4)).setSelected(false);
+        this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(16).setVisible(false);
     }
 
 
@@ -568,6 +572,9 @@ public class MenuAppControl {
         ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();
         edition.get(1).setVisible(true);
         edition.get(2).setVisible(true);
+
+        this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(4).setVisible(true);
+        this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(16).setVisible(true);
     }
 
     /**

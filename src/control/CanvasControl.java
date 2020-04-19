@@ -25,6 +25,10 @@ public class CanvasControl {
         return zoneDessin;
     }
 
+    /**
+     * Getter du graphic context
+     * @return
+     */
     public GraphicsContext getGC() {
         return gc;
     }
@@ -33,15 +37,24 @@ public class CanvasControl {
         this.gc = gc;
     }
 
+    /**
+     * Methode qui permet de faire le dessin de toutes les formes du modèle
+     */
     public void draw() {
         this.clear();
         this.ctrl.getMdl().getFormes().forEach(e -> e.draw(this.gc));
     }
 
+    /**
+     * Methode qui permet de clear la zone de dessin
+     */
     public void clear() {
         gc.clearRect(0, 0, this.zoneDessin.getDrawArea().getWidth(), this.zoneDessin.getDrawArea().getHeight());
     }
 
+    /**
+     * Permet d'aajouter les actions au canvas lors des événements souris
+     */
     public void addActions() {
         Canvas cnvs = this.zoneDessin.getDrawArea();
 
@@ -60,9 +73,11 @@ public class CanvasControl {
                 //etat dessin
                 this.ctrl.getMdl().tempDraw(e);
             } else {
-                //etat selection
+                //etat redimension
                 if(this.ctrl.getMdl().isRedimMode())
                     this.ctrl.getMdl().redimension(e);
+
+                //etat selection
                 this.ctrl.getMdl().deplace(e);
             }
         });
