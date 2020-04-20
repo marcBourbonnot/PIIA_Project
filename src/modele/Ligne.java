@@ -39,12 +39,10 @@ public class Ligne extends Forme {
     public boolean estDedans(double x, double y) {
         //ligne verticale
         if (Math.abs(this.getWidth() - this.getX()) <= MARGE) {
-            System.out.println("ligne verticale");
             return x <= (this.getX() + MARGE) && x >= (this.getX() - MARGE) && y <= this.getHeight() && y >= this.getY();
         }
         //ligne horizontale
         if (Math.abs(this.getHeight() - this.getY()) <= MARGE) {
-            System.out.println("ligne horizontale");
             return x <= this.getWidth() && x >= this.getX() && y >= this.getY() - MARGE && y <= this.getY() + MARGE;
         }
 

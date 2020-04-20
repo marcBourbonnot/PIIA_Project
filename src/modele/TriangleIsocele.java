@@ -39,7 +39,6 @@ public class TriangleIsocele extends Forme {
      */
     @Override
     public boolean estDedans(double x, double y) {
-        System.out.println("je suis dans estDedans triangleIso");
         double abc = this.calculAire(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.getX() - (this.getWidth() - this.getX()), this.getHeight());
         double axb = this.calculAire(this.getX(), this.getY(), x, y, this.getWidth(), this.getHeight());
         double axc = this.calculAire(this.getX(), this.getY(), x, y, this.getX() - (this.getWidth() - this.getX()), this.getHeight());
@@ -78,8 +77,6 @@ public class TriangleIsocele extends Forme {
         gc.setStroke(this.getClrBord());
         gc.setLineWidth(this.getEpaisseurBord());
         gc.strokePolygon(new double[]{this.getX(), this.getWidth(), this.getX() - (this.getWidth() - this.getX())}, new double[]{this.getY(), this.getHeight(), this.getHeight()}, 3);
-
-        System.out.println(this.getX());
         gc.setFill(save);
     }
 

@@ -66,7 +66,6 @@ public class ZoneTexte extends Forme {
      */
     @Override
     public Point2D getCenter() {
-        //return new Point2D((this.getWidth() - this.getX()) / 2, (this.getHeight() - this.getY()) / 2);
         return new Point2D(((this.getX() + (this.getText().length() * (this.fontSize / 2))) - this.getX()) / 2, (this.getY() + this.fontSize - this.getY()) / 2);
     }
 

@@ -30,8 +30,6 @@ public class Ellipse extends Forme {
      */
     @Override
     public boolean estDedans(double x, double y) {
-        System.out.println("je suis dans estDedansEllipse");
-
         //centre du côté AB
         double ab = this.calculDistance(this.getX(), this.getY(), this.getWidth(), this.getY());
         Point2D centreAB = new Point2D(this.getX() + (ab / 2), this.getY());

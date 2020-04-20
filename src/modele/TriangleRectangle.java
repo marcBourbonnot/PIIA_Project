@@ -39,8 +39,6 @@ public class TriangleRectangle extends Forme {
      */
     @Override
     public boolean estDedans(double x, double y) {
-        System.out.println("je suis dans estDedans triangleRec");
-
         double abc = this.calculAire(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.getX() - (this.getWidth() - this.getX()), this.getHeight());
         double axb = this.calculAire(this.getX(), this.getY(), x, y, this.getWidth(), this.getHeight());
         double axc = this.calculAire(this.getX(), this.getY(), x, y, this.getX() - (this.getWidth() - this.getX()), this.getHeight());

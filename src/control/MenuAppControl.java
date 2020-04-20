@@ -270,7 +270,6 @@ public class MenuAppControl {
             ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(11)).setSelected(true);
             this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.ELLIPSE);
-            System.out.println(this.ctrl.getMdl().getTypeSelected());
             this.ctrl.getMdl().newForme();
         });
 
@@ -329,7 +328,6 @@ public class MenuAppControl {
         couleurContour.getItems().get(2).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().getSelectedForme().setClrBord(Color.GRAY);
-            System.out.println(this.ctrl.getMdl().getSelectedForme().getClrBord().toString());
             this.ctrl.getCvsCtrl().draw();
         });
         couleurContour.getItems().get(3).setOnAction(e -> {
@@ -384,22 +382,18 @@ public class MenuAppControl {
         //Epaisseur Contour
         ((Menu) ((Menu) modification.get(2)).getItems().get(1)).getItems().get(0).setOnAction(e -> {
             saveModel();
-            System.out.println("ContourEpaisseur +10");
             this.ctrl.getMdl().augCtr(10);
         });
         ((Menu) ((Menu) modification.get(2)).getItems().get(1)).getItems().get(1).setOnAction(e -> {
             saveModel();
-            System.out.println("ContourEpaisseur +1");
             this.ctrl.getMdl().augCtr(1);
         });
         ((Menu) ((Menu) modification.get(2)).getItems().get(1)).getItems().get(2).setOnAction(e -> {
             saveModel();
-            System.out.println("ContourEpaisseur -1");
             this.ctrl.getMdl().dimCtr(1);
         });
         ((Menu) ((Menu) modification.get(2)).getItems().get(1)).getItems().get(3).setOnAction(e -> {
             saveModel();
-            System.out.println("ContourEpaisseur - 10");
             this.ctrl.getMdl().dimCtr(10);
         });
 
@@ -583,9 +577,6 @@ public class MenuAppControl {
      */
     public void undo() {
         if (this.save == null) return;
-
-        System.out.println(this.save.getFormes());
-        System.out.println(this.ctrl.getMdl().getFormes());
         this.ctrl.setMdl(this.save);
         this.ctrl.getCvsCtrl().draw();
 

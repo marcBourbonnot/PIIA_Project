@@ -277,7 +277,6 @@ public class Model {
 
     public void redimension(MouseEvent e) {
         if (this.enDeplacement) {
-            System.out.println("Redim " + this.getSelectedForme().getClass().getSimpleName());
             double dx = e.getX() - x_souris;
             double dy = e.getY() - y_souris;
 
@@ -435,7 +434,6 @@ public class Model {
         TextInputDialog in = new TextInputDialog("");
 
         in.setTitle("Insèrer zone de texte");
-        //in.setHeaderText("Votre te");
         in.setContentText("Texte :");
 
         Optional<String> txtIn = in.showAndWait();
