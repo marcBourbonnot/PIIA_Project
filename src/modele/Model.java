@@ -415,7 +415,8 @@ public class Model {
     public Image loadImage() {
         final FileChooser dialog = new FileChooser();
         FileChooser.ExtensionFilter filterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG", "*.jpg","*.JPEG", "*.jpeg");
-        dialog.getExtensionFilters().addAll(filterJPG);
+        FileChooser.ExtensionFilter extFilterPng = new FileChooser.ExtensionFilter("png files : (*.png)", ".png");
+        dialog.getExtensionFilters().addAll(filterJPG,extFilterPng);
         File f = dialog.showOpenDialog(this.ctrl.getMenuCtrl().getMapp().getMenuBar().getMenus().get(2).getItems().get(1).getParentPopup().getOwnerWindow());
         if(f != null){
             String s = null;

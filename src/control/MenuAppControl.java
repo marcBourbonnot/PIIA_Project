@@ -481,7 +481,7 @@ public class MenuAppControl {
             this.ctrl.getCvsCtrl().draw();
         });
 
-        //Roatation
+        //Rotation
         ((Menu)modification.get(4)).getItems().get(0).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().rotateForme(90);
@@ -519,7 +519,9 @@ public class MenuAppControl {
                     "Ctrl + O - Permet d'ouvirir un dessin \n" +
                     "Ctrl + S - Permet de sauvegarder le dessin \n" +
                     "Ctrl + E - Permet d'exporter le dessin en image \n" +
-                    "Ctrl + Q - Permet de quitter le logiciel de dessin");
+                    "Ctrl + Q - Permet de quitter le logiciel de dessin \n" +
+                    "Ctrl + I - Permet d'insérer une image");
+
             info.showAndWait();
         });
 

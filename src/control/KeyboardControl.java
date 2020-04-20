@@ -30,6 +30,8 @@ public class KeyboardControl implements EventHandler<KeyEvent> {
         KeyCombination ctrlE = new KeyCodeCombination(KeyCode.E, KeyCodeCombination.CONTROL_DOWN);
         KeyCombination ctrlQ = new KeyCodeCombination(KeyCode.Q, KeyCodeCombination.CONTROL_DOWN);
         KeyCombination ctrlN = new KeyCodeCombination(KeyCode.N, KeyCodeCombination.CONTROL_DOWN);
+        KeyCombination ctrlI = new KeyCodeCombination(KeyCode.I, KeyCodeCombination.CONTROL_DOWN);
+
 
         if (ctrlC.match(keyEvent)) {
             this.ctrl.getMenuCtrl().getMapp().getMenuBar().getMenus().get(1).getItems().get(1).fire();
@@ -57,6 +59,10 @@ public class KeyboardControl implements EventHandler<KeyEvent> {
 
         if (ctrlQ.match(keyEvent)) {
             this.ctrl.getMenuCtrl().getMapp().getMenuBar().getMenus().get(0).getItems().get(4).fire();
+        }
+
+        if (ctrlI.match(keyEvent)) {
+            this.ctrl.getMenuCtrl().getMapp().getMenuBar().getMenus().get(2).getItems().get(1).fire();
         }
 
         if (keyEvent.getCode().equals(KeyCode.DELETE)) {
