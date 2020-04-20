@@ -30,35 +30,37 @@ public class Ligne extends Forme {
 
     /**
      * Teste si la souris est proche de la ligne
+     *
      * @param x abscisse d'un point
      * @param y ordonnee d'un point
      * @return
      */
     @Override
-    public boolean estDedans(double x, double y){
+    public boolean estDedans(double x, double y) {
         //ligne verticale
-        if(Math.abs(this.getWidth()-this.getX()) <= MARGE){
+        if (Math.abs(this.getWidth() - this.getX()) <= MARGE) {
             System.out.println("ligne verticale");
-            return x<=(this.getX()+MARGE) && x>=(this.getX()-MARGE) && y<=this.getHeight() && y>=this.getY() ;
+            return x <= (this.getX() + MARGE) && x >= (this.getX() - MARGE) && y <= this.getHeight() && y >= this.getY();
         }
         //ligne horizontale
-        if(Math.abs(this.getHeight()-this.getY())<= MARGE){
+        if (Math.abs(this.getHeight() - this.getY()) <= MARGE) {
             System.out.println("ligne horizontale");
-            return x<=this.getWidth() && x>= this.getX() && y >=this.getY()-MARGE && y<=this.getY()+MARGE;
+            return x <= this.getWidth() && x >= this.getX() && y >= this.getY() - MARGE && y <= this.getY() + MARGE;
         }
 
         //ligne quelconque
         //calcul de l'expression de la droite
-        double a =  (this.getY()-this.getHeight())/(this.getX()-this.getWidth());
-        double b = this.getY() -(a*this.getX());
+        double a = (this.getY() - this.getHeight()) / (this.getX() - this.getWidth());
+        double b = this.getY() - (a * this.getX());
 
         //calcul du b pour la droite passant par ma souris et qui est parallèle à ma ligne
-        double bSouris = y - (a*x);
-        return Math.abs(b-bSouris)<= MARGE && x>=Math.min(this.getX(), this.getWidth()) && x<= Math.max(this.getX(), this.getWidth()) && y>=Math.min(this.getY(), this.getHeight()) && y<=Math.max(this.getY(), this.getHeight());
+        double bSouris = y - (a * x);
+        return Math.abs(b - bSouris) <= MARGE && x >= Math.min(this.getX(), this.getWidth()) && x <= Math.max(this.getX(), this.getWidth()) && y >= Math.min(this.getY(), this.getHeight()) && y <= Math.max(this.getY(), this.getHeight());
     }
 
     /**
      * dessine la ligne
+     *
      * @param gc GraphicsContext du canvas de la vue
      */
     @Override
@@ -74,6 +76,7 @@ public class Ligne extends Forme {
 
     /**
      * calcule le centre de la ligne
+     *
      * @return
      */
     @Override

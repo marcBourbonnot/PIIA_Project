@@ -3,21 +3,15 @@ package control;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import modele.*;
 import vue.MenuApp;
-import vue.View;
 
-import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.*;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -30,8 +24,10 @@ public class MenuAppControl {
     private boolean allowModif;
     private Model save;
 
-    /**g
+    /**
+     * g
      * Constructeur du menu (control et vue)
+     *
      * @param c
      */
     public MenuAppControl(Control c) {
@@ -44,6 +40,7 @@ public class MenuAppControl {
 
     /**
      * Getter du mode dessin
+     *
      * @return
      */
     public boolean isDessinMode() {
@@ -52,6 +49,7 @@ public class MenuAppControl {
 
     /**
      * setter du mode dessin
+     *
      * @param dessinMode
      */
     public void setDessinMode(boolean dessinMode) {
@@ -92,7 +90,7 @@ public class MenuAppControl {
                     String line;
                     ArrayList<Forme> open = new ArrayList<>();
 
-                    while ((line = buff.readLine()) != null){
+                    while ((line = buff.readLine()) != null) {
                         String[] parts = line.split(" ");
 
                         double x = Double.valueOf(parts[1]);
@@ -154,7 +152,7 @@ public class MenuAppControl {
 
             File savedFile = fc.showSaveDialog(fichier.get(1).getParentPopup().getOwnerWindow());
 
-            if(savedFile != null){
+            if (savedFile != null) {
                 try {
                     FileWriter fileWrite = new FileWriter(savedFile);
                     this.ctrl.getMdl().getFormes().forEach(str -> {
@@ -178,7 +176,7 @@ public class MenuAppControl {
             fc.setInitialFileName("monDessinEnImage");
 
             FileChooser.ExtensionFilter extFilterPng = new FileChooser.ExtensionFilter("png files : (*.png)", ".png");
-            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG", "*.jpg","*.JPEG", "*.jpeg");
+            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG", "*.jpg", "*.JPEG", "*.jpeg");
 
             fc.getExtensionFilters().addAll(extFilterPng, extFilterJPG);
 
@@ -210,11 +208,6 @@ public class MenuAppControl {
         fichier.get(4).setOnAction(e -> this.ctrl.quit(e));
 
 
-
-
-
-
-
         //Menu edition
         ObservableList<MenuItem> edition = mapp.getMenuBar().getMenus().get(1).getItems();
 
@@ -231,9 +224,9 @@ public class MenuAppControl {
         ObservableList<MenuItem> insertion = mapp.getMenuBar().getMenus().get(2).getItems();
 
         //Ligne
-        ((Menu)insertion.get(0)).getItems().get(0).setOnAction(e -> {
+        ((Menu) insertion.get(0)).getItems().get(0).setOnAction(e -> {
             saveModel();
-            ((RadioMenuItem) ((Menu)insertion.get(0)).getItems().get(0)).setSelected(true);
+            ((RadioMenuItem) ((Menu) insertion.get(0)).getItems().get(0)).setSelected(true);
             ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(7)).setSelected(true);
             this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.LIGNE);
@@ -241,9 +234,9 @@ public class MenuAppControl {
         });
 
         //Rectangle
-        ((Menu)insertion.get(0)).getItems().get(1).setOnAction(e -> {
+        ((Menu) insertion.get(0)).getItems().get(1).setOnAction(e -> {
             saveModel();
-            ((RadioMenuItem) ((Menu)insertion.get(0)).getItems().get(1)).setSelected(true);
+            ((RadioMenuItem) ((Menu) insertion.get(0)).getItems().get(1)).setSelected(true);
             ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(8)).setSelected(true);
             this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.RECTANGLE);
@@ -251,7 +244,7 @@ public class MenuAppControl {
         });
 
         //Trgl Isocele
-        ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(0).setOnAction(e ->{
+        ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(0).setOnAction(e -> {
             saveModel();
             ((RadioMenuItem) ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(0)).setSelected(true);
             ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(9)).setSelected(true);
@@ -261,7 +254,7 @@ public class MenuAppControl {
         });
 
         //Trgl Rectangle
-        ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(1).setOnAction(e ->{
+        ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(1).setOnAction(e -> {
             saveModel();
             ((RadioMenuItem) ((Menu) ((Menu) insertion.get(0)).getItems().get(2)).getItems().get(1)).setSelected(true);
             ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(10)).setSelected(true);
@@ -271,9 +264,9 @@ public class MenuAppControl {
         });
 
         //Ellipse
-        ((Menu)insertion.get(0)).getItems().get(3).setOnAction(e -> {
+        ((Menu) insertion.get(0)).getItems().get(3).setOnAction(e -> {
             saveModel();
-            ((RadioMenuItem) ((Menu)insertion.get(0)).getItems().get(3)).setSelected(true);
+            ((RadioMenuItem) ((Menu) insertion.get(0)).getItems().get(3)).setSelected(true);
             ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(11)).setSelected(true);
             this.setDessinMode(true);
             this.ctrl.getMdl().setTypeSelected(Formes.ELLIPSE);
@@ -296,10 +289,6 @@ public class MenuAppControl {
         });
 
 
-
-
-
-
         //Menu modification
         ObservableList<MenuItem> modification = mapp.getMenuBar().getMenus().get(3).getItems();
 
@@ -312,21 +301,21 @@ public class MenuAppControl {
 
         //redimension
         modification.get(1).setOnAction(e -> {
-             this.setDessinMode(false);
-             if ((((CheckMenuItem) modification.get(1)).isSelected() || ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(4)).isSelected()) && !this.ctrl.getMdl().isRedimMode()) {
-                 ((CheckMenuItem) modification.get(1)).setSelected(true);
-                 ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(4)).setSelected(true);
+            this.setDessinMode(false);
+            if ((((CheckMenuItem) modification.get(1)).isSelected() || ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(4)).isSelected()) && !this.ctrl.getMdl().isRedimMode()) {
+                ((CheckMenuItem) modification.get(1)).setSelected(true);
+                ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(4)).setSelected(true);
                 this.ctrl.getMdl().setRedimMode(true);
-             } else {
-                 ((CheckMenuItem) modification.get(1)).setSelected(false);
-                 ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(4)).setSelected(false);
+            } else {
+                ((CheckMenuItem) modification.get(1)).setSelected(false);
+                ((ToggleButton) this.ctrl.getbOutilsCtrl().getBarreOutils().getOutils().getItems().get(4)).setSelected(false);
                 this.ctrl.getMdl().setRedimMode(false);
-             }
+            }
 
         });
 
         //Couleur Contour
-        Menu couleurContour = ((Menu) ((Menu)modification.get(2)).getItems().get(0));
+        Menu couleurContour = ((Menu) ((Menu) modification.get(2)).getItems().get(0));
         couleurContour.getItems().get(0).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().getSelectedForme().setClrBord(Color.BLACK);
@@ -393,22 +382,22 @@ public class MenuAppControl {
             this.ctrl.getCvsCtrl().draw();
         });
         //Epaisseur Contour
-        ((Menu) ((Menu)modification.get(2)).getItems().get(1)).getItems().get(0).setOnAction(e -> {
+        ((Menu) ((Menu) modification.get(2)).getItems().get(1)).getItems().get(0).setOnAction(e -> {
             saveModel();
             System.out.println("ContourEpaisseur +10");
             this.ctrl.getMdl().augCtr(10);
         });
-        ((Menu) ((Menu)modification.get(2)).getItems().get(1)).getItems().get(1).setOnAction(e -> {
+        ((Menu) ((Menu) modification.get(2)).getItems().get(1)).getItems().get(1).setOnAction(e -> {
             saveModel();
             System.out.println("ContourEpaisseur +1");
             this.ctrl.getMdl().augCtr(1);
         });
-        ((Menu) ((Menu)modification.get(2)).getItems().get(1)).getItems().get(2).setOnAction(e -> {
+        ((Menu) ((Menu) modification.get(2)).getItems().get(1)).getItems().get(2).setOnAction(e -> {
             saveModel();
             System.out.println("ContourEpaisseur -1");
             this.ctrl.getMdl().dimCtr(1);
         });
-        ((Menu) ((Menu)modification.get(2)).getItems().get(1)).getItems().get(3).setOnAction(e -> {
+        ((Menu) ((Menu) modification.get(2)).getItems().get(1)).getItems().get(3).setOnAction(e -> {
             saveModel();
             System.out.println("ContourEpaisseur - 10");
             this.ctrl.getMdl().dimCtr(10);
@@ -482,21 +471,21 @@ public class MenuAppControl {
         });
 
         //Rotation
-        ((Menu)modification.get(4)).getItems().get(0).setOnAction(e -> {
+        ((Menu) modification.get(4)).getItems().get(0).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().rotateForme(90);
         });
-        ((Menu)modification.get(4)).getItems().get(1).setOnAction(e -> {
+        ((Menu) modification.get(4)).getItems().get(1).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().rotateForme(-90);
         });
 
         //Plan
-        ((Menu)modification.get(5)).getItems().get(0).setOnAction(e -> {
+        ((Menu) modification.get(5)).getItems().get(0).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().movePremPlan();
         });
-        ((Menu)modification.get(5)).getItems().get(1).setOnAction(e -> {
+        ((Menu) modification.get(5)).getItems().get(1).setOnAction(e -> {
             saveModel();
             this.ctrl.getMdl().moveArrPlan();
         });
@@ -531,6 +520,7 @@ public class MenuAppControl {
 
     /**
      * Methode qui rend la vue du menu
+     *
      * @return view menu
      */
     public MenuApp getMapp() {

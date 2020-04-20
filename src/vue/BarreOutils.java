@@ -6,9 +6,8 @@ import javafx.scene.control.*;
 import java.util.ArrayList;
 
 public class BarreOutils {
-    private ToolBar outils = new ToolBar();
-
     public static final int WIDTH = 125;
+    private ToolBar outils = new ToolBar();
 
     public BarreOutils() {
         this.initBarre();

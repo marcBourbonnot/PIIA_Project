@@ -25,8 +25,8 @@ public abstract class Forme {
     //Constantes
 
 
-
     //Constructeur
+
     /**
      * Constructeur de la forme sans params
      */
@@ -41,6 +41,7 @@ public abstract class Forme {
 
     /**
      * Constructeur avec tous les parmetres
+     *
      * @param x
      * @param y
      * @param width
@@ -65,6 +66,7 @@ public abstract class Forme {
 
     /**
      * Constructeur de la forme
+     *
      * @param x
      * @param y
      * @param width
@@ -82,6 +84,7 @@ public abstract class Forme {
 
     /**
      * Constructeur de la forme avec la position
+     *
      * @param x
      * @param y
      */
@@ -96,6 +99,7 @@ public abstract class Forme {
 
     /**
      * Constructeur de la forme avec la position et la taille
+     *
      * @param x
      * @param y
      * @param width
@@ -186,8 +190,10 @@ public abstract class Forme {
 
 
     //Methodes
+
     /**
      * Verifie qu'un point est dans la forme
+     *
      * @param x abscisse d'un point
      * @param y ordonnee d'un point
      * @return vrai si le point est dans la forme
@@ -196,13 +202,14 @@ public abstract class Forme {
 
     /**
      * Dessine la forme
+     *
      * @param gc GraphicsContext du canvas de la vue
      */
     public abstract void draw(GraphicsContext gc);
 
     public abstract Point2D getCenter();
 
-    public  String coordsToString() {
+    public String coordsToString() {
         return this.getClass().getName() + " x: " + this.x + " y: " + this.y + " w: " + this.width + " h: " + this.height;
     }
 

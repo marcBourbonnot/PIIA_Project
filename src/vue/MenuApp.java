@@ -1,10 +1,6 @@
 package vue;
 
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import javafx.scene.paint.Color;
 
 
 public class MenuApp {
@@ -16,6 +12,7 @@ public class MenuApp {
 
 
     //Constructeurs
+
     /**
      * Constructeur sans parametres pour faire le menu
      */
@@ -25,8 +22,10 @@ public class MenuApp {
 
 
     //Getters and Setters
+
     /**
      * Getter pour le menu
+     *
      * @return menuBar
      */
     public MenuBar getMenuBar() {
@@ -35,8 +34,10 @@ public class MenuApp {
 
 
     //Methodes
+
     /**
      * Methode qui permet la creation du menu
+     *
      * @return menuBar cree
      */
     private MenuBar createMenu() {

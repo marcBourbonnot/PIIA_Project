@@ -1,11 +1,9 @@
 package modele;
 
-import com.sun.source.tree.CaseTree;
 import control.Control;
 import javafx.geometry.Point2D;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -29,14 +27,14 @@ public class Model {
     double x_souris;
     double y_souris;
     Forme copiedForme = null;
-    private boolean redimMode ;
+    private boolean redimMode;
 
 
     public Model(View v) {
         this.view = v;
 
         this.formes = new ArrayList<>();
-        this.redimMode=false;
+        this.redimMode = false;
     }
 
     public Model(View view, Control ctrl, Formes newFormeTypeSelected, Forme newForme, ArrayList<Forme> formes, boolean enDeplacement, int indexSelected, double x_souris, double y_souris, Forme copiedForme) {
@@ -178,14 +176,14 @@ public class Model {
     }
 
     public void startDrawPoint(MouseEvent e) {
-        if(this.newFormeTypeSelected != null) {
+        if (this.newFormeTypeSelected != null) {
             this.newForme.setX(e.getX());
             this.newForme.setY(e.getY());
         }
     }
 
     public void tempDraw(MouseEvent e) {
-        if(this.newFormeTypeSelected != null) {
+        if (this.newFormeTypeSelected != null) {
 
             this.getCtrl().getCvsCtrl().draw();
 
@@ -197,7 +195,7 @@ public class Model {
     }
 
     public void endDrawPoint(MouseEvent e) {
-        if(this.newFormeTypeSelected != null) {
+        if (this.newFormeTypeSelected != null) {
             this.newForme.setWidth(e.getX());
             this.newForme.setHeight(e.getY());
             this.newForme.setDrawable(true);
@@ -212,7 +210,7 @@ public class Model {
     public void newForme() {
         this.indexSelected = -1;
         this.getCtrl().getMenuCtrl().lockSelection();
-        switch (this.newFormeTypeSelected){
+        switch (this.newFormeTypeSelected) {
             case LIGNE:
                 this.newForme = new Ligne();
                 break;
@@ -230,7 +228,7 @@ public class Model {
                 break;
             case IMAGE:
                 this.newForme = new ImageNous(this.loadImage());
-                if(this.newForme != null){
+                if (this.newForme != null) {
                     this.newForme.draw(this.ctrl.getCvsCtrl().getGC());
                     this.formes.add(this.newForme);
                 }
@@ -238,7 +236,7 @@ public class Model {
 
             case TEXT:
                 this.newForme = new ZoneTexte(this.loadText());
-                if(this.newForme.getText() != null) {
+                if (this.newForme.getText() != null) {
                     this.newForme.draw(this.ctrl.getCvsCtrl().getGC());
                     this.formes.add(this.newForme);
                 }
@@ -279,7 +277,7 @@ public class Model {
 
     public void redimension(MouseEvent e) {
         if (this.enDeplacement) {
-            System.out.println("Redim "+this.getSelectedForme().getClass().getSimpleName());
+            System.out.println("Redim " + this.getSelectedForme().getClass().getSimpleName());
             double dx = e.getX() - x_souris;
             double dy = e.getY() - y_souris;
 
@@ -293,7 +291,7 @@ public class Model {
     }
 
     public void lache(MouseEvent e) {
-        this.enDeplacement=false;
+        this.enDeplacement = false;
     }
 
     public void moveArrPlan() {
@@ -334,7 +332,7 @@ public class Model {
         double yTemp = p.getY() - center.getY();
 
         double x = xTemp * Math.cos(angle) + yTemp * Math.sin(angle) + center.getX();
-        double y = - xTemp * Math.sin(angle) + yTemp * Math.cos(angle) + center.getY();
+        double y = -xTemp * Math.sin(angle) + yTemp * Math.cos(angle) + center.getY();
 
         Point2D res = new Point2D(x, y);
 
@@ -371,7 +369,7 @@ public class Model {
     }
 
     public void coller() {
-        if(copiedForme == null) return;
+        if (copiedForme == null) return;
 
         //Attributs
         double x = this.copiedForme.getX() + 15;
@@ -414,11 +412,11 @@ public class Model {
 
     public Image loadImage() {
         final FileChooser dialog = new FileChooser();
-        FileChooser.ExtensionFilter filterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG", "*.jpg","*.JPEG", "*.jpeg");
+        FileChooser.ExtensionFilter filterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG", "*.jpg", "*.JPEG", "*.jpeg");
         FileChooser.ExtensionFilter extFilterPng = new FileChooser.ExtensionFilter("png files : (*.png)", ".png");
-        dialog.getExtensionFilters().addAll(filterJPG,extFilterPng);
+        dialog.getExtensionFilters().addAll(filterJPG, extFilterPng);
         File f = dialog.showOpenDialog(this.ctrl.getMenuCtrl().getMapp().getMenuBar().getMenus().get(2).getItems().get(1).getParentPopup().getOwnerWindow());
-        if(f != null){
+        if (f != null) {
             String s = null;
             try {
                 s = f.toURI().toURL().toExternalForm();

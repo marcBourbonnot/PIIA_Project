@@ -2,11 +2,8 @@ package modele;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-
-import java.awt.*;
 
 public class Rectangle extends Forme {
 
@@ -36,6 +33,7 @@ public class Rectangle extends Forme {
 
     /**
      * Teste si la souris se trouve dans le rectangle
+     *
      * @param x abscisse d'un point
      * @param y ordonnee d'un point
      * @return
@@ -48,6 +46,7 @@ public class Rectangle extends Forme {
 
     /**
      * Dessine le rectangle
+     *
      * @param gc GraphicsContext du canvas de la vue
      */
     @Override
@@ -67,6 +66,7 @@ public class Rectangle extends Forme {
 
     /**
      * Calcule le centre du rectangle
+     *
      * @return
      */
     @Override

@@ -7,7 +7,7 @@ import javafx.scene.paint.Paint;
 
 public class TriangleRectangle extends Forme {
     //Constructeurs
-    public TriangleRectangle(){
+    public TriangleRectangle() {
         super();
     }
 
@@ -32,6 +32,7 @@ public class TriangleRectangle extends Forme {
 
     /**
      * Teste si la souris est dans le triangle
+     *
      * @param x abscisse d'un point
      * @param y ordonnee d'un point
      * @return
@@ -40,19 +41,20 @@ public class TriangleRectangle extends Forme {
     public boolean estDedans(double x, double y) {
         System.out.println("je suis dans estDedans triangleRec");
 
-        double abc = this.calculAire(this.getX(), this.getY(), this.getWidth(), this.getHeight(),this.getX() - (this.getWidth() - this.getX()), this.getHeight() );
+        double abc = this.calculAire(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.getX() - (this.getWidth() - this.getX()), this.getHeight());
         double axb = this.calculAire(this.getX(), this.getY(), x, y, this.getWidth(), this.getHeight());
         double axc = this.calculAire(this.getX(), this.getY(), x, y, this.getX() - (this.getWidth() - this.getX()), this.getHeight());
         double bxc = this.calculAire(this.getWidth(), this.getHeight(), x, y, this.getX() - (this.getWidth() - this.getX()), this.getHeight());
 
-        if(this.getX()<= this.getWidth()){
-            return x>=this.getX() && x <= this.getWidth() && (abc == (axb+axc+bxc));
+        if (this.getX() <= this.getWidth()) {
+            return x >= this.getX() && x <= this.getWidth() && (abc == (axb + axc + bxc));
         }
-        return x <=this.getX() && x >= this.getWidth() &&abc == (axb+axc+bxc);
+        return x <= this.getX() && x >= this.getWidth() && abc == (axb + axc + bxc);
     }
 
     /**
      * Calcule l'aire du triangle pour la fonction estDedans
+     *
      * @param xA
      * @param yA
      * @param xB
@@ -61,12 +63,13 @@ public class TriangleRectangle extends Forme {
      * @param yC
      * @return
      */
-    public double calculAire(double xA, double yA, double xB, double yB, double xC, double yC){
-        return Math.abs((xB-xA)*(yC-yA)-(xC-xA)*(yB-yA));
+    public double calculAire(double xA, double yA, double xB, double yB, double xC, double yC) {
+        return Math.abs((xB - xA) * (yC - yA) - (xC - xA) * (yB - yA));
     }
 
     /**
      * Dessine le triangle
+     *
      * @param gc GraphicsContext du canvas de la vue
      */
     @Override
@@ -74,11 +77,11 @@ public class TriangleRectangle extends Forme {
         Paint save = gc.getFill();
 
         gc.setFill(this.getClr());
-        gc.fillPolygon(new double[]{this.getX(), this.getWidth(), this.getX()}, new double[]{this.getY(), this.getHeight(), this.getHeight()},3);
+        gc.fillPolygon(new double[]{this.getX(), this.getWidth(), this.getX()}, new double[]{this.getY(), this.getHeight(), this.getHeight()}, 3);
 
         gc.setStroke(this.getClrBord());
         gc.setLineWidth(this.getEpaisseurBord());
-        gc.strokePolygon(new double[]{this.getX(), this.getWidth(), this.getX()}, new double[]{this.getY(), this.getHeight(), this.getHeight()},3);
+        gc.strokePolygon(new double[]{this.getX(), this.getWidth(), this.getX()}, new double[]{this.getY(), this.getHeight(), this.getHeight()}, 3);
 
         gc.setFill(save);
     }

@@ -9,20 +9,16 @@ import javafx.scene.layout.VBox;
 import modele.Model;
 
 
-
 public class View {
-
-    private Model mdl;
-    private Control ctrl;
-
-    private MenuAppControl menu;
-    private CanvasControl dessin;
-    private BarreOutilsControl bOutils;
-
-    private VBox mainView;
 
     public final static int WIDTH = 1400;
     public final static int HEIGHT = 900;
+    private Model mdl;
+    private Control ctrl;
+    private MenuAppControl menu;
+    private CanvasControl dessin;
+    private BarreOutilsControl bOutils;
+    private VBox mainView;
 
 
     //Constructeur
@@ -37,7 +33,7 @@ public class View {
 
         menu.addActions();
 
-        this.mainView = new VBox(this.menu.getMapp().getMenuBar(), new HBox(this.dessin.getZoneDessin().getDrawArea(),this.bOutils.getBarreOutils().getOutils()));
+        this.mainView = new VBox(this.menu.getMapp().getMenuBar(), new HBox(this.dessin.getZoneDessin().getDrawArea(), this.bOutils.getBarreOutils().getOutils()));
     }
 
 

@@ -27,6 +27,7 @@ public class CanvasControl {
 
     /**
      * Getter du graphic context
+     *
      * @return
      */
     public GraphicsContext getGC() {
@@ -74,7 +75,7 @@ public class CanvasControl {
                 this.ctrl.getMdl().tempDraw(e);
             } else {
                 //etat redimension
-                if(this.ctrl.getMdl().isRedimMode())
+                if (this.ctrl.getMdl().isRedimMode())
                     this.ctrl.getMdl().redimension(e);
 
                 //etat selection

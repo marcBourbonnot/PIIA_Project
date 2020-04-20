@@ -26,6 +26,7 @@ public class ImageNous extends Forme {
 
     /**
      * Renvoie l'image
+     *
      * @return
      */
     public Image getImg() {
@@ -38,6 +39,7 @@ public class ImageNous extends Forme {
 
     /**
      * Teste si la souris est sur l'image
+     *
      * @param x abscisse d'un point
      * @param y ordonnee d'un point
      * @return
