@@ -50,10 +50,9 @@ public class ZoneTexte extends Forme {
     @Override
     public void draw(GraphicsContext gc) {
         Paint save = gc.getFill();
-        gc.setFill(this.getClr());
 
         gc.setFont(new Font(this.fontSize));
-        gc.setStroke(this.getClrBord());
+        gc.setStroke(this.getClr());
         gc.strokeText(this.getText(), this.getX(), this.getY());
 
         gc.setFill(save);
